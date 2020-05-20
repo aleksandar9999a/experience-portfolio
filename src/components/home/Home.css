@@ -49,3 +49,17 @@
         font-size: 17px;
     }
 }
+
+hr{
+    background: linear-gradient(to right, #ff6d6dfb 30%, #08fdd8 50%);
+    height: 1px;
+    border: 0;
+	background-size: 200% auto;
+    animation: textclip 2s linear infinite;
+}
+
+@keyframes textclip {
+	from {
+		background-position: 200% center;
+	}
+}
