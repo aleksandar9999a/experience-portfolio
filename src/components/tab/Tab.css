@@ -1,0 +1,28 @@
+.tab {
+    display: inline-flex;
+    margin: auto;
+    width: 60px;
+}
+
+.link {
+    text-decoration: none;
+    color: #08fdd8;
+}
+
+.route-name {
+    display: none;
+    width: 60px;
+}
+
+.route-icon{
+    display: block;
+    width: 60px;
+}
+
+.link:hover .route-name{
+    display: block;
+}
+
+.link:hover .route-icon{
+    display: none;
+}
