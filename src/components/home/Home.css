@@ -1,0 +1,51 @@
+.home {
+    height: 80%;
+    display: flex;
+}
+
+.headline {
+    width: 50%;
+    margin: auto;
+    color: white;
+    font-family: "Times New Roman", Times, serif;
+    text-align: center;
+}
+
+.headline-top {
+    font-size: 50px;
+}
+
+.headline-bottom {
+    font-size: 20px;
+}
+
+.headline-top::before {
+    content: 'console.log( ';
+    font-size: 40px;
+    color: #08fdd8;
+    margin-left: -25%;
+}
+
+.headline-top::after {
+    content: ' )';
+    font-size: 40px;
+    color: #08fdd8;
+}
+
+@media screen and (max-width: 780px) {
+    .headline {
+        width: 70%;
+    }
+
+    .headline-top {
+        font-size: 20px;
+    }
+
+    .headline-bottom {
+        font-size: 15px;
+    }
+
+    .headline-top::before, .headline-top::after {
+        font-size: 17px;
+    }
+}
