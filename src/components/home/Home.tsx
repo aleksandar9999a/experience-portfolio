@@ -1,20 +1,16 @@
 import React from 'react';
 import './Home.css';
-import instagram from './../../assets/instagram.png';
-import git from './../../assets/git.png';
-import linkedin from './../../assets/linkedin.png';
+import CustomLink from '../customLink/CustomLink';
+import ContactI from '../../interfaces/ContactI';
 
-const contacts = [
-    { alt: 'instagram', src: instagram, href: 'https://www.instagram.com/sandi9999a/' },
-    { alt: 'github', src: git, href: 'https://github.com/aleksandar9999a' },
-    { alt: 'linkedin', src: linkedin, href: 'https://www.linkedin.com/in/alexandar-todorov/' }
+const contacts: ContactI[] = [
+    { alt: 'instagram', icon: 'instagram', href: 'https://www.instagram.com/sandi9999a/' },
+    { alt: 'github', icon: 'git', href: 'https://github.com/aleksandar9999a' },
+    { alt: 'linkedin', icon: 'linkedin', href: 'https://www.linkedin.com/in/alexandar-todorov/' }
 ]
 
-const links = contacts.map((c, i) => (
-    <a href={c.href} key={i} target="_blank" className="social-link">
-        <img src={c.src} alt={c.alt} className="social-icons" />
-    </a>
-))
+const generateCustomLinks = (c: ContactI, i: number) => <CustomLink key={i} alt={c.alt} icon={c.icon} link={c.href} />;
+const links = contacts.map(generateCustomLinks);
 
 function Home() {
     return (
