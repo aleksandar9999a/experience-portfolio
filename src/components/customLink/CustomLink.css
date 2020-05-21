@@ -1,0 +1,7 @@
+.social-icons {
+    height: 45px;
+}
+
+.social-link + .social-link {
+    margin-left: 20px;
+}
