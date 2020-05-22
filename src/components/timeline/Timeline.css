@@ -1,0 +1,137 @@
+.timeline {
+  list-style: none;
+  padding: 20px;
+  position: relative;
+  overflow-x: auto;
+}
+
+.timeline-item {
+  margin-bottom: 20px;
+  position: relative;
+  display: table-cell;
+  height: 280px;
+  float: none !important;
+  padding-right: 20px;
+  vertical-align: bottom;
+}
+
+.timeline-link {
+    text-decoration: none;
+}
+
+.timeline-badge {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  background-color: #08fdd8;
+  border-radius: 50%;
+  bottom: 10px;
+  left: 37%;
+}
+
+.timeline-badge::before{
+    position: absolute;
+    content: " ";
+    background-color: #eeeeee;
+    height: 2px;
+    width: 230px;
+    bottom: 50%;
+    right: 30px;
+  }
+
+.timeline-item:first-child .timeline-badge::before {
+    display: none;
+}
+
+.timeline-panel {
+  position: relative;
+  background: #181818;
+  border-radius: 20px;
+  width: 200px;
+  padding: 20px;
+  box-shadow: 1px 1px 6px #08fdd841;
+  bottom: 64px;
+  margin-bottom: 20px;
+  margin-top: 100px;
+}
+
+.timeline-panel:hover {
+    box-shadow: 1px 1px 20px #08fdd841;
+}
+
+.timeline-panel:before {
+    position: absolute;
+    content: " ";
+    bottom: -16px;
+    left: 40% !important;
+    border-right: 16px solid transparent;
+    border-top: 16px solid #c0c0c0;
+    border-bottom: 0 solid #c0c0c0;
+    border-left: 16px solid transparent;
+  }
+
+.timeline-title {
+  margin-top: 0;
+  font-size: 20px;
+  color: #08fdd8;
+}
+
+.timeline-text {
+  margin-bottom: 0;
+  font-size: 13px;
+  color: white;
+}
+
+.timeline-time {
+  display: flex;
+}
+
+.timeline-start, .timeline-end {
+  color: white;
+  font-size: 13px;
+  width: 50%;
+}
+
+.timeline-date {
+  font-size: 12px;
+}
+
+.timeline-start {
+  text-align: left;
+}
+
+.timeline-end {
+  text-align: right;
+}
+
+@media screen and (max-width: 780px) {
+    .timeline-item {
+        display: table-row;
+        height: auto;
+    }
+
+    .timeline-item:last-child .timeline-panel::before {
+        border: 0;
+    }
+
+    .timeline-panel {
+        margin: 15px;
+        bottom: 0;
+    }
+
+    .timeline-badge {
+        display: none;
+    }
+      
+    .timeline-badge::before{
+        display: none;
+    }
+
+    .timeline-title {
+        font-size: 13px;
+    }
+
+    .timeline-text {
+        font-size: 10px;
+    }
+}
