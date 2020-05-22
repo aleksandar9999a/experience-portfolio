@@ -1,11 +1,15 @@
 .contacts {
-    height: 80%;
+    height: 80vh;
 }
 
 .title {
     display: flex;
     width: 100%;
     height: 30%;
+}
+
+.contact-form {
+    height: 70%;
 }
 
 .title-text {
@@ -27,7 +31,7 @@
 }
 
 .custom-textarea {
-    height: 200px;
+    height: 150px;
     font: inherit;
     padding: 20px 20px;
 }
@@ -62,7 +66,7 @@
 
 @media screen and (max-width: 780px) {
     .title-text {
-        font-size: 30px;
+        font-size: 40px;
     }
 
     .custom-input, .custom-textarea {

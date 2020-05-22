@@ -14,14 +14,9 @@ import Home from './components/home/Home';
 import About from './components/about/About';
 import Contacts from './components/contacts/Contacts';
 
-const styles = {
-  height: window.innerHeight,
-  backgroundColor: '#1d1d1d'
-}
-
 function App() {
   return (
-    <div style={styles}>
+    <div className="app">
       <Router>
         <Navbar />
         <Switch>
