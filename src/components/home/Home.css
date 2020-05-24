@@ -32,6 +32,10 @@
     color: #08fdd8;
 }
 
+.social-icons:hover {
+    opacity: 0.8;
+}
+
 @media screen and (max-width: 780px) {
     .headline {
         width: 70%;
