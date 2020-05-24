@@ -65,12 +65,8 @@ export default class Star {
         return (iStar.x - jStar.x) < this.constellation_config.distance && (iStar.y - jStar.y) < this.constellation_config.distance && (iStar.x - jStar.x) > -this.constellation_config.distance && (iStar.y - jStar.y) > -this.constellation_config.distance;
     }
 
-    private isValidPosition(iStar: StarCoordsInterface) {
-        return (iStar.x - this.constellation_config.position.x) < this.constellation_config.radius && (iStar.y - this.constellation_config.position.y) < this.constellation_config.radius && (iStar.x - this.constellation_config.position.x) > -this.constellation_config.radius && (iStar.y - this.constellation_config.position.y) > -this.constellation_config.radius;
-    }
-
-    private isValidRadius(iStar: StarCoordsInterface) {
-        return (iStar.x - this.width * 0.5) < this.constellation_config.radius && (iStar.y - this.height * 0.5) < this.constellation_config.radius && (iStar.x - this.width * 0.5) > -this.constellation_config.radius && (iStar.y - this.height * 0.5) > -this.constellation_config.radius;
+    private isValidRadius(iStar: StarCoordsInterface, x: number, y: number) {
+        return (iStar.x - x) < this.constellation_config.radius && (iStar.y - y) < this.constellation_config.radius && (iStar.x - x) > -this.constellation_config.radius && (iStar.y - y) > -this.constellation_config.radius;
     }
 
     private writeLine(iStar: StarCoordsInterface, jStar: StarCoordsInterface) {
@@ -83,7 +79,16 @@ export default class Star {
     }
 
     private initWriting(starOne: StarCoordsInterface, starTwo: StarCoordsInterface) {
-        if (this.context && this.isValidDistance(starOne, starTwo) && (this.isValidPosition(starOne) || this.isValidRadius(starOne))) {
+        if (
+            this.context &&
+            (
+                this.isValidDistance(starOne, starTwo) &&
+                (
+                    this.isValidRadius(starOne, this.width * 0.1, this.height * 0.3) ||
+                    this.isValidRadius(starOne, this.width * 0.8, this.height * 0.6)
+                )
+            )
+        ) {
             this.writeLine(starOne, starTwo);
             this.context.lineWidth = this.constellation_config.line.width;
         }
