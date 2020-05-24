@@ -24,7 +24,7 @@ export default class Star {
         this.radius = this.constellation_config.star.randomWidth ? (Math.random() * this.constellation_config.star.width) : this.constellation_config.star.width;
     }
 
-    generateRandomCoords() {
+    private generateRandomCoords() {
         this.x = Math.random() * this.width;
         this.y = Math.random() * this.height;
         this.vx = (this.constellation_config.velocity - (Math.random() * 0.5));
@@ -46,7 +46,7 @@ export default class Star {
         }
     }
 
-    createCustomStar(x: number, y: number, r: number) {
+    private createCustomStar(x: number, y: number, r: number) {
         if (!this.context) { return; }
         this.context.beginPath();
         this.context.arc(x, y, r, 0, Math.PI * 2, false);
