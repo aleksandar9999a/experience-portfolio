@@ -1,11 +1,11 @@
 const constellation_config = {
     star: {
-        color: 'white',
+        color: '#08fdd8',
         width: 1,
         randomWidth: false
     },
     line: {
-        color: 'white',
+        color: '#08fdd8',
         width: 0.1,
         randomWidth: true
     },
