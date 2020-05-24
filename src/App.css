@@ -4,3 +4,15 @@ body {
     background-size: cover;
     background-color: #1d1d1d;
 }
+
+.app {
+    position: relative;
+}
+
+canvas, .overlay {
+    position: absolute;
+}
+
+.overlay {
+    width: 100%;
+}
