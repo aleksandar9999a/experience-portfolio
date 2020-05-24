@@ -9,16 +9,12 @@ const constellation_config = {
         width: 0.1,
         randomWidth: true
     },
-    position: {
-        x: 0,
-        y: 0
-    },
-    width: window.innerWidth,
+    width: window.innerWidth - 20,
     height: window.innerHeight,
     velocity: 0.2,
-    length: 70,
-    distance: 220,
-    radius: 100
+    length: window.innerWidth < 500 ? 20 : 150,
+    distance: 80,
+    radius: 200
 }
 
 export default constellation_config
