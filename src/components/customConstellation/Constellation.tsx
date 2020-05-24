@@ -1,5 +1,6 @@
 import constellation_config from '../../configs/constellationConfig';
 import { createStar } from './ConstellationAdapter';
+import Star from './Star';
 
 export default class Constellation {
     private canvas: HTMLCanvasElement;
@@ -38,6 +39,14 @@ export default class Constellation {
         requestAnimationFrame(this.loop.bind(this, callback));
     };
 
+    private subscribeForResize(star: Star) {
+        window.addEventListener('resize', () => {
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
+            this.setContext();
+            star.setWindowSize(window.innerWidth, window.innerHeight);
+        })
+    }
     init() {
         if (!this.context) { return; }
         this.setCanvas();
@@ -45,6 +54,7 @@ export default class Constellation {
         this.setInitialPosition();
         const star = this.createStar(this.context, this.canvas.width, this.canvas.height);
         star.create();
+        this.subscribeForResize(star);
         this.loop(star.animate.bind(star));
         this.loop(star.line.bind(star));
     };

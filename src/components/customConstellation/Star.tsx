@@ -14,6 +14,11 @@ export default class Star {
         this.height = height;
     }
 
+    setWindowSize(width: number, height: number) {
+        this.width = width;
+        this.height = height;
+    }
+
     private generateRandomCoords() {
         const x = Math.random() * this.width;
         const y = Math.random() * this.height;
