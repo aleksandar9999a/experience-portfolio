@@ -6,7 +6,7 @@ const constellation_config = {
     },
     line: {
         color: '#08fdd8',
-        width: 0.1,
+        width: 0.05,
         randomWidth: true
     },
     width: window.innerWidth - 20,
