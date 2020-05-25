@@ -1,0 +1,32 @@
+.skills {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+}
+
+.skills-title {
+    width: 50%;
+    height: 30%;
+    text-align: center;
+}
+
+.skills-title-inside {
+    width: 50%;
+}
+
+.skills-title-text {
+    
+    color: #08fdd8;
+    font-size: 50px;
+}
+
+.skills-title-headline {
+    color: white;
+}
+
+
+@media screen and (max-width: 780px) {
+    .skills-section {
+        width: 50%;
+    }
+}
