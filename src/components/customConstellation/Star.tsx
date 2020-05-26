@@ -90,7 +90,6 @@ export default class Star {
             )
         ) {
             this.writeLine(starOne, starTwo);
-            this.context.lineWidth = this.constellation_config.line.width;
         }
     }
 
