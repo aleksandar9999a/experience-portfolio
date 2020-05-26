@@ -6,7 +6,7 @@ import { getSkills } from '../../services/db';
 import DBSkillsResponse from '../../interfaces/DBSkillsResponse';
 
 function Skills() {
-  const [description, setDescription] = useState<any>();
+  const [description, setDescription] = useState<string>();
   const [timelineItems, setTimelineItems] = useState<TimelineItemsInterface[]>([]);
 
   useEffect(() => {
