@@ -58,6 +58,16 @@
     padding: 10px 20px 10px 25px;
 }
 
+.custom-error {
+    text-align: center;
+    color: red;
+}
+
+.custom-success {
+    text-align: center;
+    color: green;
+}
+
 @media screen and (max-width: 780px) {
     .title-text {
         font-size: 40px;
