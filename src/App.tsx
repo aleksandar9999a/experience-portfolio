@@ -14,6 +14,18 @@ import Home from './components/home/Home';
 import About from './components/about/About';
 import Contacts from './components/contacts/Contacts';
 import CustomConstellation from './components/customConstellation/CustomConstellation';
+import Login from './components/login/Login';
+
+const links = [
+  { path: '/projects', Component: Projects },
+  { path: '/skills', Component: Skills },
+  { path: '/contacts', Component: Contacts},
+  { path: '/about', Component: About },
+  { path: '/login', Component: Login },
+  { path: '/', Component: Home },
+]
+
+const listOfRoutes = links.map(({ path, Component}) => <Route path={path}><Component /></Route>);
 
 function App() {
   return (
@@ -23,21 +35,7 @@ function App() {
         <Router>
           <Navbar />
           <Switch>
-            <Route path="/projects">
-              <Projects />
-            </Route>
-            <Route path="/skills">
-              <Skills />
-            </Route>
-            <Route path="/contacts">
-              <Contacts />
-            </Route>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
+            {listOfRoutes}
           </Switch>
         </Router>
       </div>
