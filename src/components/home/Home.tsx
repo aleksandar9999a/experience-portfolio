@@ -42,7 +42,7 @@ function Home() {
                         {info.devType}
                     </h2>
                     <Link className="headline-link" to='/login' >
-                        Do you are my member?
+                        Are you my owner?
                     </Link>
                 </div>
                 <div className="social-contacts">
