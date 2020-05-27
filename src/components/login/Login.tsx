@@ -1,12 +1,14 @@
 import React, { useState, SyntheticEvent } from 'react';
 import './Login.css';
 import { submitLogin } from './../../services/db';
+import { Redirect } from 'react-router-dom';
 
 function Login() {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [error, setError] = useState<string>('');
     const [success, setSuccess] = useState<string>('');
+    const [redirect, setRedirect] = useState<boolean>(false);
 
     function submit(e: SyntheticEvent) {
         e.preventDefault();
@@ -22,32 +24,32 @@ function Login() {
             return;
         }
 
-        submitLogin({ email, password }).then(user => {
-            if (user) {
-                setSuccess("Successful login!");
-                removeSuccessAfterTime(3000);
-            }
-        }).catch(err => {
-            if (err.message === "Request failed with status code 404") {
-                setError('User is unknown.')
-                removeErrorAfterTime(3000);
-            }
-            console.log(err.message);
-        })
-
-
+        submitLogin({ email, password })
+            .then(user => {
+                if (user) {
+                    setSuccess("Successful login!");
+                    removeSuccessAfterTime(3000);
+                    setRedirect(true);
+                }
+            }).catch(err => {
+                if (err.message === "Request failed with status code 404") {
+                    setError('User is unknown.')
+                    removeErrorAfterTime(3000);
+                }
+                console.log(err.message);
+            });
     }
 
     function removeErrorAfterTime(time: number) {
-        removeText(setError, 3000);
+        return removeText(setError, 3000);
     }
 
     function removeSuccessAfterTime(time: number) {
-        removeText(setSuccess, 3000);
+        return removeText(setSuccess, 3000);
     }
 
     function removeText(setValue: Function, time: number) {
-        setTimeout(() => {
+        return setTimeout(() => {
             setValue('');
         }, time);
     }
@@ -60,6 +62,7 @@ function Login() {
         setPassword(e.target.value);
     }
 
+    if (redirect) { return <Redirect to="/" /> }
 
     return (
         <div className="login">
