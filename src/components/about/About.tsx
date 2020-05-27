@@ -3,14 +3,13 @@ import './About.css';
 import Timeline from '../timeline/Timeline';
 import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
 import { getAbout } from './../../services/db';
-import DBAboutResponse from '../../interfaces/DBAboutResponse';
 
 function About() {
   const [headline, setHeadline] = useState<string>();
   const [timelineItems, setTimelineItems] = useState<TimelineItemsInterface[]>([]);
 
   useEffect(() => {
-    const aboutData = getAbout().subscribe(({ data }: { data: DBAboutResponse }) => {
+    const aboutData = getAbout().subscribe((data: any) => {
       setHeadline(data.description)
       setTimelineItems(data.courses)
     });

@@ -3,14 +3,13 @@ import './Skills.css';
 import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
 import Timeline from '../timeline/Timeline';
 import { getSkills } from '../../services/db';
-import DBSkillsResponse from '../../interfaces/DBSkillsResponse';
 
 function Skills() {
   const [description, setDescription] = useState<string>();
   const [timelineItems, setTimelineItems] = useState<TimelineItemsInterface[]>([]);
 
   useEffect(() => {
-    const skillsData = getSkills().subscribe(({ data }: { data: DBSkillsResponse }) => {
+    const skillsData = getSkills().subscribe((data: any ) => {
       setDescription(data.description);
       setTimelineItems(data.experience);
     });

@@ -3,7 +3,6 @@ import './Home.css';
 import CustomLink from '../customLink/CustomLink';
 import ContactI from '../../interfaces/ContactI';
 import { getMainInfo } from '../../services/db';
-import DBUserResponse from '../../interfaces/DBUserResponse';
 import { Link } from 'react-router-dom';
 
 const contacts: ContactI[] = [
@@ -17,10 +16,10 @@ const links = contacts.map(generateCustomLinks);
 
 
 function Home() {
-    const [info, setInfo] = useState({ firstName: '', lastName: '', devType: '' });
+    const [info, setInfo] = useState<any>({ firstName: '', lastName: '', devType: '' });
 
     useEffect(() => {
-        const userdata = getMainInfo().subscribe(({ data }: { data: DBUserResponse }) => {
+        const userdata = getMainInfo().subscribe(data => {
             setInfo(data)
         });
         return () => {
