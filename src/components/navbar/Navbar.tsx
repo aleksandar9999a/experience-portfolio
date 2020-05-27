@@ -3,7 +3,7 @@ import './Navbar.css';
 import TabI from '../../interfaces/Tab';
 import * as Icons from 'react-bootstrap-icons';
 import Tab from '../tab/Tab';
-import { getUserInfo } from '../../services/db';
+import { auth } from '../../services/db';
 
 
 function Navbar() {
@@ -24,16 +24,17 @@ function Navbar() {
             { name: 'Contacts', route: '/contacts', icon: Icons.ChatDots },
         ]
     
-        const userdata = getUserInfo().subscribe(user => {
+        const userdata = auth.subscribe(user => {
             if (user) {
                 const secretTabs = [
                     { name: 'Settings', route: '/setting', icon: Icons.Gear },
                     { name: 'Log Out', route: '/logout', icon: Icons.ArrowBarRight }
                 ]
-                tabsConfig = tabsConfig.concat(secretTabs);
+                let newTabsConfig = tabsConfig.concat(secretTabs);
+                loadTabList(newTabsConfig);
+            } else {
+                loadTabList(tabsConfig);
             }
-
-            loadTabList(tabsConfig);
         });
 
         return () => {
