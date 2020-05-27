@@ -25,7 +25,7 @@ const links = [
   { path: '/', Component: Home },
 ]
 
-const listOfRoutes = links.map(({ path, Component}) => <Route path={path}><Component /></Route>);
+const listOfRoutes = links.map(({ path, Component}, i) => <Route path={path} key={i}><Component /></Route>);
 
 function App() {
   return (
