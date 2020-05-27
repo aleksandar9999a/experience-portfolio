@@ -4,6 +4,7 @@ import CustomLink from '../customLink/CustomLink';
 import ContactI from '../../interfaces/ContactI';
 import { getMainInfo } from '../../services/db';
 import DBUserResponse from '../../interfaces/DBUserResponse';
+import { Link } from 'react-router-dom';
 
 const contacts: ContactI[] = [
     { alt: 'instagram', icon: 'instagram', href: 'https://www.instagram.com/sandi9999a/' },
@@ -36,9 +37,14 @@ function Home() {
                     My name is {info.firstName} {info.lastName}.
                 </h1>
                 <hr />
-                <h2 className="headline-bottom">
-                    {info.devType}
-                </h2>
+                <div className="headline-bottom">
+                    <h2 className="headline-text">
+                        {info.devType}
+                    </h2>
+                    <Link className="headline-link" to='/login' >
+                        Do you are my member?
+                    </Link>
+                </div>
                 <div className="social-contacts">
                     {links}
                 </div>
