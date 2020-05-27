@@ -13,7 +13,7 @@ export function getSkills() {
 }
 
 export function getMainInfo() {
-    return axios.get(`/auth/`, config.credentials)
+    return axios.get(`/auth`, config.credentials)
 }
 
 export function submitLogin(loginData: { email: string; password: string; }) {
