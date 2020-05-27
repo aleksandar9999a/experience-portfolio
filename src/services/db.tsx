@@ -5,6 +5,7 @@ import DBAboutResponse from '../interfaces/DBAboutResponse';
 import DBSkillsResponse from '../interfaces/DBSkillsResponse';
 import DBMainUserResponse from '../interfaces/DBMainUserResponse';
 import DBUserResponse from '../interfaces/DBUserResponse';
+import { BehaviorSubject } from 'rxjs';
 
 axios.defaults.baseURL = `${config.port}/api`;
 axios.interceptors.response.use(function (res) {
@@ -16,6 +17,8 @@ axios.interceptors.response.use(function (res) {
     return Promise.reject(err);
   });
 
+export let auth = new BehaviorSubject<any>(null);
+getUserInfo();
 
 export function getAbout() {
     return axios.get<DBAboutResponse>(`/about`, config.credentials);
@@ -30,13 +33,22 @@ export function getMainInfo() {
 }
 
 export function getUserInfo() {
-    return axios.get<DBUserResponse>(`/auth`, config.credentials);
+    return baseAxios.get<DBUserResponse>(`/auth`, config.credentials).then(user => {
+        auth.next(user);
+        return user;
+    });
 }
 
 export function logout() {
-    return axios.get(`/auth/logout`, config.credentials);
+    return baseAxios.get(`/auth/logout`, config.credentials).then(user => {
+        auth.next(user);
+        return user;
+    }).catch(console.error);
 }
 
 export function submitLogin(loginData: { email: string; password: string; }) {
-    return baseAxios.post(`/auth/login`, loginData, config.credentials)
+    return baseAxios.post(`/auth/login`, loginData, config.credentials).then(user => {
+        auth.next(user);
+        return user;
+    }).catch(console.error);
 }
