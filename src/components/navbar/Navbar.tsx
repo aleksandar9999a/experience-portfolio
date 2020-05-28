@@ -8,9 +8,9 @@ import { auth } from '../../services/db';
 
 function Navbar() {
     const [tabs, setTabs] = useState<JSX.Element[]>();
-    
+
     function loadTabList(tabsConfig: TabI[]) {
-        const generateTab = (tab: TabI, i: number) => <Tab data={tab} key={i}/>;
+        const generateTab = (tab: TabI, i: number) => <Tab data={tab} key={i} />;
         const list = tabsConfig.map(generateTab);
         setTabs(list);
     }
@@ -22,19 +22,20 @@ function Navbar() {
             { name: 'Home', route: '/', icon: Icons.House },
             { name: 'About', route: '/about', icon: Icons.Person },
             { name: 'Contacts', route: '/contacts', icon: Icons.ChatDots },
+            { name: 'Settings', route: '/setting', icon: Icons.Gear },
+            { name: 'Log Out', route: '/logout', icon: Icons.ArrowBarRight }
         ]
-    
+
         const userdata = auth.subscribe(user => {
+            let filterFn;
+
             if (user) {
-                const secretTabs = [
-                    { name: 'Settings', route: '/setting', icon: Icons.Gear },
-                    { name: 'Log Out', route: '/logout', icon: Icons.ArrowBarRight }
-                ]
-                let newTabsConfig = tabsConfig.concat(secretTabs);
-                loadTabList(newTabsConfig);
+                filterFn = (tab: TabI) => tab.name !== 'Contacts';
             } else {
-                loadTabList(tabsConfig);
+                filterFn = (tab: TabI) => tab.name !== 'Settings' && tab.name !== 'Log Out';
             }
+            const newTabsConfig = tabsConfig.filter(filterFn);
+            loadTabList(newTabsConfig);
         });
 
         return () => {
