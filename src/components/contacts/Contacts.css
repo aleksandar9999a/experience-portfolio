@@ -45,12 +45,12 @@
     margin-top: 10px;
 }
 
-.custom-textarea + .custom-button {
-    margin-top: 20px;
+.custom-btn-wrapper {
+    display: flex;
+    margin: 30px;
 }
 
 .custom-button {
-    display: flex;
     margin: auto;
     width: 100px;
     height: 50px;
@@ -59,9 +59,12 @@
     letter-spacing: 3px;
     border: 1px solid #08fdd8;
     border-radius: 4px;
-    background: 0 0;
+    background: transparent;
     text-transform: uppercase;
-    padding: 10px 30px 10px 30px;
+}
+
+.custom-button:hover {
+    box-shadow: 1px 1px 20px #08fdd841;
 }
 
 @media screen and (max-width: 780px) {

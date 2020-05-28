@@ -74,7 +74,9 @@ function Login() {
                 <input className="custom-input" type="password" placeholder="Password" value={password} onChange={setPasswordValue} />
                 {error ? <p className="custom-error">{error}</p> : null}
                 {success ? <p className="custom-success">{success}</p> : null}
-                <button className="custom-button">Login</button>
+                <div className="login-btn-wrapper">
+                    <button className="login-button">Login</button>
+                </div>
             </form>
         </div>
     );
