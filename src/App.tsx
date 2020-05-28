@@ -16,6 +16,7 @@ import Contacts from './components/contacts/Contacts';
 import CustomConstellation from './components/customConstellation/CustomConstellation';
 import Login from './components/login/Login';
 import Logout from './components/logout/Logout';
+import Settings from './components/settings/Settings';
 
 const links = [
   { path: '/projects', Component: Projects },
@@ -23,6 +24,7 @@ const links = [
   { path: '/contacts', Component: Contacts},
   { path: '/about', Component: About },
   { path: '/login', Component: Login },
+  { path: '/settings', Component: Settings },
   { path: '/logout', Component: Logout },
   { path: '/', Component: Home },
 ]
