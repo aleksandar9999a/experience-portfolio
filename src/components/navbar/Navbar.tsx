@@ -22,7 +22,7 @@ function Navbar() {
             { name: 'Home', route: '/', icon: Icons.House },
             { name: 'About', route: '/about', icon: Icons.Person },
             { name: 'Contacts', route: '/contacts', icon: Icons.ChatDots },
-            { name: 'Settings', route: '/setting', icon: Icons.Gear },
+            { name: 'Settings', route: '/settings', icon: Icons.Gear },
             { name: 'Log Out', route: '/logout', icon: Icons.ArrowBarRight }
         ]
 
