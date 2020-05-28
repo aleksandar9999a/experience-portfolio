@@ -18,7 +18,7 @@ axios.interceptors.response.use(function (res) {
   });
 
 export let auth = new BehaviorSubject<any>(null);
-getUserInfo();
+getUserdata();
 
 export function getAbout() {
     return axios.get<DBAboutResponse>(`/about`, config.credentials);
@@ -32,7 +32,7 @@ export function getMainInfo() {
     return axios.get<DBMainUserResponse>(`/auth/main`, config.credentials);
 }
 
-export function getUserInfo() {
+export function getUserdata() {
     return baseAxios.get<DBUserResponse>(`/auth`, config.credentials).then(user => {
         auth.next(user);
         return user;
@@ -51,4 +51,8 @@ export function submitLogin(loginData: { email: string; password: string; }) {
         auth.next(user);
         return user;
     }).catch(console.error);
+}
+
+export function updateUserdata(userdata: DBMainUserResponse) {
+    return baseAxios.put<DBMainUserResponse>(`/auth`, userdata, config.credentials).catch(console.error);
 }
