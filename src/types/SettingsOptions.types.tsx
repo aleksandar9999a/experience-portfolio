@@ -1,5 +1,5 @@
 type SettingsOptions = {
-    [key: string]: Function
+    [key: string]: JSX.Element
 }
 
 export default SettingsOptions
