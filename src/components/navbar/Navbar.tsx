@@ -3,7 +3,7 @@ import './Navbar.css';
 import TabI from '../../interfaces/Tab';
 import * as Icons from 'react-bootstrap-icons';
 import Tab from '../tab/Tab';
-import { auth } from '../../services/db';
+import { auth } from '../../services/db-auth';
 
 
 function Navbar() {

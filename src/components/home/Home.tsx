@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Home.css';
 import CustomLink from '../customLink/CustomLink';
 import ContactI from '../../interfaces/ContactI';
-import { getMainInfo } from '../../services/db';
+import { getMainInfo } from '../../services/db-defaults';
 import { Link } from 'react-router-dom';
 
 const contacts: ContactI[] = [

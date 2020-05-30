@@ -6,9 +6,10 @@ import SkillsSettings from './SkillsSettings';
 import AboutSettings from './AboutSettings';
 import SettingsOptions from '../../types/SettingsOptions.types';
 
+const DefaultPage = () => <SkillsSettings />
 
 function Settings() {
-  const [menu, setMenu] = useState<JSX.Element>(<MainInformationSettings />);
+  const [menu, setMenu] = useState<JSX.Element>(<DefaultPage />);
 
   function handleMenuChange(type: any) {
     const types: SettingsOptions = {

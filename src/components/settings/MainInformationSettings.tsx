@@ -1,6 +1,7 @@
 import React, { useState, SyntheticEvent, useEffect } from 'react';
 import './Settings.css';
-import { updateUserdata, auth, getUserdata } from './../../services/db';
+import { updateUserdata } from './../../services/db-user';
+import { auth, getUserdata } from './../../services/db-auth';
 
 function MainInformationSettings() {
     const [firstName, setFirstName] = useState('');

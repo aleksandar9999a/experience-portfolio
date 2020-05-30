@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Skills.css';
 import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
 import Timeline from '../timeline/Timeline';
-import { getSkills } from '../../services/db';
+import { getSkills } from '../../services/db-defaults';
 
 function Skills() {
   const [description, setDescription] = useState<string>();

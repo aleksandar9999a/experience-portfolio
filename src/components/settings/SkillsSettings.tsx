@@ -1,18 +1,18 @@
 import React, { useState, useEffect, SyntheticEvent } from 'react';
 import './Settings.css';
-import { getSkills, updateSkills } from './../../services/db';
+import { getSkills, updateSkills } from './../../services/db-user';
 import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
 import Timeline from '../timeline/Timeline';
 
 function SkillsSettings() {
     const [description, setDescription] = useState<string>();
     const [timelineItems, setTimelineItems] = useState<TimelineItemsInterface[]>([]);
-    const [id, setId] = useState<string>();
+    const [data, setData] = useState<any>();
     const [message, setMessage] = useState<string>();
 
     useEffect(() => {
         const skillsData = getSkills().subscribe((data: any) => {
-            setId(data._id)
+            setData(data);
             setDescription(data.description);
             setTimelineItems(data.experience);
         });
@@ -37,11 +37,18 @@ function SkillsSettings() {
 
     function handleSubmit(e: SyntheticEvent) {
         e.preventDefault();
-        if (!id || !description) {
+        if (!data._id || !description) {
            return; 
         }
+
+        const newData = {
+            id: data._id,
+            creatorId: data.creatorId,
+            description: description,
+            experience: timelineItems
+        };
         
-        updateSkills({ description: description, experience: timelineItems, id: id}).then(() => {
+        updateSkills(newData).then(() => {
             setMessage('Successful updated!');
             removeMessage(3000);
         }).catch(err => { 

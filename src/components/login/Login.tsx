@@ -1,6 +1,6 @@
 import React, { useState, SyntheticEvent } from 'react';
 import './Login.css';
-import { submitLogin } from './../../services/db';
+import { submitLogin } from './../../services/db-auth';
 import { Redirect } from 'react-router-dom';
 
 function Login() {

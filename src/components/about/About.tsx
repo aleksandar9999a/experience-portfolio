@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './About.css';
 import Timeline from '../timeline/Timeline';
 import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
-import { getAbout } from './../../services/db';
+import { getAbout } from './../../services/db-defaults';
 
 function About() {
   const [headline, setHeadline] = useState<string>();
