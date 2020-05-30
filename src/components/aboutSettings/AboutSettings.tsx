@@ -1,13 +1,13 @@
 import React, { useEffect, useState, SyntheticEvent } from 'react';
 import './AboutSettings.css';
 import { getAbout, updateAbout } from '../../services/db-user';
-import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
+import ITimelineItems from '../../interfaces/ITimelineItems';
 import Timeline from '../timeline/Timeline';
 
 function AboutSettings() {
     const [data, setData] = useState<any>();
     const [description, setDescription] = useState<string>();
-    const [timelineItems, setTimelineItems] = useState<TimelineItemsInterface[]>([]);
+    const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([]);
     const [message, setMessage] = useState<string>();
 
     useEffect(() => {
@@ -25,7 +25,7 @@ function AboutSettings() {
         setDescription(e.target.value);
     }
 
-    function handleTimelineChange(items: TimelineItemsInterface[]) {
+    function handleTimelineChange(items: ITimelineItems[]) {
         setTimelineItems(items);
     }
 

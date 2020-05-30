@@ -1,5 +1,4 @@
-export default interface DBUserResponse {
-    email: string,
+export default interface IMainUser {
     firstName: string,
     lastName: string,
     devType: string

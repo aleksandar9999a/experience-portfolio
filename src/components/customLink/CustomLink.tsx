@@ -1,7 +1,7 @@
 import React from 'react';
 import './CustomLink.css';
-import CustomLinkI from '../../interfaces/CustomLinkI';
-import IconsOptions from '../../interfaces/IconsOptions';
+import ICustomLink from '../../interfaces/ICustomLink';
+import IconsOptions from '../../types/IconsOptions';
 
 const icons: IconsOptions = {
     instagram: require('./../../assets/instagram.png'),
@@ -10,7 +10,7 @@ const icons: IconsOptions = {
     unknown: require('./../../assets/unknown.png')
 }
 
-function CustomLink(props: CustomLinkI) {
+function CustomLink(props: ICustomLink) {
     let { alt, icon, link } = props;
     if (!icons[icon]) { icon = 'unknown'; }
 

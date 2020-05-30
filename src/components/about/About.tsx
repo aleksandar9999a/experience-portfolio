@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './About.css';
 import Timeline from '../timeline/Timeline';
-import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
+import ITimelineItems from '../../interfaces/ITimelineItems';
 import { getAbout } from './../../services/db-defaults';
 
 function About() {
   const [headline, setHeadline] = useState<string>();
-  const [timelineItems, setTimelineItems] = useState<TimelineItemsInterface[]>([]);
+  const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([]);
 
   useEffect(() => {
     const aboutData = getAbout().subscribe((data: any) => {

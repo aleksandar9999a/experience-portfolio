@@ -1,4 +1,4 @@
-export default interface TimelineItemsInterface {
+export default interface ITimelineItems {
     id: number,
     title: string,
     desc: string,

@@ -1,11 +1,11 @@
-import { StarCoordsInterface } from "../../interfaces/StarCoordsInterface";
+import { IStarCoords } from "../../interfaces/IStarCoords";
 import constellation_config from '../../configs/constellationConfig';
 
 export default class Star {
     private width: number;
     private height: number;
     private context: CanvasRenderingContext2D | null;
-    private stars: StarCoordsInterface[] = [];
+    private stars: IStarCoords[] = [];
     private constellation_config = constellation_config;
 
     constructor(context: CanvasRenderingContext2D, width: number, height: number) {
@@ -44,7 +44,7 @@ export default class Star {
         this.context.fill();
     }
 
-    private increaseCoords(star: StarCoordsInterface) {
+    private increaseCoords(star: IStarCoords) {
         if (star.y < 0 || star.y > this.height) {
             star.vy = -star.vy;
         } else if (star.x < 0 || star.x > this.width) {
@@ -61,15 +61,15 @@ export default class Star {
         this.stars.map(this.increaseCoords.bind(this)).forEach(this.createCustomStar.bind(this));
     }
 
-    private isValidDistance(iStar: StarCoordsInterface, jStar: StarCoordsInterface) {
+    private isValidDistance(iStar: IStarCoords, jStar: IStarCoords) {
         return (iStar.x - jStar.x) < this.constellation_config.distance && (iStar.y - jStar.y) < this.constellation_config.distance && (iStar.x - jStar.x) > -this.constellation_config.distance && (iStar.y - jStar.y) > -this.constellation_config.distance;
     }
 
-    private isValidRadius(iStar: StarCoordsInterface, x: number, y: number) {
+    private isValidRadius(iStar: IStarCoords, x: number, y: number) {
         return (iStar.x - x) < this.constellation_config.radius && (iStar.y - y) < this.constellation_config.radius && (iStar.x - x) > -this.constellation_config.radius && (iStar.y - y) > -this.constellation_config.radius;
     }
 
-    private writeLine(iStar: StarCoordsInterface, jStar: StarCoordsInterface) {
+    private writeLine(iStar: IStarCoords, jStar: IStarCoords) {
         if (!this.context) { return; }
         this.context.beginPath();
         this.context.moveTo(iStar.x, iStar.y);
@@ -78,7 +78,7 @@ export default class Star {
         this.context.closePath();
     }
 
-    private initWriting(starOne: StarCoordsInterface, starTwo: StarCoordsInterface) {
+    private initWriting(starOne: IStarCoords, starTwo: IStarCoords) {
         if (
             this.context &&
             (

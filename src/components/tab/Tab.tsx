@@ -1,9 +1,9 @@
 import React from 'react';
 import './Tab.css';
 import { Link } from "react-router-dom";
-import TabI from '../../interfaces/Tab';
+import ITab from '../../interfaces/ITab';
 
-function Tab(props: { data: TabI}) {
+function Tab(props: { data: ITab}) {
     const { data } = props;
     return (
         <li className="tab">

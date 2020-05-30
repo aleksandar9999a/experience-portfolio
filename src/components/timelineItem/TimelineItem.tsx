@@ -1,10 +1,10 @@
 import React, { useState, SyntheticEvent, useEffect } from 'react';
 import './TimelineItem.css';
-import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
+import ITimelineItems from '../../interfaces/ITimelineItems';
 import TimelineValue from '../../types/TimelineValue.types';
 
 
-function TimelineItem(props: { item: TimelineItemsInterface, isEditable?: boolean, id?: number, onChange?: Function, onRemove?: Function }) {
+function TimelineItem(props: { item: ITimelineItems, isEditable?: boolean, id?: number, onChange?: Function, onRemove?: Function }) {
     const { item, isEditable, id, onChange, onRemove } = props;
     const [title, setTitle] = useState<string>(item.title);
     const [desc, setDesc] = useState<string>(item.desc);

@@ -1,4 +1,4 @@
-export interface StarCoordsInterface {
+export interface IStarCoords {
     x: number,
     y: number,
     vx: number;

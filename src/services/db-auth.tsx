@@ -1,6 +1,7 @@
 import { BehaviorSubject } from "rxjs";
 import Axios from "axios";
 import config from './../configs/dbConfig';
+import ILoginData from "../interfaces/ILoginData";
 
 Axios.defaults.baseURL = `${config.port}/api`;
 
@@ -21,7 +22,7 @@ export function logout() {
     }).catch(console.error);
 }
 
-export function submitLogin(loginData: { email: string; password: string; }) {
+export function submitLogin(loginData: ILoginData) {
     return Axios.post(`/auth/login`, loginData, config.credentials).then(user => {
         auth.next(user);
         return user;

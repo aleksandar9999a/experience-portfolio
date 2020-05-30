@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './Skills.css';
-import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
+import ITimelineItems from '../../interfaces/ITimelineItems';
 import Timeline from '../timeline/Timeline';
 import { getSkills } from '../../services/db-defaults';
 
 function Skills() {
   const [description, setDescription] = useState<string>();
-  const [timelineItems, setTimelineItems] = useState<TimelineItemsInterface[]>([]);
+  const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([]);
 
   useEffect(() => {
     const skillsData = getSkills().subscribe((data: any) => {

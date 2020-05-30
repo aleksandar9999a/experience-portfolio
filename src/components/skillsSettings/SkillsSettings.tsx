@@ -1,12 +1,12 @@
 import React, { useState, useEffect, SyntheticEvent } from 'react';
 import './SkillsSettings.css';
 import { getSkills, updateSkills } from '../../services/db-user';
-import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
+import ITimelineItems from '../../interfaces/ITimelineItems';
 import Timeline from '../timeline/Timeline';
 
 function SkillsSettings() {
     const [description, setDescription] = useState<string>();
-    const [timelineItems, setTimelineItems] = useState<TimelineItemsInterface[]>([]);
+    const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([]);
     const [data, setData] = useState<any>();
     const [message, setMessage] = useState<string>();
 
@@ -25,7 +25,7 @@ function SkillsSettings() {
         setDescription(e.target.value);
     }
 
-    function handleTimelineChange(items: TimelineItemsInterface[]) {
+    function handleTimelineChange(items: ITimelineItems[]) {
         setTimelineItems(items);
     }
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
-import TabI from '../../interfaces/Tab';
+import ITab from '../../interfaces/ITab';
 import * as Icons from 'react-bootstrap-icons';
 import Tab from '../tab/Tab';
 import { auth } from '../../services/db-auth';
@@ -9,14 +9,14 @@ import { auth } from '../../services/db-auth';
 function Navbar() {
     const [tabs, setTabs] = useState<JSX.Element[]>();
 
-    function loadTabList(tabsConfig: TabI[]) {
-        const generateTab = (tab: TabI, i: number) => <Tab data={tab} key={i} />;
+    function loadTabList(tabsConfig: ITab[]) {
+        const generateTab = (tab: ITab, i: number) => <Tab data={tab} key={i} />;
         const list = tabsConfig.map(generateTab);
         setTabs(list);
     }
 
     useEffect(() => {
-        let tabsConfig: TabI[] = [
+        let tabsConfig: ITab[] = [
             { name: 'Projects', route: '/projects', icon: Icons.ColumnsGap },
             { name: 'Skills', route: '/skills', icon: Icons.CodeSlash },
             { name: 'Home', route: '/', icon: Icons.House },
@@ -30,9 +30,9 @@ function Navbar() {
             let filterFn;
 
             if (user) {
-                filterFn = (tab: TabI) => tab.name !== 'Contacts';
+                filterFn = (tab: ITab) => tab.name !== 'Contacts';
             } else {
-                filterFn = (tab: TabI) => tab.name !== 'Settings' && tab.name !== 'Log Out';
+                filterFn = (tab: ITab) => tab.name !== 'Settings' && tab.name !== 'Log Out';
             }
             const newTabsConfig = tabsConfig.filter(filterFn);
             loadTabList(newTabsConfig);

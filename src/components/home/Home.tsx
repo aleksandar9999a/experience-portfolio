@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css';
 import CustomLink from '../customLink/CustomLink';
-import ContactI from '../../interfaces/ContactI';
+import IContact from '../../interfaces/IContact';
 import { getMainInfo } from '../../services/db-defaults';
 import { Link } from 'react-router-dom';
 
-const contacts: ContactI[] = [
+const contacts: IContact[] = [
     { alt: 'instagram', icon: 'instagram', href: 'https://www.instagram.com/sandi9999a/' },
     { alt: 'github', icon: 'git', href: 'https://github.com/aleksandar9999a' },
     { alt: 'linkedin', icon: 'linkedin', href: 'https://www.linkedin.com/in/alexandar-todorov/' }
 ]
 
-const generateCustomLinks = (c: ContactI, i: number) => <CustomLink key={i} alt={c.alt} icon={c.icon} link={c.href} />;
+const generateCustomLinks = (c: IContact, i: number) => <CustomLink key={i} alt={c.alt} icon={c.icon} link={c.href} />;
 const links = contacts.map(generateCustomLinks);
-
 
 function Home() {
     const [info, setInfo] = useState<any>({ firstName: '', lastName: '', devType: '' });
