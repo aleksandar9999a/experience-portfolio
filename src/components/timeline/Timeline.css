@@ -157,12 +157,6 @@
   box-shadow: 1px 1px 10px #08fdd841;
 }
 
-.timeline-message {
-  color: #08fdd8;
-  font-size: 10px;
-  text-align: center;
-}
-
 .add {
   display: flex;
   left: 95px;
