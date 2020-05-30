@@ -81,3 +81,15 @@
 .settings-submit-button:hover {
     box-shadow: 1px 1px 20px #08fdd841;
 }
+
+.settings-skills-timeline {
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.settings-skills-message {
+    text-align: center;
+    color: #08fdd8;
+    font-size: 15px;
+}
