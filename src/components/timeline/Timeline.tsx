@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Timeline.css';
 import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
-import TimelineItem from './TimelineItem';
-import TimelineAddItem from './TimelineAddItem';
+import TimelineItem from '../timelineItem/TimelineItem';
+import TimelineAddItem from '../timelineAddItem/TimelineAddItem';
 
 
 function Timeline(props: { items: TimelineItemsInterface[], isEditable?: boolean, onChange?: Function }) {

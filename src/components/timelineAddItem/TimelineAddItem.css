@@ -1,0 +1,17 @@
+.add {
+    display: flex;
+    left: 95px;
+    cursor: pointer;
+  }
+  
+  .add:hover {
+    box-shadow: 1px 1px 10px #08fdd841;
+  }
+  
+  .add::before{
+    width: 230px;
+  }
+  
+  .add-icon {
+    margin: auto;
+  }

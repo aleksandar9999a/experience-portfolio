@@ -1,5 +1,5 @@
 import React from 'react';
-import './Timeline.css';
+import './TimelineAddItem.css';
 import { Plus } from 'react-bootstrap-icons';
 
 function TimelineAddItem(props: { onClick: Function }) {

@@ -1,5 +1,5 @@
 import React, { useState, SyntheticEvent, useEffect } from 'react';
-import './Timeline.css';
+import './TimelineItem.css';
 import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
 import TimelineValue from '../../types/TimelineValue.types';
 
