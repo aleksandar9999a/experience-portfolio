@@ -6,7 +6,7 @@ import SkillsSettings from './SkillsSettings';
 import AboutSettings from './AboutSettings';
 import SettingsOptions from '../../types/SettingsOptions.types';
 
-const DefaultPage = () => <SkillsSettings />
+const DefaultPage = () => <MainInformationSettings />
 
 function Settings() {
   const [menu, setMenu] = useState<JSX.Element>(<DefaultPage />);
@@ -32,7 +32,7 @@ function Settings() {
               className="settings-tab-button"
               onClick={handleMenuChange.bind(Settings, 'MainInformationSettings')}
               >
-              Main Informations
+              Main Info
               </button>
           </li>
           <li className="settings-tab">
