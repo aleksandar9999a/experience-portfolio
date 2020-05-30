@@ -4,15 +4,15 @@ import MainInfoSettings from '../mainInfoSettings/MainInfoSettings';
 import ProjectsSettings from '../projectsSettings/ProjectsSettings';
 import SkillsSettings from '../skillsSettings/SkillsSettings';
 import AboutSettings from '../aboutSettings/AboutSettings';
-import SettingsOptions from '../../types/SettingsOptions.types';
+import TSettingsOptions from '../../types/TSettingsOptions';
 
 const DefaultPage = () => <MainInfoSettings />
 
 function Settings() {
   const [menu, setMenu] = useState<JSX.Element>(<DefaultPage />);
 
-  function handleMenuChange(type: any) {
-    const types: SettingsOptions = {
+  function handleMenuChange(type: string) {
+    const types: TSettingsOptions = {
       MainInfoSettings: <MainInfoSettings />,
       ProjectsSettings: <ProjectsSettings />,
       SkillsSettings: <SkillsSettings />,

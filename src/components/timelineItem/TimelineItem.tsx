@@ -1,7 +1,7 @@
 import React, { useState, SyntheticEvent, useEffect } from 'react';
 import './TimelineItem.css';
 import ITimelineItems from '../../interfaces/ITimelineItems';
-import TimelineValue from '../../types/TimelineValue.types';
+import TTimelineValue from '../../types/TTimelineValue';
 
 
 function TimelineItem(props: { item: ITimelineItems, isEditable?: boolean, id?: number, onChange?: Function, onRemove?: Function }) {
@@ -20,7 +20,7 @@ function TimelineItem(props: { item: ITimelineItems, isEditable?: boolean, id?: 
 
     function handleChange(type: string, event: any) {
         const value = event.target.value as string;
-        const types: TimelineValue = {
+        const types: TTimelineValue = {
             title: setTitle,
             desc: setDesc,
             link: setLink,

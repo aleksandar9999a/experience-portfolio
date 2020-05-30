@@ -1,9 +1,9 @@
 import React from 'react';
 import './CustomLink.css';
 import ICustomLink from '../../interfaces/ICustomLink';
-import IconsOptions from '../../types/IconsOptions';
+import TIconsOptions from '../../types/TIconsOptions';
 
-const icons: IconsOptions = {
+const icons: TIconsOptions = {
     instagram: require('./../../assets/instagram.png'),
     git: require('./../../assets/git.png'),
     linkedin: require('./../../assets/linkedin.png'),
