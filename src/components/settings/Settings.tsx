@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import './Settings.css';
-import MainInformationSettings from './MainInformationSettings';
-import ProjectsSettings from './ProjectsSettings';
-import SkillsSettings from './SkillsSettings';
-import AboutSettings from './AboutSettings';
+import MainInfoSettings from '../mainInfoSettings/MainInfoSettings';
+import ProjectsSettings from '../projectsSettings/ProjectsSettings';
+import SkillsSettings from '../skillsSettings/SkillsSettings';
+import AboutSettings from '../aboutSettings/AboutSettings';
 import SettingsOptions from '../../types/SettingsOptions.types';
 
-const DefaultPage = () => <MainInformationSettings />
+const DefaultPage = () => <MainInfoSettings />
 
 function Settings() {
   const [menu, setMenu] = useState<JSX.Element>(<DefaultPage />);
 
   function handleMenuChange(type: any) {
     const types: SettingsOptions = {
-      MainInformationSettings: <MainInformationSettings />,
+      MainInfoSettings: <MainInfoSettings />,
       ProjectsSettings: <ProjectsSettings />,
       SkillsSettings: <SkillsSettings />,
       AboutSettings: <AboutSettings />
@@ -23,41 +23,34 @@ function Settings() {
     }
   }
 
+  const handleMainInfoSettings = () => handleMenuChange('MainInfoSettings');
+  const handleProjectsSettings = () => handleMenuChange('ProjectsSettings');
+  const handleSkillsSettings = () => handleMenuChange('SkillsSettings');
+  const handleAboutSettings = () => handleMenuChange('AboutSettings');
+
   return (
     <div className="settings">
       <div className="settings-tabs-wrapper">
         <ul className="settings-tabs">
           <li className="settings-tab">
-            <button
-              className="settings-tab-button"
-              onClick={handleMenuChange.bind(Settings, 'MainInformationSettings')}
-              >
+            <button className="settings-tab-button" onClick={handleMainInfoSettings} >
               Main Info
-              </button>
+            </button>
           </li>
           <li className="settings-tab">
-            <button
-              className="settings-tab-button"
-              onClick={handleMenuChange.bind(Settings, 'ProjectsSettings')}
-              >
+            <button className="settings-tab-button" onClick={handleProjectsSettings} >
               Projects
-              </button>
+            </button>
           </li>
           <li className="settings-tab">
-            <button
-              className="settings-tab-button"
-              onClick={handleMenuChange.bind(Settings, 'SkillsSettings')}
-              >
+            <button className="settings-tab-button" onClick={handleSkillsSettings} >
               Skills
-              </button>
+            </button>
           </li>
           <li className="settings-tab">
-            <button
-              className="settings-tab-button"
-              onClick={handleMenuChange.bind(Settings, 'AboutSettings')}
-              >
+            <button className="settings-tab-button" onClick={handleAboutSettings} >
               About
-              </button>
+            </button>
           </li>
         </ul>
       </div>

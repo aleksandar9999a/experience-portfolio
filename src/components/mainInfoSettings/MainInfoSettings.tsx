@@ -1,9 +1,9 @@
 import React, { useState, SyntheticEvent, useEffect } from 'react';
-import './Settings.css';
-import { updateUserdata } from './../../services/db-user';
-import { auth, getUserdata } from './../../services/db-auth';
+import './MainInfoSettings.css';
+import { updateUserdata } from '../../services/db-user';
+import { auth, getUserdata } from '../../services/db-auth';
 
-function MainInformationSettings() {
+function MainInfoSettings() {
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
     const [devType, setDevType] = useState<string>('');
@@ -69,14 +69,14 @@ function MainInformationSettings() {
         }, time);
     }
 
-    const handleFirstName = (event: any) => handleChange.bind(MainInformationSettings, 'firstName')(event);
-    const handleLastName = (event: any) => handleChange.bind(MainInformationSettings, 'lastName')(event);
-    const handleDevType = (event: any) => handleChange.bind(MainInformationSettings, 'devType')(event);
+    const handleFirstName = (event: any) => handleChange.bind(MainInfoSettings, 'firstName')(event);
+    const handleLastName = (event: any) => handleChange.bind(MainInfoSettings, 'lastName')(event);
+    const handleDevType = (event: any) => handleChange.bind(MainInfoSettings, 'devType')(event);
 
     return (
-        <div className="settings-title-wrapper">
-            <h1 className="settings-title">Main Information</h1>
-            <form className="contact-form">
+        <div className="main-settings-title-wrapper">
+            <h1 className="main-settings-title">Main Information</h1>
+            <form className="main-info-form">
                 <input className="custom-input" type="text" placeholder="First Name"
                     defaultValue={firstName} onChange={handleFirstName} />
                 <input className="custom-input" type="text" placeholder="Last Name"
@@ -85,12 +85,12 @@ function MainInformationSettings() {
                     defaultValue={devType} onChange={handleDevType} />
                 {error ? <p className="custom-error">{error}</p> : null}
                 {success ? <p className="custom-success">{success}</p> : null}
-                <div className="settings-submit-button-wrapper">
-                    <button className="settings-submit-button" onClick={handleSubmit}>Update Main Information</button>
+                <div className="main-settings-submit-button-wrapper">
+                    <button className="main-settings-submit-button" onClick={handleSubmit}>Update Main Information</button>
                 </div>
             </form>
         </div>
     );
 }
 
-export default MainInformationSettings;
+export default MainInfoSettings;

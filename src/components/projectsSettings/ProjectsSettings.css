@@ -1,0 +1,36 @@
+.projects-settings-title-wrapper {
+    height: 30%;
+    width: 100%;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.projects-settings-title {
+    color: #08fdd8;
+    font-size: 50px;
+    text-align: center;
+    margin: 70px;
+}
+
+.projects-settings-submit-button-wrapper {
+    display: flex;
+    margin: 30px;
+}
+
+.projects-settings-submit-button {
+    margin: auto;
+    min-width: 100px;
+    height: 50px;
+    color: #08fdd8;
+    font-size: 11px;
+    letter-spacing: 3px;
+    border: 1px solid #08fdd8;
+    border-radius: 4px;
+    background: transparent;
+    text-transform: uppercase;
+    padding: 15px;
+}
+
+.projects-settings-submit-button:hover {
+    box-shadow: 1px 1px 20px #08fdd841;
+}

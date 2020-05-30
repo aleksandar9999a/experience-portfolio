@@ -1,23 +1,23 @@
-import React, { useEffect, useState, SyntheticEvent } from 'react';
-import './Settings.css';
-import { getAbout, updateAbout } from '../../services/db-user';
+import React, { useState, useEffect, SyntheticEvent } from 'react';
+import './SkillsSettings.css';
+import { getSkills, updateSkills } from '../../services/db-user';
 import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
 import Timeline from '../timeline/Timeline';
 
-function AboutSettings() {
-    const [data, setData] = useState<any>();
+function SkillsSettings() {
     const [description, setDescription] = useState<string>();
     const [timelineItems, setTimelineItems] = useState<TimelineItemsInterface[]>([]);
+    const [data, setData] = useState<any>();
     const [message, setMessage] = useState<string>();
 
     useEffect(() => {
-        const aboutData = getAbout().subscribe((data: any) => {
+        const skillsData = getSkills().subscribe((data: any) => {
             setData(data);
             setDescription(data.description);
-            setTimelineItems(data.courses);
+            setTimelineItems(data.experience);
         });
         return () => {
-            aboutData.unsubscribe();
+            skillsData.unsubscribe();
         }
     }, [])
 
@@ -45,10 +45,10 @@ function AboutSettings() {
             id: data._id,
             creatorId: data.creatorId,
             description: description,
-            courses: timelineItems
+            experience: timelineItems
         };
         
-        updateAbout(newData).then(() => {
+        updateSkills(newData).then(() => {
             setMessage('Successful updated!');
             removeMessage(3000);
         }).catch(err => { 
@@ -58,23 +58,23 @@ function AboutSettings() {
     }
 
     return (
-        <div className="settings-title-wrapper">
-            <h1 className="settings-title">About</h1>
-            <form className="contact-form">
-                <textarea className="custom-textarea" placeholder="About me"
+        <div className="skills-settings-title-wrapper">
+            <h1 className="skills-settings-title">Skills</h1>
+            <form className="skills-settings-form">
+                <textarea className="custom-textarea" placeholder="Skills Resume"
                     value={description} onChange={handleDescriptionChange} />
-                <div className="settings-skills-timeline">
+                <div className="skills-settings-timeline">
                     { timelineItems.length > 0
                     ? <Timeline items={timelineItems} isEditable={true} onChange={handleTimelineChange} />
                     : null}
                 </div>
-                <p className="settings-skills-message">{message}</p>
-                <div className="settings-submit-button-wrapper">
-                    <button className="settings-submit-button" onClick={handleSubmit}>Update</button>
+                <p className="skills-settings-message">{message}</p>
+                <div className="skills-settings-submit-button-wrapper">
+                    <button className="skills-settings-submit-button" onClick={handleSubmit}>Update Skills</button>
                 </div>
             </form>
         </div>
     );
 }
 
-export default AboutSettings;
+export default SkillsSettings;
