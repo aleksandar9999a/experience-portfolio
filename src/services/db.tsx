@@ -56,3 +56,7 @@ export function submitLogin(loginData: { email: string; password: string; }) {
 export function updateUserdata(userdata: DBMainUserResponse) {
     return baseAxios.put<DBMainUserResponse>(`/auth`, userdata, config.credentials).catch(console.error);
 }
+
+export function updateSkills(data: DBSkillsResponse) {
+    return baseAxios.put<DBSkillsResponse>(`/skills`, data, config.credentials).catch(console.error);
+}
