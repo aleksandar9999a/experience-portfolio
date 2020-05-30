@@ -1,18 +1,22 @@
-import React, { useState, SyntheticEvent } from 'react';
+import React, { useState, SyntheticEvent, useEffect } from 'react';
 import './Timeline.css';
 import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
 import TimelineValue from '../../types/TimelineValue.types';
 
 
-function TimelineItem(props: { item: TimelineItemsInterface, isEditable?: boolean, id?: number, onSubmit?: Function, onRemove?: Function }) {
-    const { item, isEditable, id, onSubmit, onRemove } = props;
+function TimelineItem(props: { item: TimelineItemsInterface, isEditable?: boolean, id?: number, onChange?: Function, onRemove?: Function }) {
+    const { item, isEditable, id, onChange, onRemove } = props;
     const [title, setTitle] = useState<string>(item.title);
     const [desc, setDesc] = useState<string>(item.desc);
     const [link, setLink] = useState<string>(item.link || '');
     const [start, setStart] = useState<string>(item.start || '');
     const [end, setEnd] = useState<string>(item.end || '');
-    const [message, setMessage] = useState<string>('');
-    
+
+    useEffect(() => {
+        if (onChange) {
+            onChange({ id, title, desc, link, start, end });
+        }
+    }, [id, title, desc, link, start, end])
 
     function handleChange(type: string, event: any) {
         const value = event.target.value as string;
@@ -27,18 +31,6 @@ function TimelineItem(props: { item: TimelineItemsInterface, isEditable?: boolea
         if (types[type]) {
             types[type](value);
         }
-
-    }
-
-    function submit(e: SyntheticEvent) {
-        e.preventDefault();
-        if (onSubmit) {
-            onSubmit( { id, title, desc, link, start, end });
-            setMessage('Successful updated!');
-            setTimeout(() => {
-                setMessage('');
-            }, 2000);
-        }
     }
 
     function remove(e: SyntheticEvent) {
@@ -47,6 +39,12 @@ function TimelineItem(props: { item: TimelineItemsInterface, isEditable?: boolea
             onRemove(id);
         }
     }
+
+    const handleTitle = (event: any) => handleChange.bind(TimelineItem, 'title')(event);
+    const handleDescription = (event: any) => handleChange.bind(TimelineItem, 'desc')(event);
+    const handleLink = (event: any) => handleChange.bind(TimelineItem, 'link')(event);
+    const handleStart = (event: any) => handleChange.bind(TimelineItem, 'start')(event);
+    const handleEnd = (event: any) => handleChange.bind(TimelineItem, 'end')(event);
 
     if (isEditable) {
         return (
@@ -59,7 +57,7 @@ function TimelineItem(props: { item: TimelineItemsInterface, isEditable?: boolea
                             type="text"
                             placeholder="Title"
                             value={title}
-                            onChange={handleChange.bind(TimelineItem, 'title')}
+                            onChange={handleTitle}
                         />
                     </div>
                     <div className="timeline-body">
@@ -67,7 +65,7 @@ function TimelineItem(props: { item: TimelineItemsInterface, isEditable?: boolea
                             className="timeline-textarea"
                             placeholder="Description"
                             value={desc}
-                            onChange={handleChange.bind(TimelineItem, 'desc')}
+                            onChange={handleDescription}
                         />
                     </div>
                     <div className="timeline-link">
@@ -76,7 +74,7 @@ function TimelineItem(props: { item: TimelineItemsInterface, isEditable?: boolea
                             type="text"
                             placeholder="Link"
                             value={link}
-                            onChange={handleChange.bind(TimelineItem, 'link')}
+                            onChange={handleLink}
                         />
                     </div>
                     <div className="timeline-time">
@@ -85,21 +83,19 @@ function TimelineItem(props: { item: TimelineItemsInterface, isEditable?: boolea
                             type="text"
                             placeholder="Start Time"
                             value={start}
-                            onChange={handleChange.bind(TimelineItem, 'title')}
+                            onChange={handleStart}
                         />
                         <input
                             className="timeline-time-input"
                             type="text"
                             placeholder="End Time"
                             value={end}
-                            onChange={handleChange.bind(TimelineItem, 'title')}
+                            onChange={handleEnd}
                         />
                     </div>
                     <div className="timeline-submit">
-                        <button onClick={submit} className="timeline-submit-button">Submit</button>
                         <button onClick={remove} className="timeline-submit-button">Remove</button>
                     </div>
-                    <p className="timeline-message">{message}</p>
                 </div>
             </li>
         )
