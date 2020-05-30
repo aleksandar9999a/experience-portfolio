@@ -3,6 +3,7 @@ import './SkillsSettings.css';
 import { getSkills, updateSkills } from '../../services/db-user';
 import ITimelineItems from '../../interfaces/ITimelineItems';
 import Timeline from '../timeline/Timeline';
+import ISkills from '../../interfaces/ISkills';
 
 function SkillsSettings() {
     const [description, setDescription] = useState<string>();
@@ -11,7 +12,7 @@ function SkillsSettings() {
     const [message, setMessage] = useState<string>();
 
     useEffect(() => {
-        const skillsData = getSkills().subscribe((data: any) => {
+        const skillsData = getSkills().subscribe(({ data }: { data: ISkills }) => {
             setData(data);
             setDescription(data.description);
             setTimelineItems(data.experience);

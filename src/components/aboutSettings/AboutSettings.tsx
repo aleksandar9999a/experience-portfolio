@@ -3,6 +3,7 @@ import './AboutSettings.css';
 import { getAbout, updateAbout } from '../../services/db-user';
 import ITimelineItems from '../../interfaces/ITimelineItems';
 import Timeline from '../timeline/Timeline';
+import IAbout from '../../interfaces/IAbout';
 
 function AboutSettings() {
     const [data, setData] = useState<any>();
@@ -11,7 +12,7 @@ function AboutSettings() {
     const [message, setMessage] = useState<string>();
 
     useEffect(() => {
-        const aboutData = getAbout().subscribe((data: any) => {
+        const aboutData = getAbout().subscribe(({ data }: { data: IAbout }) => {
             setData(data);
             setDescription(data.description);
             setTimelineItems(data.courses);

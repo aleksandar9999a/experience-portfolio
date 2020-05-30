@@ -1,7 +1,7 @@
 import React, { useState, SyntheticEvent, useEffect } from 'react';
 import './MainInfoSettings.css';
 import { updateUserdata } from '../../services/db-user';
-import { auth, getUserdata } from '../../services/db-auth';
+import { getUserdata } from '../../services/db-auth';
 
 function MainInfoSettings() {
     const [firstName, setFirstName] = useState<string>('');
@@ -11,15 +11,13 @@ function MainInfoSettings() {
     const [success, setSuccess] = useState<string>('');
 
     useEffect(() => {
-        getUserdata();
-        const userdata = auth.subscribe(user => {
+        getUserdata().then((user: any) => {
             if (user) {
                 setFirstName(user.firstName);
                 setLastName(user.lastName);
                 setDevType(user.devType);
             }
         })
-        return () => userdata.unsubscribe();
     }, []);
 
     function handleChange(type: string, event: any) {

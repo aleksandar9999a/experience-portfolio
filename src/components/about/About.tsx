@@ -3,13 +3,14 @@ import './About.css';
 import Timeline from '../timeline/Timeline';
 import ITimelineItems from '../../interfaces/ITimelineItems';
 import { getAbout } from './../../services/db-defaults';
+import IAbout from '../../interfaces/IAbout';
 
 function About() {
   const [headline, setHeadline] = useState<string>();
   const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([]);
 
   useEffect(() => {
-    const aboutData = getAbout().subscribe((data: any) => {
+    const aboutData = getAbout().subscribe(({ data }: { data: IAbout}) => {
       setHeadline(data.description)
       setTimelineItems(data.courses)
     });

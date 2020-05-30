@@ -4,6 +4,7 @@ import CustomLink from '../customLink/CustomLink';
 import IContact from '../../interfaces/IContact';
 import { getMainInfo } from '../../services/db-defaults';
 import { Link } from 'react-router-dom';
+import IMainUser from '../../interfaces/IMainUser';
 
 const contacts: IContact[] = [
     { alt: 'instagram', icon: 'instagram', href: 'https://www.instagram.com/sandi9999a/' },
@@ -18,7 +19,7 @@ function Home() {
     const [info, setInfo] = useState<any>({ firstName: '', lastName: '', devType: '' });
 
     useEffect(() => {
-        const userdata = getMainInfo().subscribe(data => {
+        const userdata = getMainInfo().subscribe(({ data }: { data: IMainUser }) => {
             setInfo(data)
         });
         return () => {
