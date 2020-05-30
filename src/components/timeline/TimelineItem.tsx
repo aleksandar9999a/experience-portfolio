@@ -4,15 +4,15 @@ import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
 import TimelineValue from '../../types/TimelineValue.types';
 
 
-function TimelineItem(props: { item: TimelineItemsInterface, isEditable?: boolean, index?: number, onSubmit?: Function }) {
-    const { item, isEditable, index, onSubmit } = props;
+function TimelineItem(props: { item: TimelineItemsInterface, isEditable?: boolean, id?: number, onSubmit?: Function, onRemove?: Function }) {
+    const { item, isEditable, id, onSubmit, onRemove } = props;
     const [title, setTitle] = useState<string>(item.title);
     const [desc, setDesc] = useState<string>(item.desc);
     const [link, setLink] = useState<string>(item.link || '');
     const [start, setStart] = useState<string>(item.start || '');
     const [end, setEnd] = useState<string>(item.end || '');
     const [message, setMessage] = useState<string>('');
-
+    
 
     function handleChange(type: string, event: any) {
         const value = event.target.value as string;
@@ -33,10 +33,7 @@ function TimelineItem(props: { item: TimelineItemsInterface, isEditable?: boolea
     function submit(e: SyntheticEvent) {
         e.preventDefault();
         if (onSubmit) {
-            onSubmit({
-                index,
-                data: { title, desc, link, start, end }
-            });
+            onSubmit( { id, title, desc, link, start, end });
             setMessage('Successful updated!');
             setTimeout(() => {
                 setMessage('');
@@ -44,6 +41,12 @@ function TimelineItem(props: { item: TimelineItemsInterface, isEditable?: boolea
         }
     }
 
+    function remove(e: SyntheticEvent) {
+        e.preventDefault();
+        if (onRemove) {
+            onRemove(id);
+        }
+    }
 
     if (isEditable) {
         return (
@@ -94,6 +97,7 @@ function TimelineItem(props: { item: TimelineItemsInterface, isEditable?: boolea
                     </div>
                     <div className="timeline-submit">
                         <button onClick={submit} className="timeline-submit-button">Submit</button>
+                        <button onClick={remove} className="timeline-submit-button">Remove</button>
                     </div>
                     <p className="timeline-message">{message}</p>
                 </div>
