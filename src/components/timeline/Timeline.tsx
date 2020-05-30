@@ -14,23 +14,24 @@ function Timeline(props: { items: TimelineItemsInterface[], isEditable?: boolean
     useEffect(updateList, [items])
 
     function updateList() {
-        const generateItems = (item: TimelineItemsInterface) => (<TimelineItem item={item} id={item.id} key={item.id.toString()} isEditable={isEditable} onSubmit={handleSubmit} onRemove={handleRemove} />)
+        const generateItems = (item: TimelineItemsInterface) => (<TimelineItem item={item} id={item.id} key={item.id.toString()} isEditable={isEditable} onChange={handleChange} onRemove={handleRemove} />)
+        if (onChange) { onChange(items); }
         setList(items.map(generateItems));
     }
 
-    function handleSubmit(data: TimelineItemsInterface) {
+    function handleChange(data: TimelineItemsInterface) {
         const newItems = [...items];
-        if (data.id === undefined) {
-            let id = 1;
-            if (items.length > 0) {
-                id = items[items.length - 1].id + 1
-            }
-            data.id = id;
-            newItems.push(data);
-        } else {
-            newItems[data.id] = data;
-        }
-        if (onChange) { onChange(newItems); }
+        const index = newItems.findIndex(item => item.id === data.id);
+        newItems[index] = data;
+        setItems(newItems);
+    }
+
+    function handleAddItem(data: TimelineItemsInterface) {
+        const newItems = [...items];
+        let id = 1;
+        if (items.length > 0) { id = items[items.length - 1].id + 1; }
+        data.id = id;
+        newItems.push(data);
         setItems(newItems);
     }
 
@@ -41,7 +42,7 @@ function Timeline(props: { items: TimelineItemsInterface[], isEditable?: boolean
     return (
         <ul className="timeline">
             {list}
-            {isEditable ? <TimelineAddItem onClick={handleSubmit} /> : null}
+            {isEditable ? <TimelineAddItem onClick={handleAddItem} /> : null}
         </ul>
     );
 }
