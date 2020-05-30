@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, SyntheticEvent } from 'react';
 import './Settings.css';
-import { getSkills } from './../../services/db';
+import { getSkills, updateSkills } from './../../services/db';
 import TimelineItemsInterface from '../../interfaces/TimelineItemInterface';
 import Timeline from '../timeline/Timeline';
 
 function SkillsSettings() {
     const [description, setDescription] = useState<string>();
     const [timelineItems, setTimelineItems] = useState<TimelineItemsInterface[]>([]);
+    const [id, setId] = useState<string>();
+    const [message, setMessage] = useState<string>();
 
     useEffect(() => {
         const skillsData = getSkills().subscribe((data: any) => {
+            setId(data._id)
             setDescription(data.description);
             setTimelineItems(data.experience);
         });
@@ -23,8 +26,28 @@ function SkillsSettings() {
     }
 
     function handleTimelineChange(items: TimelineItemsInterface[]) {
-        // console.log(items);
+        setTimelineItems(items);
+    }
 
+    function removeMessage(time: number) {
+        setTimeout(() => {
+            setMessage('');
+        }, time);
+    }
+
+    function handleSubmit(e: SyntheticEvent) {
+        e.preventDefault();
+        if (!id || !description) {
+           return; 
+        }
+        
+        updateSkills({ description: description, experience: timelineItems, id: id}).then(() => {
+            setMessage('Successful updated!');
+            removeMessage(3000);
+        }).catch(err => { 
+            setMessage('Something is wrong!');
+            removeMessage(3000);
+        })
     }
 
     return (
@@ -38,8 +61,9 @@ function SkillsSettings() {
                     ? <Timeline items={timelineItems} isEditable={true} onChange={handleTimelineChange} />
                     : null}
                 </div>
+                <p className="settings-skills-message">{message}</p>
                 <div className="settings-submit-button-wrapper">
-                    <button className="settings-submit-button">Update Skills</button>
+                    <button className="settings-submit-button" onClick={handleSubmit}>Update Skills</button>
                 </div>
             </form>
         </div>
