@@ -16,14 +16,21 @@
     width: 50%;
     text-align: center;
     display: flex;
-    justify-content: space-between;
 }
 
 .settings-tab {
-    display: inline-flex;
+    display: flex;
     margin: auto;
     width: 60px;
     color: #08fdd8;
+}
+
+.settings-tab + .settings-tab {
+    margin-right: 0;
+}
+
+.settings-tab {
+    width: 100%;
 }
 
 .settings-tab-button {
@@ -36,6 +43,7 @@
     background: transparent;
     text-transform: uppercase;
     padding: 15px;
+    width: 150px;
 }
 .settings-tab-button:active {
     border: 1px solid #08fdd8;
@@ -92,4 +100,17 @@
     text-align: center;
     color: #08fdd8;
     font-size: 15px;
+}
+
+@media screen and (max-width: 780px) {
+    .settings-tabs {
+        width: 90%;
+    }
+
+    .settings-tab-button {
+        font-size: 8px;
+        letter-spacing: 2px;
+        padding: 5px;
+        width: 80px;
+    }
 }
