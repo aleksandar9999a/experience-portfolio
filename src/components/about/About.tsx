@@ -27,7 +27,10 @@ function About() {
         <p className="about-headline-text">{headline}</p>
       </div>
       <div className="about-timeline">
-        <Timeline items={timelineItems} />
+        {timelineItems.length > 0
+          ? <Timeline items={timelineItems} />
+          : null
+        }
       </div>
     </div>
   );

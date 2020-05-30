@@ -9,7 +9,7 @@ function Skills() {
   const [timelineItems, setTimelineItems] = useState<TimelineItemsInterface[]>([]);
 
   useEffect(() => {
-    const skillsData = getSkills().subscribe((data: any ) => {
+    const skillsData = getSkills().subscribe((data: any) => {
       setDescription(data.description);
       setTimelineItems(data.experience);
     });
@@ -27,7 +27,10 @@ function Skills() {
         <p className="skills-headline-text">{description}</p>
       </div>
       <div className="skills-timeline">
-        <Timeline items={timelineItems} />
+        {timelineItems.length > 0
+          ? <Timeline items={timelineItems} />
+          : null
+        }
       </div>
     </div>
   );
