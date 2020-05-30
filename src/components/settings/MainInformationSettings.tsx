@@ -4,11 +4,11 @@ import { updateUserdata } from './../../services/db-user';
 import { auth, getUserdata } from './../../services/db-auth';
 
 function MainInformationSettings() {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [devType, setDevType] = useState('');
-    const [error, setError] = useState('');
-    const [success, setSuccess] = useState('');
+    const [firstName, setFirstName] = useState<string>('');
+    const [lastName, setLastName] = useState<string>('');
+    const [devType, setDevType] = useState<string>('');
+    const [error, setError] = useState<string>('');
+    const [success, setSuccess] = useState<string>('');
 
     useEffect(() => {
         getUserdata();
@@ -69,20 +69,24 @@ function MainInformationSettings() {
         }, time);
     }
 
+    const handleFirstName = (event: any) => handleChange.bind(MainInformationSettings, 'firstName')(event);
+    const handleLastName = (event: any) => handleChange.bind(MainInformationSettings, 'lastName')(event);
+    const handleDevType = (event: any) => handleChange.bind(MainInformationSettings, 'devType')(event);
+
     return (
         <div className="settings-title-wrapper">
             <h1 className="settings-title">Main Information</h1>
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <form className="contact-form">
                 <input className="custom-input" type="text" placeholder="First Name"
-                    value={firstName} onChange={handleChange.bind(MainInformationSettings, 'firstName')} />
+                    defaultValue={firstName} onChange={handleFirstName} />
                 <input className="custom-input" type="text" placeholder="Last Name"
-                    value={lastName} onChange={handleChange.bind(MainInformationSettings, 'lastName')} />
+                    defaultValue={lastName} onChange={handleLastName} />
                 <input className="custom-input" type="text" placeholder="Dev Type"
-                    value={devType} onChange={handleChange.bind(MainInformationSettings, 'devType')} />
+                    defaultValue={devType} onChange={handleDevType} />
                 {error ? <p className="custom-error">{error}</p> : null}
                 {success ? <p className="custom-success">{success}</p> : null}
                 <div className="settings-submit-button-wrapper">
-                    <button className="settings-submit-button">Update Main Information</button>
+                    <button className="settings-submit-button" onClick={handleSubmit}>Update Main Information</button>
                 </div>
             </form>
         </div>
