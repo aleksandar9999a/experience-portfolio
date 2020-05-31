@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import CustomConstellation from './components/customConstellation/CustomConstellation';
-import Overlay from './containers/overlay/Overlay';
+import Constellation from './components/Constellation';
+import Overlay from './containers/Overlay';
 
 function App() {
   return (
     <div className="app">
-      <CustomConstellation />
+      <Constellation />
       <Overlay />
     </div>
   );
