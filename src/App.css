@@ -9,10 +9,6 @@ body {
     position: relative;
 }
 
-canvas, .overlay {
+canvas {
     position: absolute;
-}
-
-.overlay {
-    width: 100%;
 }
