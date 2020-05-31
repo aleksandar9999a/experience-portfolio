@@ -56,6 +56,10 @@
     opacity: 0.8;
 }
 
+.home-error {
+    font-size: 50px;
+}
+
 @media screen and (max-width: 780px) {
     .headline {
         width: 70%;

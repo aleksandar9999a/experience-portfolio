@@ -8,13 +8,28 @@ import IAbout from '../../interfaces/IAbout';
 function About() {
   const [headline, setHeadline] = useState<string>();
   const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([]);
+  const [error, setError] = useState<string>();
 
   useEffect(() => {
     getAbout().then(({ data }: { data: IAbout }) => {
-      setHeadline(data.description)
-      setTimelineItems(data.courses)
-    });
+      if (!data) { setError('No data!'); return; }
+      setHeadline(data.description);
+      setTimelineItems(data.courses);
+    }).catch(err => setError(err.message));
   }, [])
+
+  if (!!error) {
+    return (
+      <div className="about">
+        <div className="about-title">
+          <h1 className="about-title-text">About me</h1>
+        </div>
+        <div className="about-headline">
+          <p className="about-headline-text about-error">{error}</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="about">
@@ -27,7 +42,7 @@ function About() {
       <div className="about-timeline">
         {timelineItems.length > 0
           ? <Timeline items={timelineItems} />
-          : null
+          : <p className="about-headline-text about-error">No Timeline</p>
         }
       </div>
     </div>

@@ -16,13 +16,25 @@ const generateCustomLinks = (c: IContact, i: number) => <CustomLink key={i} alt=
 const links = contacts.map(generateCustomLinks);
 
 function Home() {
-    const [info, setInfo] = useState<any>({ firstName: '', lastName: '', devType: '' });
+    const [info, setInfo] = useState<IMainUser>({ firstName: '', lastName: '', devType: '' });
+    const [error, setError] = useState<string>();
 
     useEffect(() => {
         getMainInfo().then(({ data }: { data: IMainUser }) => {
+            if (!data) { setError('No Data'); return; }
             setInfo(data)
-        });
+        }).catch(err => setError(err.message));
     }, [])
+
+    if (!!error) {
+        return (
+            <div className="home">
+                <div className="headline">
+                    <p className="headline-text home-error">{error}</p>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className="home">
