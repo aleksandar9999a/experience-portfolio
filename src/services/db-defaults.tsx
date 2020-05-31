@@ -1,16 +1,18 @@
 import Axios from "axios";
 import config from './../configs/dbConfig';
 
-Axios.defaults.baseURL = `${config.port}/api`;
+Axios.create({
+    baseURL: `${config.port}/api`
+})
 
 export function getAbout() {
-    return Axios.get(`/defaults/about`, config.credentials);
+    return Axios.get(`/defaults/about`);
 }
 
 export function getSkills() {
-    return Axios.get(`/defaults/skills`, config.credentials);
+    return Axios.get(`/defaults/skills`);
 }
 
 export function getMainInfo() {
-    return Axios.get(`/defaults`, config.credentials);
+    return Axios.get(`/defaults`);
 }

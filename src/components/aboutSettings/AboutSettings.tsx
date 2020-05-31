@@ -16,6 +16,9 @@ function AboutSettings() {
             setData(data);
             setDescription(data.description);
             setTimelineItems(data.courses);
+        }).catch(err => {
+            setMessage(err.message);
+            removeMessage(3000);
         });
     }, [])
 

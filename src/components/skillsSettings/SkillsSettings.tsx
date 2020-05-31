@@ -13,10 +13,17 @@ function SkillsSettings() {
 
     useEffect(() => {
         getSkills().then(({ data }: { data: ISkills }) => {
-            setData(data);
-            setDescription(data.description);
-            setTimelineItems(data.experience);
-        });
+            if (data) {
+                setData(data);
+                setDescription(data.description);
+                setTimelineItems(data.experience);
+            } else {
+                setMessage('No skills')
+            }
+        }).catch(err => {
+            setMessage(err.message);
+            removeMessage(3000);
+        });;
     }, [])
 
     function handleDescriptionChange(e: any) {

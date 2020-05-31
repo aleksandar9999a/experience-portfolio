@@ -17,7 +17,10 @@ function MainInfoSettings() {
                 setLastName(user.lastName);
                 setDevType(user.devType);
             }
-        })
+        }).catch(err => {
+            setError(err.message);
+            removeErrorAfterTime(3000);
+        });
     }, []);
 
     function handleChange(type: string, event: any) {
@@ -44,7 +47,7 @@ function MainInfoSettings() {
             return;
         }
 
-        updateUserdata({ firstName, lastName, devType }).then(user => {
+        updateUserdata({ firstName, lastName, devType }).then(() => {
             setSuccess('Successful updated!');
             removeSuccessAfterTime(3000);
         }).catch(err => {
