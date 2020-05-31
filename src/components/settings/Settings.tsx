@@ -1,60 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Settings.css';
-import MainInfoSettings from '../mainInfoSettings/MainInfoSettings';
-import ProjectsSettings from '../projectsSettings/ProjectsSettings';
-import SkillsSettings from '../skillsSettings/SkillsSettings';
-import AboutSettings from '../aboutSettings/AboutSettings';
-import TSettingsOptions from '../../types/TSettingsOptions';
-
-const DefaultPage = () => <MainInfoSettings />
+import { BrowserRouter as Router} from 'react-router-dom';
+import SettingsNavbar from '../settingsNavbar/SettingsNavbar';
+import SettingsContainer from '../settingsContainer/SettingsContainer';
 
 function Settings() {
-  const [menu, setMenu] = useState<JSX.Element>(<DefaultPage />);
-
-  function handleMenuChange(type: string) {
-    const types: TSettingsOptions = {
-      MainInfoSettings: <MainInfoSettings />,
-      ProjectsSettings: <ProjectsSettings />,
-      SkillsSettings: <SkillsSettings />,
-      AboutSettings: <AboutSettings />
-    };
-    if (types.hasOwnProperty(type)) {
-      setMenu(types[type]);
-    }
-  }
-
-  const handleMainInfoSettings = () => handleMenuChange('MainInfoSettings');
-  const handleProjectsSettings = () => handleMenuChange('ProjectsSettings');
-  const handleSkillsSettings = () => handleMenuChange('SkillsSettings');
-  const handleAboutSettings = () => handleMenuChange('AboutSettings');
-
   return (
     <div className="settings">
-      <div className="settings-tabs-wrapper">
-        <ul className="settings-tabs">
-          <li className="settings-tab">
-            <button className="settings-tab-button" onClick={handleMainInfoSettings} >
-              Main Info
-            </button>
-          </li>
-          <li className="settings-tab">
-            <button className="settings-tab-button" onClick={handleProjectsSettings} >
-              Projects
-            </button>
-          </li>
-          <li className="settings-tab">
-            <button className="settings-tab-button" onClick={handleSkillsSettings} >
-              Skills
-            </button>
-          </li>
-          <li className="settings-tab">
-            <button className="settings-tab-button" onClick={handleAboutSettings} >
-              About
-            </button>
-          </li>
-        </ul>
-      </div>
-      {menu}
+      <Router>
+        <SettingsNavbar />
+        <SettingsContainer />
+      </Router>
     </div>
   );
 }
