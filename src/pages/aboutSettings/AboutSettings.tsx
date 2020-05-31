@@ -2,7 +2,7 @@ import React, { useEffect, useState, SyntheticEvent } from 'react';
 import './AboutSettings.css';
 import { getAbout, updateAbout } from '../../services/db-user';
 import ITimelineItems from '../../interfaces/ITimelineItems';
-import Timeline from '../timeline/Timeline';
+import Timeline from '../../components/timeline/Timeline';
 import IAbout from '../../interfaces/IAbout';
 
 function AboutSettings() {

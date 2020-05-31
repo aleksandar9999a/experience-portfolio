@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Skills.css';
 import ITimelineItems from '../../interfaces/ITimelineItems';
-import Timeline from '../timeline/Timeline';
+import Timeline from '../../components/timeline/Timeline';
 import { getSkills } from '../../services/db-defaults';
 import ISkills from '../../interfaces/ISkills';
 

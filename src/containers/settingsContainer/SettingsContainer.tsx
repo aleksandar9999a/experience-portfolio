@@ -1,8 +1,8 @@
 import React from 'react';
-import MainInfoSettings from '../mainInfoSettings/MainInfoSettings';
-import ProjectsSettings from '../projectsSettings/ProjectsSettings';
-import SkillsSettings from '../skillsSettings/SkillsSettings';
-import AboutSettings from '../aboutSettings/AboutSettings';
+import MainInfoSettings from '../../pages/mainInfoSettings/MainInfoSettings';
+import ProjectsSettings from '../../pages/projectsSettings/ProjectsSettings';
+import SkillsSettings from '../../pages/skillsSettings/SkillsSettings';
+import AboutSettings from '../../pages/aboutSettings/AboutSettings';
 import { Switch, Route } from 'react-router-dom';
 
 const links = [

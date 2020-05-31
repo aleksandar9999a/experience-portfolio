@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import CustomConstellation from './components/customConstellation/CustomConstellation';
-import Overlay from './components/overlay/Overlay';
+import Overlay from './containers/overlay/Overlay';
 
 function App() {
   return (

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './About.css';
-import Timeline from '../timeline/Timeline';
+import Timeline from '../../components/timeline/Timeline';
 import ITimelineItems from '../../interfaces/ITimelineItems';
-import { getAbout } from './../../services/db-defaults';
+import { getAbout } from '../../services/db-defaults';
 import IAbout from '../../interfaces/IAbout';
 
 function About() {

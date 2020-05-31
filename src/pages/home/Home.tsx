@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css';
-import CustomLink from '../customLink/CustomLink';
+import CustomLink from '../../components/customLink/CustomLink';
 import IContact from '../../interfaces/IContact';
 import { getMainInfo } from '../../services/db-defaults';
 import { Link } from 'react-router-dom';

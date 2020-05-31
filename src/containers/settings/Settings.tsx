@@ -1,7 +1,7 @@
 import React from 'react';
 import './Settings.css';
 import { BrowserRouter as Router} from 'react-router-dom';
-import SettingsNavbar from '../settingsNavbar/SettingsNavbar';
+import SettingsNavbar from '../../components/settingsNavbar/SettingsNavbar';
 import SettingsContainer from '../settingsContainer/SettingsContainer';
 
 function Settings() {

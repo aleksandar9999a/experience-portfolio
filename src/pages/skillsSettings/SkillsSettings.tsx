@@ -2,7 +2,7 @@ import React, { useState, useEffect, SyntheticEvent } from 'react';
 import './SkillsSettings.css';
 import { getSkills, updateSkills } from '../../services/db-user';
 import ITimelineItems from '../../interfaces/ITimelineItems';
-import Timeline from '../timeline/Timeline';
+import Timeline from '../../components/timeline/Timeline';
 import ISkills from '../../interfaces/ISkills';
 
 function SkillsSettings() {

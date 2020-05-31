@@ -1,7 +1,7 @@
 import React from 'react';
 import './Overlay.css';
 import { BrowserRouter as Router } from "react-router-dom";
-import Navbar from '../navbar/Navbar';
+import Navbar from '../../components/navbar/Navbar';
 import Container from '../container/Container';
 
 function Overlay() {
