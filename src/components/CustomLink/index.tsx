@@ -10,8 +10,7 @@ const icons: TIconsOptions = {
     unknown: require('./../../assets/unknown.png')
 }
 
-function CustomLink(props: ICustomLink) {
-    let { alt, icon, link } = props;
+function CustomLink({ alt, icon, link }: ICustomLink) {
     if (!icons[icon]) { icon = 'unknown'; }
 
     return (

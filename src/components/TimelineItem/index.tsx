@@ -1,11 +1,10 @@
 import React, { useState, SyntheticEvent, useEffect } from 'react';
 import './styles.css';
-import ITimelineItems from '../../interfaces/ITimelineItems';
 import TTimelineValue from '../../types/TTimelineValue';
+import ITimelineItem from '../../interfaces/ITimelineItem';
 
 
-function TimelineItem(props: { item: ITimelineItems, isEditable?: boolean, id?: number, onChange?: Function, onRemove?: Function }) {
-    const { item, isEditable, id, onChange, onRemove } = props;
+function TimelineItem({ item, isEditable, id, onChange, onRemove }: ITimelineItem) {
     const [title, setTitle] = useState<string>(item.title);
     const [desc, setDesc] = useState<string>(item.desc);
     const [link, setLink] = useState<string>(item.link || '');
@@ -13,9 +12,8 @@ function TimelineItem(props: { item: ITimelineItems, isEditable?: boolean, id?: 
     const [end, setEnd] = useState<string>(item.end || '');
 
     useEffect(() => {
-        if (onChange) {
-            onChange({ id, title, desc, link, start, end });
-        }
+        if (!onChange) { return; }
+        onChange({ id, title, desc, link, start, end });
     }, [id, title, desc, link, start, end])
 
     function handleChange(type: string, event: any) {

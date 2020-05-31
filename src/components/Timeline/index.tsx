@@ -3,40 +3,39 @@ import './styles.css';
 import ITimelineItems from '../../interfaces/ITimelineItems';
 import TimelineItem from '../TimelineItem';
 import TimelineAddItem from '../TimelineAddItem';
+import ITimeline from '../../interfaces/ITimeline';
 
 
-function Timeline(props: { items: ITimelineItems[], isEditable?: boolean, onChange?: Function }) {
-    const isEditable = props.isEditable || false;
-    const onChange = props.onChange;
-    let [items, setItems] = useState([...props.items]);
+function Timeline({ items, isEditable, onChange }: ITimeline) {
+    let [currItems, setCurrItems] = useState([...items]);
     let [list, setList] = useState<JSX.Element[]>([]);
 
-    useEffect(updateList, [items])
+    useEffect(updateList, [currItems])
 
     function updateList() {
         const generateItems = (item: ITimelineItems) => (<TimelineItem item={item} id={item.id} key={item.id.toString()} isEditable={isEditable} onChange={handleChange} onRemove={handleRemove} />)
-        if (onChange) { onChange(items); }
-        setList(items.map(generateItems));
+        if (onChange) { onChange(currItems); }
+        setList(currItems.map(generateItems));
     }
 
     function handleChange(data: ITimelineItems) {
-        const newItems = [...items];
+        const newItems = [...currItems];
         const index = newItems.findIndex(item => item.id === data.id);
         newItems[index] = data;
-        setItems(newItems);
+        setCurrItems(newItems);
     }
 
     function handleAddItem(data: ITimelineItems) {
-        const newItems = [...items];
+        const newItems = [...currItems];
         let id = 1;
-        if (items.length > 0) { id = items[items.length - 1].id + 1; }
+        if (currItems.length > 0) { id = currItems[items.length - 1].id + 1; }
         data.id = id;
         newItems.push(data);
-        setItems(newItems);
+        setCurrItems(newItems);
     }
 
     function handleRemove(id: number) {
-        setItems(items.filter(x => x.id !== id));
+        setCurrItems(currItems.filter(x => x.id !== id));
     }
 
     return (

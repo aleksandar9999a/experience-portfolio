@@ -8,7 +8,7 @@ import ISkills from '../../interfaces/ISkills';
 function SkillsSettings() {
     const [description, setDescription] = useState<string>();
     const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([]);
-    const [data, setData] = useState<any>();
+    const [data, setData] = useState<ISkills>();
     const [message, setMessage] = useState<string>();
 
     useEffect(() => {
@@ -42,7 +42,7 @@ function SkillsSettings() {
 
     function handleSubmit(e: SyntheticEvent) {
         e.preventDefault();
-        if (!data._id || !description) {
+        if (!data || !data._id || !description) {
             return;
         }
 

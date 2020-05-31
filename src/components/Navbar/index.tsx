@@ -9,20 +9,20 @@ function Navbar() {
     const [tabs, setTabs] = useState<JSX.Element[]>();
 
     function loadTabList(tabsConfig: ITab[]) {
-        const generateTab = (tab: ITab, i: number) => <Tab data={tab} key={i} />;
+        const generateTab = (tab: ITab, i: number) => <Tab name={tab.name} route={tab.route} Icon={tab.Icon} key={i} />;
         const list = tabsConfig.map(generateTab);
         setTabs(list);
     }
 
     useEffect(() => {
         let tabsConfig: ITab[] = [
-            { name: 'Projects', route: '/projects', icon: Icons.ColumnsGap },
-            { name: 'Skills', route: '/skills', icon: Icons.CodeSlash },
-            { name: 'Home', route: '/', icon: Icons.House },
-            { name: 'About', route: '/about', icon: Icons.Person },
-            { name: 'Contacts', route: '/contacts', icon: Icons.ChatDots },
-            { name: 'Settings', route: '/settings', icon: Icons.Gear },
-            { name: 'Log Out', route: '/logout', icon: Icons.ArrowBarRight }
+            { name: 'Projects', route: '/projects', Icon: Icons.ColumnsGap },
+            { name: 'Skills', route: '/skills', Icon: Icons.CodeSlash },
+            { name: 'Home', route: '/', Icon: Icons.House },
+            { name: 'About', route: '/about', Icon: Icons.Person },
+            { name: 'Contacts', route: '/contacts', Icon: Icons.ChatDots },
+            { name: 'Settings', route: '/settings', Icon: Icons.Gear },
+            { name: 'Log Out', route: '/logout', Icon: Icons.ArrowBarRight }
         ]
 
         const userdata = auth.subscribe(user => {

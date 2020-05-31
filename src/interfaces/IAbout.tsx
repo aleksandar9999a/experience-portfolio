@@ -1,7 +1,8 @@
 import ITimelineItems from "./ITimelineItems";
 
 export default interface IAbout {
-    id: string,
+    _id?: string,
+    id?: string,
     description: string,
     courses: ITimelineItems[],
     creatorId: string

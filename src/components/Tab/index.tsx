@@ -3,13 +3,12 @@ import './styles.css';
 import { Link } from "react-router-dom";
 import ITab from '../../interfaces/ITab';
 
-function Tab(props: { data: ITab}) {
-    const { data } = props;
+function Tab({ name, route, Icon }: ITab) {
     return (
         <li className="tab">
-            <Link className="link" to={data.route} >
-                <span className="route-name">{data.name}</span>
-                <div className="route-icon"><data.icon size={25} /></div>
+            <Link className="link" to={route} >
+                <span className="route-name">{name}</span>
+                <div className="route-icon"><Icon size={25} /></div>
             </Link>
         </li>
     );

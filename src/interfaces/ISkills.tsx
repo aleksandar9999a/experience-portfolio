@@ -1,7 +1,8 @@
 import ITimelineItems from "./ITimelineItems";
 
 export default interface ISkills {
-    id: string,
+    _id?: string,
+    id?: string,
     description: string,
     experience: ITimelineItems[],
     creatorId: string

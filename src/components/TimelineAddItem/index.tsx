@@ -1,9 +1,9 @@
 import React from 'react';
 import './styles.css';
 import { Plus } from 'react-bootstrap-icons';
+import ITimelineAddItem from '../../interfaces/ITimelineAddItem';
 
-function TimelineAddItem(props: { onClick: Function }) {
-    const onClick = props.onClick;
+function TimelineAddItem({ onClick }: ITimelineAddItem) {
     function addItem() {
         onClick({
             title: '',

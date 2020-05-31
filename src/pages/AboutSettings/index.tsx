@@ -6,7 +6,7 @@ import Timeline from '../../components/Timeline';
 import IAbout from '../../interfaces/IAbout';
 
 function AboutSettings() {
-    const [data, setData] = useState<any>();
+    const [data, setData] = useState<IAbout>();
     const [description, setDescription] = useState<string>();
     const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([]);
     const [message, setMessage] = useState<string>();
@@ -38,7 +38,7 @@ function AboutSettings() {
 
     function handleSubmit(e: SyntheticEvent) {
         e.preventDefault();
-        if (!data._id || !description) {
+        if (!data || !data._id || !description) {
             return;
         }
 
