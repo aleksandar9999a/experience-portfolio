@@ -13,9 +13,13 @@ function AboutSettings() {
 
     useEffect(() => {
         getAbout().then(({ data }: { data: IAbout }) => {
-            setData(data);
-            setDescription(data.description);
-            setTimelineItems(data.courses);
+            if (data) {
+                setData(data);
+                setDescription(data.description);
+                setTimelineItems(data.courses);
+            } else {
+                setMessage('No information');
+            }
         }).catch(err => {
             setMessage(err.message);
             removeMessage(3000);
