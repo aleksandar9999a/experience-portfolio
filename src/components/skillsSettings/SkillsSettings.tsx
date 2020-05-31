@@ -12,14 +12,11 @@ function SkillsSettings() {
     const [message, setMessage] = useState<string>();
 
     useEffect(() => {
-        const skillsData = getSkills().subscribe(({ data }: { data: ISkills }) => {
+        getSkills().then(({ data }: { data: ISkills }) => {
             setData(data);
             setDescription(data.description);
             setTimelineItems(data.experience);
         });
-        return () => {
-            skillsData.unsubscribe();
-        }
     }, [])
 
     function handleDescriptionChange(e: any) {
@@ -39,7 +36,7 @@ function SkillsSettings() {
     function handleSubmit(e: SyntheticEvent) {
         e.preventDefault();
         if (!data._id || !description) {
-           return; 
+            return;
         }
 
         const newData = {
@@ -48,11 +45,11 @@ function SkillsSettings() {
             description: description,
             experience: timelineItems
         };
-        
+
         updateSkills(newData).then(() => {
             setMessage('Successful updated!');
             removeMessage(3000);
-        }).catch(err => { 
+        }).catch(err => {
             setMessage('Something is wrong!');
             removeMessage(3000);
         })
@@ -65,9 +62,9 @@ function SkillsSettings() {
                 <textarea className="custom-textarea" placeholder="Skills Resume"
                     value={description} onChange={handleDescriptionChange} />
                 <div className="skills-settings-timeline">
-                    { timelineItems.length > 0
-                    ? <Timeline items={timelineItems} isEditable={true} onChange={handleTimelineChange} />
-                    : null}
+                    {timelineItems.length > 0
+                        ? <Timeline items={timelineItems} isEditable={true} onChange={handleTimelineChange} />
+                        : null}
                 </div>
                 <p className="skills-settings-message">{message}</p>
                 <div className="skills-settings-submit-button-wrapper">

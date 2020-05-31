@@ -10,13 +10,10 @@ function About() {
   const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([]);
 
   useEffect(() => {
-    const aboutData = getAbout().subscribe(({ data }: { data: IAbout}) => {
+    getAbout().then(({ data }: { data: IAbout }) => {
       setHeadline(data.description)
       setTimelineItems(data.courses)
     });
-    return () => {
-      aboutData.unsubscribe();
-    }
   }, [])
 
   return (

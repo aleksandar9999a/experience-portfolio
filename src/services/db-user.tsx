@@ -1,6 +1,5 @@
 import config from './../configs/dbConfig';
 import Axios from 'axios';
-import AxiosObs from 'axios-observable';
 import ISkills from '../interfaces/ISkills';
 import IMainUser from '../interfaces/IMainUser';
 import IAbout from '../interfaces/IAbout';
@@ -20,9 +19,9 @@ export function updateAbout(data: IAbout) {
 }
 
 export function getSkills() {
-    return AxiosObs.get(`/skills`, config.credentials);
+    return Axios.get(`/skills`, config.credentials);
 }
 
 export function getAbout() {
-    return AxiosObs.get(`/about`, config.credentials);
+    return Axios.get(`/about`, config.credentials);
 }

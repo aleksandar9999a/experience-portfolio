@@ -10,13 +10,10 @@ function Skills() {
   const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([]);
 
   useEffect(() => {
-    const skillsData = getSkills().subscribe(({ data }: { data: ISkills}) => {
+    getSkills().then(({ data }: { data: ISkills }) => {
       setDescription(data.description);
       setTimelineItems(data.experience);
     });
-    return () => {
-      skillsData.unsubscribe();
-    }
   }, [])
 
   return (

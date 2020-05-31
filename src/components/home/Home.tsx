@@ -19,12 +19,9 @@ function Home() {
     const [info, setInfo] = useState<any>({ firstName: '', lastName: '', devType: '' });
 
     useEffect(() => {
-        const userdata = getMainInfo().subscribe(({ data }: { data: IMainUser }) => {
+        getMainInfo().then(({ data }: { data: IMainUser }) => {
             setInfo(data)
         });
-        return () => {
-            userdata.unsubscribe();
-        }
     }, [])
 
     return (

@@ -1,4 +1,4 @@
-import Axios from "axios-observable";
+import Axios from "axios";
 import config from './../configs/dbConfig';
 
 Axios.defaults.baseURL = `${config.port}/api`;

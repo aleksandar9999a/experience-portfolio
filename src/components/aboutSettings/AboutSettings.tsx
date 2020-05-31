@@ -12,14 +12,11 @@ function AboutSettings() {
     const [message, setMessage] = useState<string>();
 
     useEffect(() => {
-        const aboutData = getAbout().subscribe(({ data }: { data: IAbout }) => {
+        getAbout().then(({ data }: { data: IAbout }) => {
             setData(data);
             setDescription(data.description);
             setTimelineItems(data.courses);
         });
-        return () => {
-            aboutData.unsubscribe();
-        }
     }, [])
 
     function handleDescriptionChange(e: any) {
@@ -39,7 +36,7 @@ function AboutSettings() {
     function handleSubmit(e: SyntheticEvent) {
         e.preventDefault();
         if (!data._id || !description) {
-           return; 
+            return;
         }
 
         const newData = {
@@ -48,11 +45,11 @@ function AboutSettings() {
             description: description,
             courses: timelineItems
         };
-        
+
         updateAbout(newData).then(() => {
             setMessage('Successful updated!');
             removeMessage(3000);
-        }).catch(err => { 
+        }).catch(err => {
             setMessage('Something is wrong!');
             removeMessage(3000);
         })
@@ -65,9 +62,9 @@ function AboutSettings() {
                 <textarea className="custom-textarea" placeholder="About me"
                     value={description} onChange={handleDescriptionChange} />
                 <div className="about-settings-timeline">
-                    { timelineItems.length > 0
-                    ? <Timeline items={timelineItems} isEditable={true} onChange={handleTimelineChange} />
-                    : null}
+                    {timelineItems.length > 0
+                        ? <Timeline items={timelineItems} isEditable={true} onChange={handleTimelineChange} />
+                        : null}
                 </div>
                 <p className="about-settings-message">{message}</p>
                 <div className="about-settings-submit-button-wrapper">
