@@ -7,7 +7,6 @@ function Login() {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [error, setError] = useState<string>('');
-    const [success, setSuccess] = useState<string>('');
     const [redirect, setRedirect] = useState<boolean>(false);
 
     function submit(e: SyntheticEvent) {
@@ -26,15 +25,12 @@ function Login() {
 
         submitLogin({ email, password })
             .then(user => {
-                if (user) {
-                    setSuccess("Successful login!");
-                    removeSuccessAfterTime(3000);
-                    setRedirect(true);
-                }
+                if (user) { setRedirect(true); }
             }).catch(err => {
                 if (err.message === "Request failed with status code 404") {
-                    setError('User is unknown.')
+                    setError('Wrong email or password!')
                     removeErrorAfterTime(3000);
+                    return;
                 }
                 console.log(err.message);
             });
@@ -44,9 +40,6 @@ function Login() {
         return removeText(setError, 3000);
     }
 
-    function removeSuccessAfterTime(time: number) {
-        return removeText(setSuccess, 3000);
-    }
 
     function removeText(setValue: Function, time: number) {
         return setTimeout(() => {
@@ -73,7 +66,6 @@ function Login() {
                 <input className="custom-input" type="email" placeholder="Email" value={email} onChange={setEmailValue} />
                 <input className="custom-input" type="password" placeholder="Password" value={password} onChange={setPasswordValue} />
                 {error ? <p className="custom-error">{error}</p> : null}
-                {success ? <p className="custom-success">{success}</p> : null}
                 <div className="login-btn-wrapper">
                     <button className="login-button">Login</button>
                 </div>
