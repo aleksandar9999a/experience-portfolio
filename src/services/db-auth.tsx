@@ -26,5 +26,5 @@ export function submitLogin(loginData: ILoginData) {
     return Axios.post(`/auth/login`, loginData, config.credentials).then(res => {
         auth.next(res.data || null);
         return res.data;
-    }).catch(console.error);
+    });
 }
