@@ -22,7 +22,7 @@ export default class Constellation {
         this.context.lineWidth = this.constellation_config.line.width;
     };
 
-    private loop(callback: any) {
+    private loop(callback: Function) {
         callback()
         requestAnimationFrame(this.loop.bind(this, callback));
     };
