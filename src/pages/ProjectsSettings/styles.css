@@ -34,3 +34,35 @@
 .projects-settings-submit-button:hover {
     box-shadow: 1px 1px 20px #08fdd841;
 }
+
+.projetcs-tiles {
+    display: flex;
+    justify-content: center;
+}
+
+.projects-tile {
+    width: 280px;
+    height: 280px;
+    background: #08fdd8;
+    opacity: 0.7;
+    display: flex;
+    cursor: pointer;
+}
+
+.projects-tile:hover {
+    opacity: 1;
+    box-shadow: 1px 1px 10px #08fdd87e;
+}
+
+.projects-add-icon {
+    margin: auto;
+    width: 30px;
+    height: 30px;
+}
+
+@media screen and (max-width: 780px) {
+    .projects-tile {
+        width: 120px;
+        height: 120px;
+    }
+}

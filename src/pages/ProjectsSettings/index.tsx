@@ -1,15 +1,19 @@
 import React from 'react';
 import './styles.css';
+import { Plus } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 
 function ProjectsSettings() {
     return (
         <div className="projects-settings-title-wrapper">
             <h1 className="projects-settings-title">Projects</h1>
-            <form className="projects-form">
-                <div className="projects-settings-submit-button-wrapper">
-                    <button className="projects-settings-submit-button">Update Projects</button>
+            <div className="projects-form">
+                <div className="projetcs-tiles">
+                    <Link className="projects-tile" to="/settings/projects/createProject">
+                        <Plus className="projects-add-icon"/>
+                    </Link>
                 </div>
-            </form>
+            </div>
         </div>
     );
 }
