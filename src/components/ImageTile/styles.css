@@ -1,0 +1,14 @@
+.img-tile {
+    width: 140px;
+    height: 140px;
+    background: #08fdd8;
+    opacity: 0.7;
+    display: flex;
+    cursor: pointer;
+}
+
+.tile-preview-img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+}
