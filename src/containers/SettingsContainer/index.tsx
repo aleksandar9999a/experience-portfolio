@@ -4,8 +4,10 @@ import ProjectsSettings from '../../pages/ProjectsSettings';
 import SkillsSettings from '../../pages/SkillsSettings';
 import AboutSettings from '../../pages/AboutSettings';
 import { Switch, Route } from 'react-router-dom';
+import CreateProject from '../../pages/CreateProject';
 
 const links = [
+    { path: '/settings/projects/createProject', Component: CreateProject },
     { path: '/settings/projects', Component: ProjectsSettings },
     { path: '/settings/skills', Component: SkillsSettings },
     { path: '/settings/about', Component: AboutSettings },
