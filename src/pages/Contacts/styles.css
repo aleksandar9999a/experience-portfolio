@@ -41,7 +41,7 @@
     border:1px solid #08fdd8;
 }
 
-.custom-input + .custom-input, .custom-input + .custom-textarea{
+.custom-input + .custom-input, .custom-input + .custom-textarea, .custom-textarea + .custom-input{
     margin-top: 10px;
 }
 
