@@ -75,6 +75,11 @@
     box-shadow: 1px 1px 20px #08fdd841;
 }
 
+.create-project-message {
+    text-align: center;
+    color: #08fdd8;
+}
+
 @media screen and (max-width: 780px) {
     .upload-file-wrapper {
         width: 300px;
