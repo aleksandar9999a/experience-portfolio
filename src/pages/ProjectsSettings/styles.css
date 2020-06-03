@@ -35,22 +35,30 @@
     box-shadow: 1px 1px 20px #08fdd841;
 }
 
-.projetcs-tiles {
+.projects-tiles {
+    margin: auto;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    width: 840px;
 }
 
 .projects-tile {
     width: 280px;
     height: 280px;
     background: #08fdd8;
-    opacity: 0.7;
+    filter: brightness(60%);
     display: flex;
     cursor: pointer;
 }
 
+.project-wrapper {
+    flex-basis: 33.333333%
+}
+
 .projects-tile:hover {
-    opacity: 1;
+    filter: brightness(90%);
     box-shadow: 1px 1px 10px #08fdd87e;
 }
 
@@ -60,7 +68,11 @@
     height: 30px;
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 840px) {
+    .projects-tiles {
+        width: 360px;
+    }
+
     .projects-tile {
         width: 120px;
         height: 120px;
