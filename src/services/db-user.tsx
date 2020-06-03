@@ -25,11 +25,12 @@ export function createProject(data: IProject) {
     return Promise.all(data.images.map(getRef.bind(undefined, data.title, dateId)))
         .then(snapshots => Promise.all(snapshots.map(getURL)))
         .then(urls => {
+            const images = urls.map((url, i) => { return { url, id: i } });
             const project = {
                 title: data.title,
                 description: data.description,
                 link: data.link,
-                images: urls
+                images
             }
             return Axios.post('/projects', project, config.credentials)
         })
@@ -54,4 +55,8 @@ export function getSkills() {
 
 export function getAbout() {
     return Axios.get(`/about`, config.credentials);
+}
+
+export function getProjects() {
+    return Axios.get(`/projects`, config.credentials);
 }
