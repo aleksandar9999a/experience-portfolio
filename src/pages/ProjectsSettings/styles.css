@@ -41,7 +41,7 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 840px;
+    width: 1120px;
 }
 
 .projects-tile {
@@ -54,7 +54,8 @@
 }
 
 .project-wrapper {
-    flex-basis: 33.333333%
+    /* flex-basis: 33.333333% */
+    flex-basis: 25%
 }
 
 .projects-tile:hover {
@@ -68,7 +69,20 @@
     height: 30px;
 }
 
+@media screen and (max-width: 1120px) {
+    .projects-tiles {
+        width: 840px;
+    }
+    .project-wrapper {
+        flex-basis: 33.333333%
+    }
+}
+
 @media screen and (max-width: 840px) {
+    .project-wrapper {
+        flex-basis: 33.333333%
+    }
+
     .projects-tiles {
         width: 360px;
     }
