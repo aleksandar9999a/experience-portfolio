@@ -1,0 +1,27 @@
+.projects-title {
+    color: #08fdd8;
+    font-size: 50px;
+    text-align: center;
+    margin: 70px;
+}
+
+.projects-list {
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 1120px;
+}
+
+@media screen and (max-width: 1120px) {
+    .projects-list {
+        width: 840px;
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .projects-list {
+        width: 360px;
+    }
+}
