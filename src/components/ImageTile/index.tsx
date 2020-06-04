@@ -1,10 +1,20 @@
 import React from 'react';
 import './styles.css';
 
-function ImageTile({ url }: { url: string }) {
+function ImageTile({ url, size }: { url: string, size?: string }) {
+    const style = {
+        container: {
+            width: size,
+            height: size
+        },
+        image: {
+            width: size,
+            height: size
+        }
+    }
     return (
-        <div className="img-tile">
-            <img src={url} className="tile-preview-img" alt="preview" />
+        <div className="img-tile" style={style.container}>
+            <img src={url} className="tile-preview-img" style={style.image} alt="preview" />
         </div>
     )
 }
