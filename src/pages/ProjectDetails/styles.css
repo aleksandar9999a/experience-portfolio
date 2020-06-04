@@ -1,0 +1,43 @@
+.project-details {
+    height: 80vh;
+}
+
+.link-button {
+    display: flex;
+    color: #08fdd8;
+    font-size: 11px;
+    letter-spacing: 3px;
+    border: 1px solid #08fdd8;
+    border-radius: 4px;
+    background: transparent;
+    text-transform: uppercase;
+    padding: 15px;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+}
+
+.link-button:active {
+    border: 1px solid #08fdd8;
+}
+
+.link-button:hover {
+    box-shadow: 1px 1px 10px #08fdd841;
+}
+
+.project-actions {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.project-error {
+    height: 80vh;
+    display: flex;
+}
+
+.project-error-text {
+    margin: auto;
+    font-size: 50px;
+    color: #08fdd8;
+}
