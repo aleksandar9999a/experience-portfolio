@@ -5,7 +5,7 @@ import IRProject from '../../interfaces/IRProject';
 
 function ProjectTile({ project }: { project: IRProject }) {
     return (
-        <Link className="project-tile" to={`projects/${project._id}`}>
+        <Link className="project-tile" to={`projects/details/${project._id}`}>
             <img src={project.images[0].url} className="project-tile-preview-img" alt="preview" />
             <div className="project-tile-preview">
                 <p>{project.title} </p>
