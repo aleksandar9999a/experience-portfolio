@@ -3,6 +3,7 @@ export default interface IRProject {
     title: string,
     description: string, 
     link: string,
+    creatorId?: string,
     images: IProjectImage[]
 }
 
