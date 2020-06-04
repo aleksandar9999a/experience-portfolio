@@ -8,8 +8,10 @@ import Login from '../../pages/Login';
 import Settings from '../Settings';
 import Logout from '../../pages/Logout';
 import Home from '../../pages/Home';
+import ProjectDetails from '../../pages/ProjectDetails';
 
 const links = [
+    { path: '/projects/details/:id', Component: ProjectDetails },
     { path: '/projects', Component: Projects },
     { path: '/skills', Component: Skills },
     { path: '/contacts', Component: Contacts },
