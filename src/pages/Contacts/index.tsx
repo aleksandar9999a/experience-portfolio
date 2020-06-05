@@ -3,9 +3,9 @@ import './styles.css';
 
 function Contacts() {
   return (
-    <div className="contacts">
+    <div className="container">
       <div className="title">
-        <h1 className="title-text">Contact with me!</h1>
+        <h1>Contact with me!</h1>
       </div>
       <form className="contact-form">
         <input className="custom-input" type="text" placeholder="Name" />

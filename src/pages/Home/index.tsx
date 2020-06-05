@@ -5,6 +5,7 @@ import IContact from '../../interfaces/IContact';
 import { Link } from 'react-router-dom';
 import IMainUser from '../../interfaces/IMainUser';
 import { getDefaultMainInfo } from '../../services';
+import Error from '../../containers/Error';
 
 const contacts: IContact[] = [
     { alt: 'instagram', icon: 'instagram', href: 'https://www.instagram.com/sandi9999a/' },
@@ -27,29 +28,23 @@ function Home() {
     }, [])
 
     if (!!error) {
-        return (
-            <div className="home">
-                <div className="headline">
-                    <p className="headline-text home-error">{error}</p>
-                </div>
-            </div>
-        )
+        return <Error title="Home" error={error} />;
     }
 
     return (
-        <div className="home">
-            <div className="headline">
-                <h1 className="headline-top">
+        <div className="container custom-container">
+            <div className="custom-headline">
+                <h1 className="custom-headline-top">
                     Hello friends,
                     <br />
                     My name is {info.firstName} {info.lastName}.
                 </h1>
                 <hr />
-                <div className="headline-bottom">
-                    <h2 className="headline-text">
+                <div className="custom-headline-bottom">
+                    <h2 className="custom-headline-text">
                         {info.devType}
                     </h2>
-                    <Link className="headline-link" to='/login' >
+                    <Link className="custom-headline-link" to='/login' >
                         Are you my owner?
                     </Link>
                 </div>

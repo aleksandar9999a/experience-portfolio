@@ -3,6 +3,7 @@ import IProject from '../../interfaces/IProject';
 import ProjectTile from '../../components/ProjectTile';
 import './styles.css';
 import { getDefaultProjects } from '../../services';
+import Error from '../../containers/Error';
 
 function Projects() {
   let [projects, setProjects] = useState<JSX.Element[]>([]);
@@ -16,19 +17,14 @@ function Projects() {
   }, [])
 
   if (error) {
-    return (
-      <div>
-        <h1 className="projects-title">Projects</h1>
-        <div className="about-headline">
-          <p className="about-headline-text about-error">{error}</p>
-        </div>
-      </div>
-    )
+    return <Error title="Projects" error={error} />
   }
 
   return (
-    <div>
-      <h1 className="projects-title">Projects</h1>
+    <div className="container">
+      <div className="title">
+        <h1>Projects</h1>
+      </div>
       <div className="projects-list">
         {projects}
       </div>

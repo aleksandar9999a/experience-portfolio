@@ -58,9 +58,9 @@ function Login() {
     if (redirect) { return <Redirect to="/" /> }
 
     return (
-        <div className="login">
+        <div className="container">
             <div className="title">
-                <h1 className="title-text">Login</h1>
+                <h1>Login</h1>
             </div>
             <form className="contact-form" onSubmit={submit}>
                 <input className="custom-input" type="email" placeholder="Email" value={email} onChange={setEmailValue} />

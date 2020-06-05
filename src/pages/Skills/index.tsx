@@ -4,6 +4,8 @@ import ITimelineItems from '../../interfaces/ITimelineItems';
 import Timeline from '../../components/Timeline';
 import { getDefaultSkills } from '../../services';
 import ISkills from '../../interfaces/ISkills';
+import Error from '../../containers/Error';
+
 
 function Skills() {
   const [description, setDescription] = useState<string>();
@@ -19,25 +21,16 @@ function Skills() {
   }, [])
 
   if (!!error) {
-    return (
-      <div className="skills">
-        <div className="skills-title">
-          <h1 className="skills-title-text">Skills</h1>
-        </div>
-        <div className="skills-headline">
-          <p className="skills-headline-text skills-error">{error}</p>
-        </div>
-      </div>
-    );
+    return <Error title="Skills" error={error} />;
   }
 
   return (
-    <div className="skills">
-      <div className="skills-title">
-        <h1 className="skills-title-text">Skills</h1>
+    <div className="container">
+      <div className="title">
+        <h1>Skills</h1>
       </div>
-      <div className="skills-headline">
-        <p className="skills-headline-text">{description}</p>
+      <div className="headline">
+        <p className="headline-text">{description}</p>
       </div>
       <div className="skills-timeline">
         {timelineItems.length > 0

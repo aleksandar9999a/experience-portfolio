@@ -4,6 +4,7 @@ import Timeline from '../../components/Timeline';
 import ITimelineItems from '../../interfaces/ITimelineItems';
 import IAbout from '../../interfaces/IAbout';
 import { getDefaultAbout } from '../../services';
+import Error from '../../containers/Error';
 
 function About() {
   const [headline, setHeadline] = useState<string>();
@@ -19,25 +20,16 @@ function About() {
   }, [])
 
   if (!!error) {
-    return (
-      <div className="about">
-        <div className="about-title">
-          <h1 className="about-title-text">About me</h1>
-        </div>
-        <div className="about-headline">
-          <p className="about-headline-text about-error">{error}</p>
-        </div>
-      </div>
-    )
+    return <Error title="About" error={error} />;
   }
 
   return (
-    <div className="about">
-      <div className="about-title">
-        <h1 className="about-title-text">About me</h1>
+    <div className="container">
+      <div className="title">
+        <h1>About</h1>
       </div>
-      <div className="about-headline">
-        <p className="about-headline-text">{headline}</p>
+      <div className="headline">
+        <p className="headline-text">{headline}</p>
       </div>
       <div className="about-timeline">
         {timelineItems.length > 0

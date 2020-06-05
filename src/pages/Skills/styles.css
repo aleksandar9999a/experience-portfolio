@@ -1,38 +1,5 @@
-.skills {
-    height: 80vh;
-}
-
-.skills-title {
-    display: flex;
-    width: 100%;
-    height: 30%;
-}
-
-.skills-title-text {
-    margin: auto;
-    height: 30%;
-    color: #08fdd8;
-    font-size: 50px;
-}
-
-.skills-headline {
-    display: flex;
-    margin-top: 2%;
-}
-
-.skills-headline-text {
-    margin: auto;
-    text-align: center;
-    width: 60%;
-    color: white;
-}
-
 .skills-timeline {
     margin-top: 5%;
     display: flex;
     justify-content: center;
-}
-
-.skills-error {
-    font-size: 50px;
 }
