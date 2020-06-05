@@ -1,17 +1,3 @@
-.projects-settings-title-wrapper {
-    height: 30%;
-    width: 100%;
-    margin-top: 80px;
-    margin-bottom: 80px;
-}
-
-.projects-settings-title {
-    color: #08fdd8;
-    font-size: 50px;
-    text-align: center;
-    margin: 70px;
-}
-
 .projects-settings-submit-button-wrapper {
     display: flex;
     margin: 30px;

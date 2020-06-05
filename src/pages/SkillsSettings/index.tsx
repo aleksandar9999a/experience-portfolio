@@ -63,8 +63,10 @@ function SkillsSettings() {
     }
 
     return (
-        <div className="skills-settings-title-wrapper">
-            <h1 className="skills-settings-title">Skills</h1>
+        <div className="container">
+            <div className="title">
+                <h1>Skills</h1>
+            </div>
             <form className="skills-settings-form">
                 <textarea className="custom-textarea" placeholder="Skills Resume"
                     value={description} onChange={handleDescriptionChange} />

@@ -63,8 +63,10 @@ function AboutSettings() {
     }
 
     return (
-        <div className="about-settings-title-wrapper">
-            <h1 className="about-settings-title">About</h1>
+        <div className="container">
+            <div className="title">
+                <h1>About</h1>
+            </div>
             <form className="about-settings-form">
                 <textarea className="custom-textarea" placeholder="About me"
                     value={description} onChange={handleDescriptionChange} />

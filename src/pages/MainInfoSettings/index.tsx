@@ -69,13 +69,15 @@ function MainInfoSettings() {
         }, time);
     }
 
-    const handleFirstName = (event: any) => handleChange.bind(MainInfoSettings, 'firstName')(event);
-    const handleLastName = (event: any) => handleChange.bind(MainInfoSettings, 'lastName')(event);
-    const handleDevType = (event: any) => handleChange.bind(MainInfoSettings, 'devType')(event);
+    const handleFirstName = (event: any) => handleChange('firstName', event);
+    const handleLastName = (event: any) => handleChange('lastName', event);
+    const handleDevType = (event: any) => handleChange('devType', event);
 
     return (
-        <div className="main-settings-title-wrapper">
-            <h1 className="main-settings-title">Main Information</h1>
+        <div className="container">
+            <div className="title">
+                <h1>Main Information</h1>
+            </div>
             <form className="main-info-form">
                 <input className="custom-input" type="text" placeholder="First Name"
                     defaultValue={firstName} onChange={handleFirstName} />
