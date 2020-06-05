@@ -23,7 +23,7 @@ function ProjectDetailsBasic({ title, description, images, link }: IRProject) {
                 <p className="project-details-description-text">{description}</p>
             </div>
             <div className="project-details-link">
-                <a href="www.google.com">www.google.com</a>
+                <a href={link}>{link}</a>
             </div>
         </div>
     )
