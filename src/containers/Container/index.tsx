@@ -1,30 +1,11 @@
 import React from 'react';
 import { Switch, Route } from "react-router-dom";
-import Projects from '../../pages/Projects';
-import Skills from '../../pages/Skills';
-import Contacts from '../../pages/Contacts';
-import About from '../../pages/About';
-import Login from '../../pages/Login';
-import Settings from '../Settings';
-import Logout from '../../pages/Logout';
-import Home from '../../pages/Home';
-import ProjectDetails from '../../pages/ProjectDetails';
+import links from '../../configs/containerLinks';
 
-const links = [
-    { path: '/projects/details/:id', Component: ProjectDetails },
-    { path: '/projects', Component: Projects },
-    { path: '/skills', Component: Skills },
-    { path: '/contacts', Component: Contacts },
-    { path: '/about', Component: About },
-    { path: '/login', Component: Login },
-    { path: '/settings', Component: Settings },
-    { path: '/logout', Component: Logout },
-    { path: '/', Component: Home },
-]
-
-const listOfRoutes = links.map(({ path, Component }, i) => <Route path={path} key={i}><Component /></Route>);
 
 function Container() {
+    const listOfRoutes = links.map(({ path, Component }, i) => <Route path={path} key={i}><Component /></Route>);
+
     return (
         <Switch>
             {listOfRoutes}
