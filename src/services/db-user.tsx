@@ -22,7 +22,7 @@ function getURL(shot: firebase.storage.UploadTaskSnapshot) {
 
 export function createProject(data: IProject) {
     const dateId = generateDateID();
-    return Promise.all(data.images.map(getRef.bind(undefined, data.title, dateId)))
+    return Promise.all((data.images as ImageData[]).map(getRef.bind(undefined, data.title, dateId)))
         .then(snapshots => Promise.all(snapshots.map(getURL)))
         .then(urls => {
             const images = urls.map((url, i) => { return { url, id: i } });

@@ -4,18 +4,18 @@ import { Plus } from 'react-bootstrap-icons';
 import ImageTile from '../../components/ImageTile';
 import ImageData from '../../interfaces/IImageData';
 import { createProject } from '../../services';
+import IProjectImage from '../../interfaces/IProjectImage';
 
 const regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
 
 function createURL(data: ImageData) {
     return {
         url: URL.createObjectURL(data.file),
-        id: data.id,
-        file: data.file
+        id: data.id
     }
 }
 
-function createImageTile(data: ImageData) {
+function createImageTile(data: IProjectImage) {
     return <div className="image-tile-wrapper" key={data.id}><ImageTile url={data.url || ''} /></div>
 }
 
@@ -94,7 +94,6 @@ function CreateProject() {
     function submit(e: SyntheticEvent) {
         e.preventDefault();
         if (!isValidData()) { return; }
-
         setMessage('Loading...');
         createProject({ title, description, images: files, link })
             .then(() => setMessage('Successful uploaded!'))
