@@ -11,7 +11,7 @@ function Projects() {
 
   useEffect(() => {
     getDefaultProjects().then(({ data }: { data: IProject[] }) => {
-      const list = data.map(project => (<div key={project._id} className="project-wrapper"><ProjectTile project={project} /></div>))
+      const list = data.map(project => (<div key={project._id} className="project-wrapper"><ProjectTile project={project} basicRoute="/projects/details"/></div>))
       setProjects(list);
     }).catch(err => setError(err.message));
   }, [])

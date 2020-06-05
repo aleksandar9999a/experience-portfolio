@@ -11,7 +11,7 @@ function ProjectsSettings() {
 
     useEffect(() => {
         getAuthProjects().then(({ data }: { data: IProject[] }) => {
-            const list = data.map(project => (<div key={project._id} className="project-wrapper"><ProjectTile project={project} /></div>))
+            const list = data.map(project => (<div key={project._id} className="project-wrapper"><ProjectTile project={project} basicRoute="/settings/projects"/></div>))
             setProjects(list);
         }).catch(console.error)
     }, [])
