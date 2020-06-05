@@ -1,14 +1,7 @@
 import React from 'react';
 import './styles.css';
 import ICustomLink from '../../interfaces/ICustomLink';
-import TIconsOptions from '../../types/TIconsOptions';
-
-const icons: TIconsOptions = {
-    instagram: require('./../../assets/instagram.png'),
-    git: require('./../../assets/git.png'),
-    linkedin: require('./../../assets/linkedin.png'),
-    unknown: require('./../../assets/unknown.png')
-}
+import icons from '../../configs/icons';
 
 function CustomLink({ alt, icon, link }: ICustomLink) {
     if (!icons[icon]) { icon = 'unknown'; }
