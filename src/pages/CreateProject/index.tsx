@@ -134,10 +134,10 @@ function CreateProject() {
                         <Plus className="add-image" />
                     </div>
                 </div>
-                <div className="create-project-settings-submit-button-wrapper">
+                <div className="custom-btn-wrapper">
                     {message === 'Loading...'
                         ? null
-                        : <button className="create-project-settings-submit-button" onClick={submit}>
+                        : <button className="custom-btn" onClick={submit}>
                             Submit
                         </button>
                     }

@@ -41,23 +41,6 @@
     margin: 30px;
 }
 
-.custom-button {
-    margin: auto;
-    width: 100px;
-    height: 50px;
-    color: #08fdd8;
-    font-size: 11px;
-    letter-spacing: 3px;
-    border: 1px solid #08fdd8;
-    border-radius: 4px;
-    background: transparent;
-    text-transform: uppercase;
-}
-
-.custom-button:hover {
-    box-shadow: 1px 1px 20px #08fdd841;
-}
-
 @media screen and (max-width: 780px) {
     .title-text {
         font-size: 40px;

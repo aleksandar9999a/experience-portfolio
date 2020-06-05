@@ -76,8 +76,8 @@ function SkillsSettings() {
                         : null}
                 </div>
                 <p className="skills-settings-message">{message}</p>
-                <div className="skills-settings-submit-button-wrapper">
-                    <button className="skills-settings-submit-button" onClick={handleSubmit}>Update Skills</button>
+                <div className="custom-btn-wrapper">
+                    <button className="custom-btn" onClick={handleSubmit}>Update Skills</button>
                 </div>
             </form>
         </div>

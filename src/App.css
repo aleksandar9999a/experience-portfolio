@@ -41,3 +41,26 @@ h1 {
     font-size: 20px !important;
     color: white;
 }
+
+.custom-btn {
+    margin: auto;
+    min-width: 100px;
+    height: 50px;
+    color: #08fdd8;
+    font-size: 11px;
+    letter-spacing: 3px;
+    border: 1px solid #08fdd8;
+    border-radius: 4px;
+    background: transparent;
+    text-transform: uppercase;
+    padding: 15px;
+}
+
+.custom-btn:hover {
+    box-shadow: 1px 1px 20px #08fdd841;
+}
+
+.custom-btn-wrapper {
+    display: flex;
+    margin: 30px;
+}

@@ -76,8 +76,8 @@ function AboutSettings() {
                         : null}
                 </div>
                 <p className="about-settings-message">{message}</p>
-                <div className="about-settings-submit-button-wrapper">
-                    <button className="about-settings-submit-button" onClick={handleSubmit}>Update</button>
+                <div className="custom-btn-wrapper">
+                    <button className="custom-btn" onClick={handleSubmit}>Update</button>
                 </div>
             </form>
         </div>

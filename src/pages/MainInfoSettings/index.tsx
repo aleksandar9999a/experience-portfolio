@@ -1,5 +1,4 @@
 import React, { useState, SyntheticEvent, useEffect } from 'react';
-import './styles.css';
 import { getUserdata, updateAuthUserdata } from '../../services';
 
 function MainInfoSettings() {
@@ -87,8 +86,8 @@ function MainInfoSettings() {
                     defaultValue={devType} onChange={handleDevType} />
                 {error ? <p className="custom-error">{error}</p> : null}
                 {success ? <p className="custom-success">{success}</p> : null}
-                <div className="main-settings-submit-button-wrapper">
-                    <button className="main-settings-submit-button" onClick={handleSubmit}>Update Main Information</button>
+                <div className="custom-btn-wrapper">
+                    <button className="custom-btn" onClick={handleSubmit}>Update Main Information</button>
                 </div>
             </form>
         </div>
