@@ -1,6 +1,11 @@
 .timeline {
   list-style: none;
   position: relative;
-  overflow-x: auto;
-  min-width: 60%;
+}
+
+
+@media screen and (max-width: 780px) {
+  .timeline {
+    padding-inline-start: 0;
+  }
 }
