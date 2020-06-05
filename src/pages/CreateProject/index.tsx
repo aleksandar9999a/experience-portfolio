@@ -3,7 +3,7 @@ import './styles.css';
 import { Plus } from 'react-bootstrap-icons';
 import ImageTile from '../../components/ImageTile';
 import ImageData from '../../interfaces/IImageData';
-import { createProject } from '../../services/db-user';
+import { createProject } from '../../services';
 
 const regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
 

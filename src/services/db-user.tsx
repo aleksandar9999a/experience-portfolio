@@ -37,26 +37,26 @@ export function createProject(data: IProject) {
         .catch(console.error);
 }
 
-export function updateUserdata(userdata: IMainUser) {
+export function updateAuthUserdata(userdata: IMainUser) {
     return Axios.put(`/auth`, userdata, config.credentials);
 }
 
-export function updateSkills(data: ISkills) {
+export function updateAuthSkills(data: ISkills) {
     return Axios.put(`/skills`, data, config.credentials);
 }
 
-export function updateAbout(data: IAbout) {
+export function updateAuthAbout(data: IAbout) {
     return Axios.put(`/about`, data, config.credentials);
 }
 
-export function getSkills() {
+export function getAuthSkills() {
     return Axios.get(`/skills`, config.credentials);
 }
 
-export function getAbout() {
+export function getAuthAbout() {
     return Axios.get(`/about`, config.credentials);
 }
 
-export function getProjects() {
+export function getAuthProjects() {
     return Axios.get(`/projects`, config.credentials);
 }

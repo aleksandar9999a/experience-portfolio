@@ -1,9 +1,9 @@
 import React, { useState, useEffect, SyntheticEvent } from 'react';
 import './styles.css';
-import { getSkills, updateSkills } from '../../services/db-user';
 import ITimelineItems from '../../interfaces/ITimelineItems';
 import Timeline from '../../components/Timeline';
 import ISkills from '../../interfaces/ISkills';
+import { getAuthSkills, updateAuthSkills } from '../../services';
 
 function SkillsSettings() {
     const [description, setDescription] = useState<string>();
@@ -12,7 +12,7 @@ function SkillsSettings() {
     const [message, setMessage] = useState<string>();
 
     useEffect(() => {
-        getSkills().then(({ data }: { data: ISkills }) => {
+        getAuthSkills().then(({ data }: { data: ISkills }) => {
             if (data) {
                 setData(data);
                 setDescription(data.description);
@@ -53,7 +53,7 @@ function SkillsSettings() {
             experience: timelineItems
         };
 
-        updateSkills(newData).then(() => {
+        updateAuthSkills(newData).then(() => {
             setMessage('Successful updated!');
             removeMessage(3000);
         }).catch(err => {

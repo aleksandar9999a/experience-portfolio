@@ -5,22 +5,22 @@ Axios.create({
     baseURL: `${config.port}/api`
 })
 
-export function getAbout() {
+export function getDefaultAbout() {
     return Axios.get(`/defaults/about`);
 }
 
-export function getSkills() {
+export function getDefaultSkills() {
     return Axios.get(`/defaults/skills`);
 }
 
-export function getProjects() {
+export function getDefaultProjects() {
     return Axios.get(`/defaults/projects`);
 }
 
-export function getProjectByID(id: string) {
+export function getDefaultProjectByID(id: string) {
     return Axios.get(`/defaults/projects/${id}`);
 }
 
-export function getMainInfo() {
+export function getDefaultMainInfo() {
     return Axios.get(`/defaults`);
 }

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 import CustomLink from '../../components/CustomLink';
 import IContact from '../../interfaces/IContact';
-import { getMainInfo } from '../../services/db-defaults';
 import { Link } from 'react-router-dom';
 import IMainUser from '../../interfaces/IMainUser';
+import { getDefaultMainInfo } from '../../services';
 
 const contacts: IContact[] = [
     { alt: 'instagram', icon: 'instagram', href: 'https://www.instagram.com/sandi9999a/' },
@@ -20,7 +20,7 @@ function Home() {
     const [error, setError] = useState<string>();
 
     useEffect(() => {
-        getMainInfo().then(({ data }: { data: IMainUser }) => {
+        getDefaultMainInfo().then(({ data }: { data: IMainUser }) => {
             if (!data) { setError('No Data'); return; }
             setInfo(data)
         }).catch(err => setError(err.message));

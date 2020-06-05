@@ -1,9 +1,9 @@
 import React, { useEffect, useState, SyntheticEvent } from 'react';
 import './styles.css';
-import { getAbout, updateAbout } from '../../services/db-user';
 import ITimelineItems from '../../interfaces/ITimelineItems';
 import Timeline from '../../components/Timeline';
 import IAbout from '../../interfaces/IAbout';
+import { getAuthAbout, updateAuthAbout } from '../../services';
 
 function AboutSettings() {
     const [data, setData] = useState<IAbout>();
@@ -12,7 +12,7 @@ function AboutSettings() {
     const [message, setMessage] = useState<string>();
 
     useEffect(() => {
-        getAbout().then(({ data }: { data: IAbout }) => {
+        getAuthAbout().then(({ data }: { data: IAbout }) => {
             if (data) {
                 setData(data);
                 setDescription(data.description);
@@ -53,7 +53,7 @@ function AboutSettings() {
             courses: timelineItems
         };
 
-        updateAbout(newData).then(() => {
+        updateAuthAbout(newData).then(() => {
             setMessage('Successful updated!');
             removeMessage(3000);
         }).catch(err => {

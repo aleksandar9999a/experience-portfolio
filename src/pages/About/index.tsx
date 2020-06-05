@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 import Timeline from '../../components/Timeline';
 import ITimelineItems from '../../interfaces/ITimelineItems';
-import { getAbout } from '../../services/db-defaults';
 import IAbout from '../../interfaces/IAbout';
+import { getDefaultAbout } from '../../services';
 
 function About() {
   const [headline, setHeadline] = useState<string>();
@@ -11,7 +11,7 @@ function About() {
   const [error, setError] = useState<string>();
 
   useEffect(() => {
-    getAbout().then(({ data }: { data: IAbout }) => {
+    getDefaultAbout().then(({ data }: { data: IAbout }) => {
       if (!data) { setError('No data!'); return; }
       setHeadline(data.description);
       setTimelineItems(data.courses);

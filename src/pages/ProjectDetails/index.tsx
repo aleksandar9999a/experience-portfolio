@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './styles.css';
 import { useParams, Link } from 'react-router-dom';
-import { getProjectByID } from '../../services/db-defaults';
 import IRProject from './../../interfaces/IRProject';
 import { auth } from './../../services/db-auth';
 import ProjectDetailsBasic from '../../containers/ProjectDetailsBasic';
+import { getDefaultProjectByID } from '../../services';
 
 function ProjectDetails() {
     let { id } = useParams();
@@ -13,7 +13,7 @@ function ProjectDetails() {
     let [user, setUser] = useState<any>();
 
     useEffect(() => {
-        getProjectByID(id).then(({ data }: { data: IRProject }) => {
+        getDefaultProjectByID(id).then(({ data }: { data: IRProject }) => {
             setProject(data);
         }).catch(console.error);
         const subscriber = auth.subscribe(u => setUser(u));

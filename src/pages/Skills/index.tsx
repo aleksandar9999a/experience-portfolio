@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 import ITimelineItems from '../../interfaces/ITimelineItems';
 import Timeline from '../../components/Timeline';
-import { getSkills } from '../../services/db-defaults';
+import { getDefaultSkills } from '../../services';
 import ISkills from '../../interfaces/ISkills';
 
 function Skills() {
@@ -11,7 +11,7 @@ function Skills() {
   const [error, setError] = useState<string>();
 
   useEffect(() => {
-    getSkills().then(({ data }: { data: ISkills }) => {
+    getDefaultSkills().then(({ data }: { data: ISkills }) => {
       if (!data) { setError('No data!'); return; }
       setDescription(data.description);
       setTimelineItems(data.experience);

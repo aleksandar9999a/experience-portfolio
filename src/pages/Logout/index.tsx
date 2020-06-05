@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { logout } from '../../services/db-auth';
+import { logout } from '../../services';
 import { Redirect } from 'react-router-dom';
 
 function Logout() {

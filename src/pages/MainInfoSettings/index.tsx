@@ -1,7 +1,6 @@
 import React, { useState, SyntheticEvent, useEffect } from 'react';
 import './styles.css';
-import { updateUserdata } from '../../services/db-user';
-import { getUserdata } from '../../services/db-auth';
+import { getUserdata, updateAuthUserdata } from '../../services';
 
 function MainInfoSettings() {
     const [firstName, setFirstName] = useState<string>('');
@@ -47,7 +46,7 @@ function MainInfoSettings() {
             return;
         }
 
-        updateUserdata({ firstName, lastName, devType }).then(() => {
+        updateAuthUserdata({ firstName, lastName, devType }).then(() => {
             setSuccess('Successful updated!');
             removeSuccessAfterTime(3000);
         }).catch(err => {
