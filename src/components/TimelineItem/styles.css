@@ -182,4 +182,17 @@
     .timeline-text {
         font-size: 10px;
     }
+
+    .add{
+        bottom: -40px;
+        left: 125px !important;
+    }
+
+    .custom-btn-wrapper {
+        margin-top: 50px !important;
+    }
+
+    .timeline-panel::before {
+        left: 45% !important;
+    }
 }
