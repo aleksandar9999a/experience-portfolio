@@ -1,4 +1,3 @@
-
 .contact-form {
     height: 70%;
 }
@@ -45,16 +44,6 @@
 
 .login-button:hover {
     box-shadow: 1px 1px 20px #08fdd841;
-}
-
-.custom-error {
-    text-align: center;
-    color: red;
-}
-
-.custom-success {
-    text-align: center;
-    color: green;
 }
 
 @media screen and (max-width: 780px) {

@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent } from 'react';
+import React, { useState, SyntheticEvent, useEffect } from 'react';
 import './styles.css';
 import { submitLogin } from '../../services';
 import { Redirect } from 'react-router-dom';
@@ -8,21 +8,16 @@ import LoadingPage from '../LoadingPage';
 function Login() {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [error, setError] = useState<string>('');
+    const [message, setMessage] = useState<string>('');
     const [redirect, setRedirect] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     function submit(e: SyntheticEvent) {
         e.preventDefault();
-        if (email === '') {
-            setError('Email is invalid!')
-            removeErrorAfterTime(3000);
-            return;
-        }
+        if (email === '') { setMessage('Email is invalid!'); return; }
 
         if (password === '' || password.length < 8 || password.length > 30) {
-            setError('Password is invalid! Chars must be between 8 and 30.')
-            removeErrorAfterTime(3000);
+            setMessage('Password is invalid! Chars must be between 8 and 30.');
             return;
         }
         setIsLoading(true)
@@ -31,24 +26,17 @@ function Login() {
                 if (user) { setRedirect(true); }
             }).catch(err => {
                 if (err.message === "Request failed with status code 404") {
-                    setError('Wrong email or password!')
-                    removeErrorAfterTime(3000);
+                    setMessage('Wrong email or password!')
                     return;
                 }
                 console.log(err.message);
             }).finally(() => setIsLoading(false));
     }
 
-    function removeErrorAfterTime(time: number) {
-        return removeText(setError, 3000);
-    }
-
-
-    function removeText(setValue: Function, time: number) {
-        return setTimeout(() => {
-            setValue('');
-        }, time);
-    }
+    useEffect(() => {
+        const sub = setTimeout(() => { setMessage(''); }, 3000);
+        return () => { clearTimeout(sub); }
+    }, [message])
 
     function setEmailValue(e: any) {
         setEmail(e.target.value);
@@ -69,10 +57,12 @@ function Login() {
             <form className="contact-form" onSubmit={submit}>
                 <input className="custom-input" type="email" placeholder="Email" value={email} onChange={setEmailValue} />
                 <input className="custom-input" type="password" placeholder="Password" value={password} onChange={setPasswordValue} />
-                <p className="custom-error">{error}</p>
-                {isLoading ? <Loader /> : null }
+                <p className="custom-message">{message}</p>
                 <div className="login-btn-wrapper">
-                    <button className="login-button">Login</button>
+                    {isLoading
+                        ? <Loader />
+                        : <button className="login-button">Login</button>
+                    }
                 </div>
             </form>
         </div>
