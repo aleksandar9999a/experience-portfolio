@@ -1,0 +1,26 @@
+.contact-list-wrapper {
+    display: flex;
+}
+
+.contact-list {
+    margin: auto;
+    width: 80%;
+    background-color: #202020;
+    border-spacing: 0;
+
+}
+
+thead tr {
+    background-color: #181818;
+    color: #08fdd8;
+    height: 50px;
+}
+
+thead tr th {
+    margin: 0;
+
+}
+
+th, td {
+    width: 50%;
+}
