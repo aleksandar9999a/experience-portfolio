@@ -37,6 +37,10 @@ export function createProject(data: IProject) {
         .catch(console.error);
 }
 
+export function deleteProject(id: string) {
+    return Axios.delete(`/projects`, { data: { id }, withCredentials: true});
+}
+
 export function updateAuthUserdata(userdata: IMainUser) {
     return Axios.put(`/auth`, userdata, config.credentials);
 }
