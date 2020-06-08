@@ -14,6 +14,7 @@
 .project-details-images {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .project-details-description, .project-details-link {
@@ -24,10 +25,18 @@
 .project-details-description-text {
     font-size: 30px;
     color: #08fdd8;
+    width: 80%;
+    text-align: center;
 }
 
 a {
     text-decoration: none;
     font-size: 20px;
     color: #08fdd8;
+}
+
+@media screen and (max-width: 840px) {
+    .project-details-description-text {
+        font-size: 20px;
+    }
 }

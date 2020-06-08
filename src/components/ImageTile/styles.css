@@ -12,3 +12,15 @@
     height: 140px;
     object-fit: cover;
 }
+
+@media screen and (max-width: 840px) {
+    .tile-preview-img {
+        width: 140px !important;
+        height: 140px !important;
+    }
+
+    .img-tile {
+        width: 140px !important;
+        height: 140px !important;
+    }
+}

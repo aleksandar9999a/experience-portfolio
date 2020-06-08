@@ -5,6 +5,7 @@ import IProject from './../../interfaces/IProject';
 import { auth } from './../../services/db-auth';
 import ProjectDetailsBasic from '../../containers/ProjectDetailsBasic';
 import { getDefaultProjectByID } from '../../services';
+import Error from '../../containers/Error';
 
 function ProjectDetails() {
     let { id } = useParams();
@@ -31,7 +32,7 @@ function ProjectDetails() {
         }
     }, [project, user])
 
-    if (!project) { return <div className="project-error"><p className="project-error-text">No data!</p></div> }
+    if (!project) { return <Error title="Project Details" error="No Data!"/> }
 
     if (isAuth) {
         return (

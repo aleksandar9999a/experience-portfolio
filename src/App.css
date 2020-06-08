@@ -43,6 +43,13 @@ h1 {
     color: white;
 }
 
+.headline-error {
+    margin: auto;
+    text-align: center;
+    font-size: 50px;
+    color: #08fdd8;
+}
+
 .custom-btn {
     margin: auto;
     min-width: 100px;
@@ -64,4 +71,14 @@ h1 {
 .custom-btn-wrapper {
     display: flex;
     margin: 30px;
+}
+
+@media screen and (max-width: 840px) {
+    h1 {
+        font-size: 35px;
+    }
+
+    .headline-text {
+        font-size: 15px !important;
+    }
 }

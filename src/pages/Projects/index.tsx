@@ -16,8 +16,8 @@ function Projects() {
     }).catch(err => setError(err.message));
   }, [])
 
-  if (error) {
-    return <Error title="Projects" error={error} />
+  if (error || projects.length === 0) {
+    return <Error title="Projects" error={error || 'No Data!'} />
   }
 
   return (

@@ -7,7 +7,7 @@ function ProjectDetailsBasic({ title, description, images, link }: IProject) {
     let [imgElements, setImgElements] = useState<JSX.Element[]>([]);
 
     useEffect(() => {
-        const list = (images).map(x => <ImageTile url={x.url} key={x._id} size="400px" />);
+        const list = (images).map(x => <ImageTile url={x.url} key={x._id} size="250px" />);
         setImgElements(list)
     }, [images])
 

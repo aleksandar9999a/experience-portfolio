@@ -11,12 +11,13 @@
 
 .route-name {
     display: none;
-    width: 60px;
+    width: 50px;
+    font-size: 15px;
 }
 
 .route-icon{
     display: block;
-    width: 60px;
+    width: 50px;
 }
 
 .link:hover .route-name{

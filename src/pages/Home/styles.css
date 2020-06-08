@@ -38,19 +38,6 @@
     display: block;
 }
 
-.custom-headline-top::before {
-    content: 'console.log( ';
-    font-size: 40px;
-    color: #08fdd8;
-    margin-left: -25%;
-}
-
-.custom-headline-top::after {
-    content: ' )';
-    font-size: 40px;
-    color: #08fdd8;
-}
-
 .social-icons:hover {
     opacity: 0.8;
 }
@@ -59,4 +46,19 @@ hr{
     background: #08fdd8;
     height: 1px;
     border: 0;
+}
+
+
+@media screen and (max-width: 840px) {
+    .custom-headline {
+        width: 80%;
+    }
+
+    .custom-headline-top {
+        font-size: 30px;
+    }
+
+    .custom-headline-text {
+        font-size: 20px;
+    }
 }
