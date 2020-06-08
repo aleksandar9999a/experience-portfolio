@@ -73,6 +73,11 @@ h1 {
     margin: 30px;
 }
 
+.custom-message {
+    text-align: center;
+    color: #08fdd8;
+}
+
 @media screen and (max-width: 840px) {
     h1 {
         font-size: 35px;
