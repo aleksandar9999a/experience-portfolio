@@ -4,7 +4,7 @@ import links from '../../configs/containerLinks';
 
 
 function Container() {
-    const listOfRoutes = links.map(({ path, Component }, i) => <Route path={path} key={i}><Component /></Route>);
+    const listOfRoutes = links.map(({ path, Component }, i) => <Route path={path} key={i} exact><Component /></Route>);
 
     return (
         <Switch>
