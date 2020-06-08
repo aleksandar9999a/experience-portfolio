@@ -34,10 +34,7 @@ function Skills() {
         <p className="headline-text">{description}</p>
       </div>
       <div className="skills-timeline">
-        {timelineItems.length > 0
-          ? <Timeline items={timelineItems} />
-          : null
-        }
+        <Timeline items={timelineItems} />
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ function About() {
     }).catch(err => setError(err.message)).finally(() => setIsLoding(false));
   }, [])
 
-  if(isLoading) { return <LoadingPage />; }
+  if (isLoading) { return <LoadingPage />; }
   if (!!error) { return <Error title="About" error={error} />; }
 
   return (
@@ -33,10 +33,7 @@ function About() {
         <p className="headline-text">{headline}</p>
       </div>
       <div className="about-timeline">
-        {timelineItems.length > 0
-          ? <Timeline items={timelineItems} />
-          : <p className="about-headline-text about-error">No Timeline</p>
-        }
+        <Timeline items={timelineItems} />
       </div>
     </div>
   );

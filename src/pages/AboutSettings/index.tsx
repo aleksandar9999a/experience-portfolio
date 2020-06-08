@@ -9,7 +9,7 @@ import LoadingPage from '../LoadingPage';
 function AboutSettings() {
     const [data, setData] = useState<IAbout>();
     const [description, setDescription] = useState<string>();
-    const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([]);
+    const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([{ id: 1, title: '', desc: '', link: '', }]);
     const [message, setMessage] = useState<string>();
     const [isLoading, setIsLoding] = useState<boolean>(true);
 
@@ -44,9 +44,7 @@ function AboutSettings() {
 
     function handleSubmit(e: SyntheticEvent) {
         e.preventDefault();
-        if (!data || !data._id || !description) {
-            return;
-        }
+        if (!data || !data._id || !description) { setMessage('Input data is incorrect format!'); return; }
 
         const newData = {
             id: data._id,
@@ -65,7 +63,7 @@ function AboutSettings() {
         }).finally(() => setIsLoding(false));
     }
 
-    if(isLoading) { return <LoadingPage />; }
+    if (isLoading) { return <LoadingPage />; }
 
     return (
         <div className="container">
@@ -76,9 +74,7 @@ function AboutSettings() {
                 <textarea className="custom-textarea" placeholder="About me"
                     value={description} onChange={handleDescriptionChange} />
                 <div className="about-settings-timeline">
-                    {timelineItems.length > 0
-                        ? <Timeline items={timelineItems} isEditable={true} onChange={handleTimelineChange} />
-                        : null}
+                    <Timeline items={timelineItems} isEditable={true} onChange={handleTimelineChange} />
                 </div>
                 <p className="about-settings-message">{message}</p>
                 <div className="custom-btn-wrapper">

@@ -75,10 +75,7 @@ function SkillsSettings() {
                 <textarea className="custom-textarea" placeholder="Skills Resume"
                     value={description} onChange={handleDescriptionChange} />
                 <div className="skills-settings-timeline">
-                    {isLoading
-                        ? null
-                        : < Timeline items={timelineItems} isEditable={true} onChange={handleTimelineChange} />
-                    }
+                    < Timeline items={timelineItems} isEditable={true} onChange={handleTimelineChange} />
                 </div>
                 <p className="skills-settings-message">{message}</p>
                 <div className="custom-btn-wrapper">
