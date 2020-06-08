@@ -38,10 +38,10 @@ function ProjectDetails() {
             <div className="project-details">
                 <ProjectDetailsBasic _id={project._id} title={project.title} description={project.description} images={project.images} link={project.link} />
                 <div className="project-actions">
-                    <Link className="link-button" to={`/projects/delete/${project._id}`}>
+                    <Link className="link-button" to={`/projects/edit/${project._id}`}>
                         Edit
                     </Link>
-                    <Link className="link-button" to={`/projects/edit/${project._id}`}>
+                    <Link className="link-button" to={`/projects/delete/${project._id}`}>
                         Delete
                     </Link>
                 </div>
