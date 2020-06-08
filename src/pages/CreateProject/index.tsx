@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import IProject from '../../interfaces/IProject';
 import IUploadedImage from '../../interfaces/IUploadedImage';
 import isURL from 'validator/lib/isURL';
+import Loader from '../../components/Loader';
 
 function CreateProject() {
     let [title, setTitle] = useState<string>('');
@@ -16,8 +17,9 @@ function CreateProject() {
     let [files, setFiles] = useState<IUploadedImage[]>([]);
     let [images, setImages] = useState<JSX.Element[]>([]);
     let [creatorId, setCreatorId] = useState<string>();
+    let [isLoading, setIsLoding] = useState<boolean>(true);
     const { id } = useParams();
-    
+
     useEffect(() => {
         if (!id) { return; }
         getDefaultProjectByID(id).then(({ data }: { data: IProject }) => {
@@ -28,7 +30,7 @@ function CreateProject() {
                 setFiles(data.images);
                 setCreatorId(data.creatorId);
             }
-        }).catch(console.error);
+        }).catch(console.error).finally(() => setIsLoding(false));
     }, [id])
 
     useEffect(() => {
@@ -38,11 +40,12 @@ function CreateProject() {
 
     function addImage(file: File) {
         if (!file.type.includes('image')) { return; }
-        uploadImage(file).then(( data: IUploadedImage ) => {
+        setIsLoding(true);
+        uploadImage(file).then((data: IUploadedImage) => {
             let arr = [...files];
             arr.push(data);
             setFiles(arr);
-        }).catch(console.error)
+        }).catch(console.error).finally(() => setIsLoding(false))
     }
 
     function isValidData() {
@@ -63,7 +66,7 @@ function CreateProject() {
 
     function handleChange(type: string, e: any) {
         const target = e.target;
-        if (type === 'title') { setTitle(target.value);  }
+        if (type === 'title') { setTitle(target.value); }
         if (type === 'description') { setDescription(target.value); }
         if (type === 'link') { setLink(target.value); }
         if (type === 'files') { addImage(target.files[0]); }
@@ -77,15 +80,16 @@ function CreateProject() {
     function submit(e: SyntheticEvent) {
         e.preventDefault();
         if (!isValidData()) { return; }
-        setMessage('Loading...');
+        setIsLoding(true);
         createProject({ _id: id, creatorId, title, description, images: files, link })
             .then(() => setMessage('Successful uploaded!'))
             .catch(err => setMessage(err.message))
+            .finally(() => setIsLoding(false))
     }
 
     return (
         <div className="create-project-settings-wrapper">
-            <h1 className="create-project-settings-title">{ id ? 'Edit' : 'Create'} Project</h1>
+            <h1 className="create-project-settings-title">{id ? 'Edit' : 'Create'} Project</h1>
             <form className="create-project-settings-form">
                 <input
                     className="custom-input"
@@ -118,11 +122,9 @@ function CreateProject() {
                     </div>
                 </div>
                 <div className="custom-btn-wrapper">
-                    {message === 'Loading...'
-                        ? null
-                        : <button className="custom-btn" onClick={submit}>
-                            Submit
-                        </button>
+                    {isLoading
+                        ? <Loader />
+                        : <button className="custom-btn" onClick={submit}>Submit</button>
                     }
                 </div>
                 <p className="create-project-message">{message}</p>

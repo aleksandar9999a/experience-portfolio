@@ -1,5 +1,6 @@
 import React, { useState, SyntheticEvent, useEffect } from 'react';
 import { getUserdata, updateAuthUserdata } from '../../services';
+import LoadingPage from '../LoadingPage';
 
 function MainInfoSettings() {
     const [firstName, setFirstName] = useState<string>('');
@@ -7,6 +8,7 @@ function MainInfoSettings() {
     const [devType, setDevType] = useState<string>('');
     const [error, setError] = useState<string>('');
     const [success, setSuccess] = useState<string>('');
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         getUserdata().then((user: any) => {
@@ -17,7 +19,7 @@ function MainInfoSettings() {
             }
         }).catch(err => {
             setError(err.message);
-        });
+        }).finally(() => setIsLoading(false));
     }, []);
 
     useEffect(() => {
@@ -59,6 +61,7 @@ function MainInfoSettings() {
     const handleLastName = (event: any) => handleChange('lastName', event);
     const handleDevType = (event: any) => handleChange('devType', event);
 
+    if (isLoading) { return <LoadingPage />; }
     return (
         <div className="container">
             <div className="title">

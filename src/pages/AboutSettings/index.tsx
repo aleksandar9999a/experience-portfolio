@@ -4,12 +4,14 @@ import ITimelineItems from '../../interfaces/ITimelineItems';
 import Timeline from '../../components/Timeline';
 import IAbout from '../../interfaces/IAbout';
 import { getAuthAbout, updateAuthAbout } from '../../services';
+import LoadingPage from '../LoadingPage';
 
 function AboutSettings() {
     const [data, setData] = useState<IAbout>();
     const [description, setDescription] = useState<string>();
     const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([]);
     const [message, setMessage] = useState<string>();
+    const [isLoading, setIsLoding] = useState<boolean>(true);
 
     useEffect(() => {
         getAuthAbout().then(({ data }: { data: IAbout }) => {
@@ -23,7 +25,7 @@ function AboutSettings() {
         }).catch(err => {
             setMessage(err.message);
             removeMessage(3000);
-        });
+        }).finally(() => setIsLoding(false));
     }, [])
 
     function handleDescriptionChange(e: any) {
@@ -53,14 +55,17 @@ function AboutSettings() {
             courses: timelineItems
         };
 
+        setIsLoding(true);
         updateAuthAbout(newData).then(() => {
             setMessage('Successful updated!');
             removeMessage(3000);
         }).catch(err => {
             setMessage('Something is wrong!');
             removeMessage(3000);
-        })
+        }).finally(() => setIsLoding(false));
     }
+
+    if(isLoading) { return <LoadingPage />; }
 
     return (
         <div className="container">

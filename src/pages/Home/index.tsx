@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import IMainUser from '../../interfaces/IMainUser';
 import { getDefaultMainInfo } from '../../services';
 import Error from '../../containers/Error';
+import LoadingPage from '../LoadingPage';
 
 const contacts: IContact[] = [
     { alt: 'instagram', icon: 'instagram', href: 'https://www.instagram.com/sandi9999a/' },
@@ -19,17 +20,19 @@ const links = contacts.map(generateCustomLinks);
 function Home() {
     const [info, setInfo] = useState<IMainUser>({ firstName: '', lastName: '', devType: '' });
     const [error, setError] = useState<string>();
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         getDefaultMainInfo().then(({ data }: { data: IMainUser }) => {
             if (!data) { setError('No Data'); return; }
             setInfo(data)
-        }).catch(err => setError(err.message));
+        }).catch(err => {
+            setError(err.message)
+        }).finally(() => setIsLoading(false));
     }, [])
 
-    if (!!error) {
-        return <Error title="Home" error={error} />;
-    }
+    if (isLoading) { return <LoadingPage /> }
+    if (!!error) { return <Error title="Home" error={error} />; }
 
     return (
         <div className="container custom-container">

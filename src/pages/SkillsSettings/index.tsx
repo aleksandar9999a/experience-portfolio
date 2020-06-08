@@ -4,12 +4,14 @@ import ITimelineItems from '../../interfaces/ITimelineItems';
 import Timeline from '../../components/Timeline';
 import ISkills from '../../interfaces/ISkills';
 import { getAuthSkills, updateAuthSkills } from '../../services';
+import LoadingPage from '../LoadingPage';
 
 function SkillsSettings() {
     const [description, setDescription] = useState<string>();
-    const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([]);
+    const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([{ id: 1, title: '', desc: '', link: '', }]);
     const [data, setData] = useState<ISkills>();
     const [message, setMessage] = useState<string>();
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         getAuthSkills().then(({ data }: { data: ISkills }) => {
@@ -23,7 +25,7 @@ function SkillsSettings() {
         }).catch(err => {
             setMessage(err.message);
             removeMessage(3000);
-        });;
+        }).finally(() => setIsLoading(false))
     }, [])
 
     function handleDescriptionChange(e: any) {
@@ -62,6 +64,8 @@ function SkillsSettings() {
         })
     }
 
+    if (isLoading) { return <LoadingPage />; }
+
     return (
         <div className="container">
             <div className="title">
@@ -71,9 +75,10 @@ function SkillsSettings() {
                 <textarea className="custom-textarea" placeholder="Skills Resume"
                     value={description} onChange={handleDescriptionChange} />
                 <div className="skills-settings-timeline">
-                    {timelineItems.length > 0
-                        ? <Timeline items={timelineItems} isEditable={true} onChange={handleTimelineChange} />
-                        : null}
+                    {isLoading
+                        ? null
+                        : < Timeline items={timelineItems} isEditable={true} onChange={handleTimelineChange} />
+                    }
                 </div>
                 <p className="skills-settings-message">{message}</p>
                 <div className="custom-btn-wrapper">

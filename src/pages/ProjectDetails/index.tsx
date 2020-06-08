@@ -6,17 +6,19 @@ import { auth } from './../../services/db-auth';
 import ProjectDetailsBasic from '../../containers/ProjectDetailsBasic';
 import { getDefaultProjectByID } from '../../services';
 import Error from '../../containers/Error';
+import LoadingPage from '../LoadingPage';
 
 function ProjectDetails() {
     let { id } = useParams();
     let [project, setProject] = useState<IProject>();
     let [isAuth, setIsAuth] = useState<boolean>(false);
     let [user, setUser] = useState<any>();
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         getDefaultProjectByID(id).then(({ data }: { data: IProject }) => {
             setProject(data);
-        }).catch(console.error);
+        }).catch(console.error).finally(() => setIsLoading(false));
         const subscriber = auth.subscribe(u => setUser(u));
 
         return () => {
@@ -32,6 +34,7 @@ function ProjectDetails() {
         }
     }, [project, user])
 
+    if (isLoading) { return <LoadingPage />; }
     if (!project) { return <Error title="Project Details" error="No Data!"/> }
 
     if (isAuth) {

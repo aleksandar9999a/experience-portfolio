@@ -4,21 +4,22 @@ import ProjectTile from '../../components/ProjectTile';
 import './styles.css';
 import { getDefaultProjects } from '../../services';
 import Error from '../../containers/Error';
+import LoadingPage from '../LoadingPage';
 
 function Projects() {
   let [projects, setProjects] = useState<JSX.Element[]>([]);
   let [error, setError] = useState<string>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     getDefaultProjects().then(({ data }: { data: IProject[] }) => {
       const list = data.map(project => (<div key={project._id} className="project-wrapper"><ProjectTile project={project} basicRoute="/projects/details"/></div>))
       setProjects(list);
-    }).catch(err => setError(err.message));
+    }).catch(err => setError(err.message)).finally(() => setIsLoading(false));
   }, [])
 
-  if (error || projects.length === 0) {
-    return <Error title="Projects" error={error || 'No Data!'} />
-  }
+  if (isLoading) { return <LoadingPage />; }
+  if (error || projects.length === 0) {  return <Error title="Projects" error={error || 'No Data!'} />}
 
   return (
     <div className="container">

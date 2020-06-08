@@ -5,24 +5,25 @@ import Timeline from '../../components/Timeline';
 import { getDefaultSkills } from '../../services';
 import ISkills from '../../interfaces/ISkills';
 import Error from '../../containers/Error';
+import LoadingPage from '../LoadingPage';
 
 
 function Skills() {
   const [description, setDescription] = useState<string>();
   const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([]);
   const [error, setError] = useState<string>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     getDefaultSkills().then(({ data }: { data: ISkills }) => {
       if (!data) { setError('No data!'); return; }
       setDescription(data.description);
       setTimelineItems(data.experience);
-    }).catch(err => setError(err.message));
+    }).catch(err => setError(err.message)).finally(() => setIsLoading(false));
   }, [])
 
-  if (!!error) {
-    return <Error title="Skills" error={error} />;
-  }
+  if (isLoading) { return <LoadingPage />; }
+  if (!!error) { return <Error title="Skills" error={error} />; }
 
   return (
     <div className="container">

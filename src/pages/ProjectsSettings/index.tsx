@@ -5,17 +5,20 @@ import { Link } from 'react-router-dom';
 import IProject from '../../interfaces/IProject';
 import ProjectTile from '../../components/ProjectTile';
 import { getAuthProjects } from '../../services';
+import LoadingPage from '../LoadingPage';
 
 function ProjectsSettings() {
     let [projects, setProjects] = useState<JSX.Element[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         getAuthProjects().then(({ data }: { data: IProject[] }) => {
             const list = data.map(project => (<div key={project._id} className="project-wrapper"><ProjectTile project={project} basicRoute="/settings/projects"/></div>))
             setProjects(list);
-        }).catch(console.error)
+        }).catch(console.error).finally(() => setIsLoading(false));
     }, [])
 
+    if (isLoading) { return <LoadingPage />; }
     return (
         <div className="container">
             <div className="title">

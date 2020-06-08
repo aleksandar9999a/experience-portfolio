@@ -5,23 +5,24 @@ import ITimelineItems from '../../interfaces/ITimelineItems';
 import IAbout from '../../interfaces/IAbout';
 import { getDefaultAbout } from '../../services';
 import Error from '../../containers/Error';
+import LoadingPage from '../LoadingPage';
 
 function About() {
   const [headline, setHeadline] = useState<string>();
   const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([]);
   const [error, setError] = useState<string>();
+  const [isLoading, setIsLoding] = useState<boolean>(true);
 
   useEffect(() => {
     getDefaultAbout().then(({ data }: { data: IAbout }) => {
       if (!data) { setError('No data!'); return; }
       setHeadline(data.description);
       setTimelineItems(data.courses);
-    }).catch(err => setError(err.message));
+    }).catch(err => setError(err.message)).finally(() => setIsLoding(false));
   }, [])
 
-  if (!!error) {
-    return <Error title="About" error={error} />;
-  }
+  if(isLoading) { return <LoadingPage />; }
+  if (!!error) { return <Error title="About" error={error} />; }
 
   return (
     <div className="container">

@@ -2,12 +2,15 @@ import React, { useState, SyntheticEvent } from 'react';
 import './styles.css';
 import { submitLogin } from '../../services';
 import { Redirect } from 'react-router-dom';
+import Loader from '../../components/Loader';
+import LoadingPage from '../LoadingPage';
 
 function Login() {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [error, setError] = useState<string>('');
     const [redirect, setRedirect] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     function submit(e: SyntheticEvent) {
         e.preventDefault();
@@ -22,7 +25,7 @@ function Login() {
             removeErrorAfterTime(3000);
             return;
         }
-
+        setIsLoading(true)
         submitLogin({ email, password })
             .then(user => {
                 if (user) { setRedirect(true); }
@@ -33,7 +36,7 @@ function Login() {
                     return;
                 }
                 console.log(err.message);
-            });
+            }).finally(() => setIsLoading(false));
     }
 
     function removeErrorAfterTime(time: number) {
@@ -56,6 +59,7 @@ function Login() {
     }
 
     if (redirect) { return <Redirect to="/" /> }
+    if (isLoading) { return <LoadingPage /> }
 
     return (
         <div className="container">
@@ -65,7 +69,8 @@ function Login() {
             <form className="contact-form" onSubmit={submit}>
                 <input className="custom-input" type="email" placeholder="Email" value={email} onChange={setEmailValue} />
                 <input className="custom-input" type="password" placeholder="Password" value={password} onChange={setPasswordValue} />
-                {error ? <p className="custom-error">{error}</p> : null}
+                <p className="custom-error">{error}</p>
+                {isLoading ? <Loader /> : null }
                 <div className="login-btn-wrapper">
                     <button className="login-button">Login</button>
                 </div>
