@@ -21,7 +21,7 @@ function ProjectDetails() {
         return () => {
             subscriber.unsubscribe();
         }
-    }, [])
+    }, [id])
 
     useEffect(() => {
         if (!!user && !!project) {
