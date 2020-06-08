@@ -7,6 +7,7 @@ import Login from "../pages/Login";
 import Settings from "../containers/Settings";
 import Logout from "../pages/Logout";
 import Home from "../pages/Home";
+import Delete from "../pages/Delete";
 
 const links = [
     { path: '/projects/details/:id', Component: ProjectDetails },
@@ -16,6 +17,7 @@ const links = [
     { path: '/about', Component: About },
     { path: '/login', Component: Login },
     { path: '/settings', Component: Settings },
+    { path: '/projects/delete/:id', Component: Delete },
     { path: '/logout', Component: Logout },
     { path: '/', Component: Home },
 ]

@@ -1,0 +1,8 @@
+.delete-container {
+    display: flex;
+}
+
+.message {
+    margin: auto;
+    color: #08fdd8;
+}
