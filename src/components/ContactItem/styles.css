@@ -1,0 +1,10 @@
+.contact-item {
+    text-align: center;
+    color: white;
+    height: 50px;
+    cursor: pointer;
+}
+
+.contact-item:hover {
+    filter: brightness(60%);
+}
