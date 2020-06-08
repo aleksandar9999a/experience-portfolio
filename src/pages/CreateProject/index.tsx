@@ -17,7 +17,7 @@ function CreateProject() {
     let [files, setFiles] = useState<IUploadedImage[]>([]);
     let [images, setImages] = useState<JSX.Element[]>([]);
     let [creatorId, setCreatorId] = useState<string>();
-    let [isLoading, setIsLoding] = useState<boolean>(true);
+    let [isLoading, setIsLoding] = useState<boolean>(false);
     const { id } = useParams();
 
     useEffect(() => {
