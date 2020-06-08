@@ -9,9 +9,7 @@ function SettingsNavbar() {
 
     return (
         <div className="settings-tabs-wrapper">
-            <ul className="settings-tabs">
-                {listOfTabs}
-            </ul>
+            {listOfTabs}
         </div>
     );
 }

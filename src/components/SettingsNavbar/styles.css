@@ -1,21 +1,6 @@
 .settings-tabs-wrapper {
-    height: 70px;
-    width: 100%;
-    background-color: #202020;
-}
-
-.settings-tabs {
-    list-style-type: none;
-    margin: auto;
-    padding: 0;
-    height: 70px;
-    width: 50%;
-    text-align: center;
     display: flex;
-}
-
-@media screen and (max-width: 780px) {
-    .settings-tabs {
-        width: 90%;
-    }
+    height: 70px;
+    background-color: #202020;
+    justify-content: center;
 }
