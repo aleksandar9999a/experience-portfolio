@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react';
 import IProject from "../../interfaces/IProject";
 import ImageTile from '../../components/ImageTile';
 import './styles.css';
-import IProjectImage from '../../interfaces/IProjectImage';
 
 function ProjectDetailsBasic({ title, description, images, link }: IProject) {
     let [imgElements, setImgElements] = useState<JSX.Element[]>([]);
 
     useEffect(() => {
-        const list = (images as IProjectImage[]).map(x => <ImageTile url={x.url} key={x.id} size="400px" />);
+        const list = (images).map(x => <ImageTile url={x.url} key={x._id} size="400px" />);
         setImgElements(list)
-    }, [])
+    }, [images])
 
     return ( 
         <div className="project-details-wrapper">
