@@ -8,9 +8,11 @@ import Settings from "../containers/Settings";
 import Logout from "../pages/Logout";
 import Home from "../pages/Home";
 import Delete from "../pages/Delete";
+import CreateProject from "../pages/CreateProject";
 
 const links = [
     { path: '/projects/details/:id', Component: ProjectDetails },
+    { path: '/projects/edit/:id', Component: CreateProject },
     { path: '/projects', Component: Projects },
     { path: '/skills', Component: Skills },
     { path: '/contacts', Component: Contacts },
