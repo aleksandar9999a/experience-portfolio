@@ -13,7 +13,7 @@ function Contacts() {
         <input className="custom-input" type="text" placeholder="Subject" />
         <textarea className="custom-textarea" placeholder="Message" />
         <div className="custom-btn-wrapper">
-          <button className="custom-button">Send</button>
+          <button className="custom-btn">Send</button>
         </div>
       </form>
     </div>
