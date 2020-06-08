@@ -3,6 +3,7 @@ import Axios from 'axios';
 import ISkills from '../interfaces/ISkills';
 import IMainUser from '../interfaces/IMainUser';
 import IAbout from '../interfaces/IAbout';
+import IEmail from '../interfaces/IEmail';
 
 export function updateAuthUserdata(userdata: IMainUser) {
     return Axios.put(`/auth`, userdata, config.credentials);
@@ -26,4 +27,8 @@ export function getAuthAbout() {
 
 export function getAuthProjects() {
     return Axios.get(`/projects`, config.credentials);
+}
+
+export function sendEmail(data: IEmail) {
+    return Axios.post('/contact', data);
 }
