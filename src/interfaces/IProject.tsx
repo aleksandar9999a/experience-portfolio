@@ -1,5 +1,4 @@
-import IProjectImage from "./IProjectImage";
-import ImageData from "./IImageData";
+import IUploadedImage from "./IUploadedImage";
 
 export default interface IProject {
     _id?: string,
@@ -7,5 +6,5 @@ export default interface IProject {
     description: string, 
     link: string,
     creatorId?: string,
-    images: IProjectImage[] | ImageData[]
+    images: IUploadedImage[]
 }
