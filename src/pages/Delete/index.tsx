@@ -10,7 +10,7 @@ function Delete() {
 
     useEffect(() => {
         deleteProject(id).then(() => setRedirect(true)).catch(err => setMessage(err.message));
-    }, [])
+    }, [id])
 
     if (redirect) {
         return <Redirect to="/projects" />
