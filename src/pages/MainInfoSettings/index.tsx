@@ -6,8 +6,7 @@ function MainInfoSettings() {
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
     const [devType, setDevType] = useState<string>('');
-    const [error, setError] = useState<string>('');
-    const [success, setSuccess] = useState<string>('');
+    const [message, setMessage] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
@@ -18,17 +17,14 @@ function MainInfoSettings() {
                 setDevType(user.devType);
             }
         }).catch(err => {
-            setError(err.message);
+            setMessage(err.message);
         }).finally(() => setIsLoading(false));
     }, []);
 
     useEffect(() => {
-        removeText(setError, 3000);
-    }, [error])
-
-    useEffect(() => {
-        removeText(setSuccess, 3000);
-    }, [success])
+        const sub = setTimeout(() => { setMessage(''); }, 3000)
+        return () => { clearTimeout(sub); }
+    }, [message])
 
     function handleChange(type: string, event: any) {
         const value = event.target.value
@@ -40,21 +36,15 @@ function MainInfoSettings() {
     function handleSubmit(e: SyntheticEvent) {
         e.preventDefault();
         if (firstName === '' || lastName === '' || devType === '') {
-            setError('Invalid input!');
+            setMessage('Invalid input!');
             return;
         }
 
         updateAuthUserdata({ firstName, lastName, devType }).then(() => {
-            setSuccess('Successful updated!');
+            setMessage('Successful updated!');
         }).catch(err => {
-            setError(err.message);
+            setMessage(err.message);
         });
-    }
-
-    function removeText(setValue: Function, time: number) {
-        return setTimeout(() => {
-            setValue('');
-        }, time);
     }
 
     const handleFirstName = (event: any) => handleChange('firstName', event);
@@ -74,8 +64,7 @@ function MainInfoSettings() {
                     defaultValue={lastName} onChange={handleLastName} />
                 <input className="custom-input" type="text" placeholder="Dev Type"
                     defaultValue={devType} onChange={handleDevType} />
-                {error ? <p className="custom-error">{error}</p> : null}
-                {success ? <p className="custom-success">{success}</p> : null}
+                <p className="custom-message">{message}</p>
                 <div className="custom-btn-wrapper">
                     <button className="custom-btn" onClick={handleSubmit}>Update Main Information</button>
                 </div>
