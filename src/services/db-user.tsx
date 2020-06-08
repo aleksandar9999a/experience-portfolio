@@ -3,43 +3,6 @@ import Axios from 'axios';
 import ISkills from '../interfaces/ISkills';
 import IMainUser from '../interfaces/IMainUser';
 import IAbout from '../interfaces/IAbout';
-import IProject from '../interfaces/IProject';
-import storage from './firebase';
-import ImageData from '../interfaces/IImageData';
-
-function generateDateID() {
-    const date = new Date();
-    return `${date.getFullYear()}${date.getMonth()}${date.getDay()}${date.getHours()}${date.getMinutes()}${date.getMilliseconds()}`;
-}
-
-function getRef(title: string, date: string, image: ImageData, index: number) {
-    return storage.ref(`images/${title}${date}${index}`).put(image.file);
-}
-
-function getURL(shot: firebase.storage.UploadTaskSnapshot) {
-    return shot.ref.getDownloadURL();
-}
-
-export function createProject(data: IProject) {
-    const dateId = generateDateID();
-    return Promise.all((data.images as ImageData[]).map(getRef.bind(undefined, data.title, dateId)))
-        .then(snapshots => Promise.all(snapshots.map(getURL)))
-        .then(urls => {
-            const images = urls.map((url, i) => { return { url, id: i } });
-            const project = {
-                title: data.title,
-                description: data.description,
-                link: data.link,
-                images
-            }
-            return Axios.post('/projects', project, config.credentials)
-        })
-        .catch(console.error);
-}
-
-export function deleteProject(id: string) {
-    return Axios.delete(`/projects`, { data: { id }, withCredentials: true});
-}
 
 export function updateAuthUserdata(userdata: IMainUser) {
     return Axios.put(`/auth`, userdata, config.credentials);
