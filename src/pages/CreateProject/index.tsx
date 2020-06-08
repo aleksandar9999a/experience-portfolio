@@ -2,69 +2,60 @@ import React, { useState, useEffect, SyntheticEvent } from 'react';
 import './styles.css';
 import { Plus } from 'react-bootstrap-icons';
 import ImageTile from '../../components/ImageTile';
-import ImageData from '../../interfaces/IImageData';
-import { createProject } from '../../services';
-import IProjectImage from '../../interfaces/IProjectImage';
-
-const regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
-
-function createURL(data: ImageData) {
-    return {
-        url: URL.createObjectURL(data.file),
-        id: data.id
-    }
-}
-
-function createImageTile(data: IProjectImage) {
-    return <div className="image-tile-wrapper" key={data.id}><ImageTile url={data.url || ''} /></div>
-}
+import { createProject, getDefaultProjectByID, uploadImage } from '../../services';
+import { useParams } from 'react-router-dom';
+import IProject from '../../interfaces/IProject';
+import IUploadedImage from '../../interfaces/IUploadedImage';
+import isURL from 'validator/lib/isURL';
 
 function CreateProject() {
     let [title, setTitle] = useState<string>('');
     let [description, setDescription] = useState<string>('');
     let [link, setLink] = useState<string>('');
     let [message, setMessage] = useState<string>('');
-    let [files, setFiles] = useState<ImageData[]>([]);
+    let [files, setFiles] = useState<IUploadedImage[]>([]);
     let [images, setImages] = useState<JSX.Element[]>([]);
+    let [creatorId, setCreatorId] = useState<string>();
+    const { id } = useParams();
+    
+    useEffect(() => {
+        if (!id) { return; }
+        getDefaultProjectByID(id).then(({ data }: { data: IProject }) => {
+            if (data) {
+                setTitle(data.title);
+                setDescription(data.description);
+                setLink(data.link);
+                setFiles(data.images);
+                setCreatorId(data.creatorId);
+            }
+        }).catch(console.error);
+    }, [id])
 
     useEffect(() => {
-        const arr = files.map(createURL).map(createImageTile);
+        const arr = files.map(data => <div className="image-tile-wrapper" key={data._id}><ImageTile url={data.url} /></div>);
         setImages(arr);
     }, [files])
 
     function addImage(file: File) {
         if (!file.type.includes('image')) { return; }
-        let arr = [...files];
-        const image = {
-            file,
-            id: arr.length > 0 ? arr[arr.length - 1].id + 1 : 0
-        }
-        arr.push(image);
-        setFiles(arr);
+        uploadImage(file).then(( data: IUploadedImage ) => {
+            let arr = [...files];
+            arr.push(data);
+            setFiles(arr);
+        }).catch(console.error)
     }
 
     function isValidData() {
-        if (!title || title.length < 4) {
-            setMessage('Title is required! Minimum chars are 4.');
-            return false;
-        }
-
-        if (!description || description.length < 20) {
-            setMessage('Description is required! Minimum chars are 20.');
-            return false;
-        }
+        if (!title || title.length < 4) { setMessage('Title - Minimum chars are 4.'); return false; }
+        if (!description || description.length < 20) { setMessage('Description - Minimum chars are 20.'); return false; }
+        if (files.length < 1) { setMessage('Minimum images is 1!'); return false; }
 
         if (link !== '') {
-            const isValid = regex.test(link);
+            const isValid = isURL(link);
             if (!isValid) {
                 setMessage('Link is not required, but if you write it - it must be valid.');
             }
             return isValid;
-        }
-
-        if (files.length < 1) {
-            setMessage('Minimum images is 1!');
-            return false;
         }
 
         return true;
@@ -72,18 +63,10 @@ function CreateProject() {
 
     function handleChange(type: string, e: any) {
         const target = e.target;
-        if (type === 'title') {
-            setTitle(target.value);
-        }
-        if (type === 'description') {
-            setDescription(target.value);
-        }
-        if (type === 'link') {
-            setLink(target.value);
-        }
-        if (type === 'files') {
-            addImage(target.files[0]);
-        }
+        if (type === 'title') { setTitle(target.value);  }
+        if (type === 'description') { setDescription(target.value); }
+        if (type === 'link') { setLink(target.value); }
+        if (type === 'files') { addImage(target.files[0]); }
     }
 
     const titleChange = (e: any) => handleChange('title', e);
@@ -95,14 +78,14 @@ function CreateProject() {
         e.preventDefault();
         if (!isValidData()) { return; }
         setMessage('Loading...');
-        createProject({ title, description, images: files, link })
+        createProject({ _id: id, creatorId, title, description, images: files, link })
             .then(() => setMessage('Successful uploaded!'))
             .catch(err => setMessage(err.message))
     }
 
     return (
         <div className="create-project-settings-wrapper">
-            <h1 className="create-project-settings-title">Create Project</h1>
+            <h1 className="create-project-settings-title">{ id ? 'Edit' : 'Create'} Project</h1>
             <form className="create-project-settings-form">
                 <input
                     className="custom-input"
