@@ -17,49 +17,36 @@ function MainInfoSettings() {
             }
         }).catch(err => {
             setError(err.message);
-            removeErrorAfterTime(3000);
         });
     }, []);
 
+    useEffect(() => {
+        removeText(setError, 3000);
+    }, [error])
+
+    useEffect(() => {
+        removeText(setSuccess, 3000);
+    }, [success])
+
     function handleChange(type: string, event: any) {
         const value = event.target.value
-        if (type === 'firstName') {
-            setFirstName(value);
-            return;
-        }
-        if (type === 'lastName') {
-            setLastName(value);
-            return;
-        }
-        if (type === 'devType') {
-            setDevType(value);
-            return;
-        }
+        if (type === 'firstName') { setFirstName(value); return; }
+        if (type === 'lastName') { setLastName(value); return; }
+        if (type === 'devType') { setDevType(value); return; }
     }
 
     function handleSubmit(e: SyntheticEvent) {
         e.preventDefault();
         if (firstName === '' || lastName === '' || devType === '') {
             setError('Invalid input!');
-            removeErrorAfterTime(3000);
             return;
         }
 
         updateAuthUserdata({ firstName, lastName, devType }).then(() => {
             setSuccess('Successful updated!');
-            removeSuccessAfterTime(3000);
         }).catch(err => {
             setError(err.message);
-            removeErrorAfterTime(3000);
         });
-    }
-
-    function removeErrorAfterTime(time: number) {
-        return removeText(setError, 3000);
-    }
-
-    function removeSuccessAfterTime(time: number) {
-        return removeText(setSuccess, 3000);
     }
 
     function removeText(setValue: Function, time: number) {
