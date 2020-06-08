@@ -32,3 +32,7 @@ export function getAuthProjects() {
 export function sendEmail(data: IEmail) {
     return Axios.post('/contact', data);
 }
+
+export function getEmail() {
+    return Axios.get('/contact', config.credentials);
+}

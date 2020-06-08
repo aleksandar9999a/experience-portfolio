@@ -1,5 +1,5 @@
 import { getUserdata, logout, submitLogin } from './db-auth';
-import { sendEmail, updateAuthUserdata, updateAuthSkills, updateAuthAbout, getAuthSkills, getAuthAbout, getAuthProjects } from './db-user';
+import { sendEmail, getEmail, updateAuthUserdata, updateAuthSkills, updateAuthAbout, getAuthSkills, getAuthAbout, getAuthProjects } from './db-user';
 import { getDefaultAbout, getDefaultSkills, getDefaultProjects, getDefaultProjectByID, getDefaultMainInfo } from './db-defaults';
 import { uploadImage, createProject, deleteProject } from './db-projects';
 
@@ -21,5 +21,6 @@ export {
     getDefaultMainInfo,
     deleteProject,
     uploadImage,
-    sendEmail
+    sendEmail,
+    getEmail
 }
