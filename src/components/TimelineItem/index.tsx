@@ -32,17 +32,14 @@ function TimelineItem({ item, isEditable, id, onChange, onRemove }: ITimelineIte
     }
 
     function remove(e: SyntheticEvent) {
-        e.preventDefault();
-        if (onRemove) {
-            onRemove(id);
-        }
+        e.preventDefault(); if (onRemove) { onRemove(id); }
     }
 
-    const handleTitle = (event: any) => handleChange.bind(TimelineItem, 'title')(event);
-    const handleDescription = (event: any) => handleChange.bind(TimelineItem, 'desc')(event);
-    const handleLink = (event: any) => handleChange.bind(TimelineItem, 'link')(event);
-    const handleStart = (event: any) => handleChange.bind(TimelineItem, 'start')(event);
-    const handleEnd = (event: any) => handleChange.bind(TimelineItem, 'end')(event);
+    const handleTitle = (event: any) => handleChange('title', event);
+    const handleDescription = (event: any) => handleChange('desc', event);
+    const handleLink = (event: any) => handleChange('link', event);
+    const handleStart = (event: any) => handleChange('start', event);
+    const handleEnd = (event: any) => handleChange('end', event);
 
     if (isEditable) {
         return (
