@@ -1,7 +1,6 @@
 .settings-tab {
     display: flex;
     margin: auto;
-    width: 60px;
     color: #08fdd8;
 }
 
@@ -24,6 +23,7 @@
     text-transform: uppercase;
     padding: 15px;
     width: 100px;
+    height: 20px;
 }
 .settings-tab-button:active {
     border: 1px solid #08fdd8;
@@ -42,7 +42,7 @@
         font-size: 8px;
         letter-spacing: 2px;
         padding: 5px;
-        width: 70px;
+        width: 60px;
         height: 30px;
     }
 }
