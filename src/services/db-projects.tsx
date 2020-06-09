@@ -17,6 +17,8 @@ function getURL(shot: firebase.storage.UploadTaskSnapshot) {
     return shot.ref.getDownloadURL();
 }
 
+export function getAuthProjects() { return Axios.get(`/projects`, config.credentials); }
+
 export function uploadImage(file: File) {
     return uploadFile(file).then(getURL).then(url => { return { _id: generateDateID(), url }; });
 }
@@ -27,7 +29,6 @@ export function createProject(data: IProject) {
     }
     return Axios.post('/projects', data, config.credentials);
 }
-
 
 export function deleteProject(id: string) {
     return Axios.delete(`/projects`, { data: { id }, withCredentials: true });
