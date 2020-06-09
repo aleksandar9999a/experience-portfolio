@@ -7,10 +7,13 @@ function Slideshow({ images }: { images: IUploadedImage[] }) {
     const [img, setImg] = useState<string>(images[0].url);
     const [imgTiles, setImgTiles] = useState<JSX.Element[]>([]);
     const [display, setDisplay] = useState<string>('none');
+    const [state, setState] = useState<boolean>(true);
 
-    function handleClick(e: any) { setImg(e.target.src); }
+    function handleClick(e: any) { setState(false); setImg(e.target.src); }
     function handleZoom() { setDisplay('block'); }
     function handleClose() { setDisplay('none'); }
+
+    useEffect(() => { setState(true); }, [state])
 
     useEffect(() => {
         const tiles = images.map(x => <div key={x._id} id={x._id} onClick={handleClick}><ImageTile url={x.url} size="100px" /></div>);
@@ -20,7 +23,10 @@ function Slideshow({ images }: { images: IUploadedImage[] }) {
     return (
         <div className="slideshow">
             <div className="img-wrapper">
-                <img src={img} className="slideshow-current-image" alt="slideshow" onClick={handleZoom} />
+                {state
+                ? <img src={img} className="slideshow-current-image fade-in" alt="slideshow" onClick={handleZoom} />
+                : null
+                }
             </div>
             <div className="img-tiles-wrapper">
                 <div className="img-tiles-wrapped-wrapper">
