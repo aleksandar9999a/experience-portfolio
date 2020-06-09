@@ -2,6 +2,7 @@ import React, { useState, SyntheticEvent, useEffect } from 'react';
 import './styles.css';
 import isEmail from 'validator/lib/isEmail';
 import { sendEmail } from '../../services';
+import Loader from '../../components/Loader';
 
 function Contacts() {
   const [name, setName] = useState<string>('');
@@ -9,9 +10,10 @@ function Contacts() {
   const [subject, setSubject] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [mes, setMes] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if(mes === 'Successful sended!') { setName(''); setEmail(''); setSubject(''); setMessage(''); }
+    if (mes === 'Successful sended!') { setName(''); setEmail(''); setSubject(''); setMessage(''); }
     const sub = setTimeout(() => { setMes(''); }, 3000);
     return () => { clearTimeout(sub); }
   }, [mes])
@@ -39,7 +41,8 @@ function Contacts() {
   function submit(e: SyntheticEvent) {
     e.preventDefault();
     if (!validateInput()) { return; }
-    sendEmail({ name, email, subject, message }).then(() => setMes('Successful sended!')).catch(err => setMes(err.message));
+    setIsLoading(true);
+    sendEmail({ name, email, subject, message }).then(() => setMes('Successful sended!')).catch(err => setMes(err.message)).finally(() => setIsLoading(false));
   }
 
   return (
@@ -54,7 +57,10 @@ function Contacts() {
         <textarea className="custom-textarea" placeholder="Message" value={message} onChange={handleMessage} />
         <p className="custom-message">{mes}</p>
         <div className="custom-btn-wrapper">
-          <button className="custom-btn" onClick={submit}>Send</button>
+          {isLoading
+            ? <Loader />
+            : <button className="custom-btn" onClick={submit}>Send</button>
+          }
         </div>
       </form>
     </div>
