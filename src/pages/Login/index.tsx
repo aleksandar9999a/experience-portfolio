@@ -1,5 +1,4 @@
 import React, { useState, SyntheticEvent, useEffect } from 'react';
-import './styles.css';
 import { submitLogin } from '../../services';
 import { Redirect } from 'react-router-dom';
 import Loader from '../../components/Loader';
@@ -54,14 +53,14 @@ function Login() {
             <div className="title">
                 <h1>Login</h1>
             </div>
-            <form className="contact-form" onSubmit={submit}>
+            <form className="custom-form" onSubmit={submit}>
                 <input className="custom-input" type="email" placeholder="Email" value={email} onChange={setEmailValue} />
                 <input className="custom-input" type="password" placeholder="Password" value={password} onChange={setPasswordValue} />
                 <p className="custom-message">{message}</p>
-                <div className="login-btn-wrapper">
+                <div className="custom-btn-wrapper">
                     {isLoading
                         ? <Loader />
-                        : <button className="login-button">Login</button>
+                        : <button className="custom-btn">Login</button>
                     }
                 </div>
             </form>

@@ -1,5 +1,4 @@
 import React, { useState, SyntheticEvent, useEffect } from 'react';
-import './styles.css';
 import isEmail from 'validator/lib/isEmail';
 import { sendEmail } from '../../services';
 import Loader from '../../components/Loader';

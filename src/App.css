@@ -40,7 +40,7 @@ h1 {
     margin: auto;
     text-align: center;
     width: 60%;
-    font-size: 20px !important;
+    font-size: 16px !important;
     color: white;
 }
 
@@ -79,6 +79,33 @@ h1 {
     color: #08fdd8;
 }
 
+.custom-input, .custom-textarea {
+    display: flex;
+    margin: auto;
+    border: 0;
+    background: #2b2b2b;
+    color: white;
+    height: 50px;
+    width: 500px;
+    font-size: 16px;
+    padding: 0 20px;
+}
+
+.custom-textarea {
+    height: 150px;
+    font: inherit;
+    padding: 20px 20px;
+}
+
+.custom-textarea:focus, .custom-input:focus {
+    outline: none !important;
+    border:1px solid #08fdd8;
+}
+
+.custom-input + .custom-input, .custom-input + .custom-textarea, .custom-textarea + .custom-input{
+    margin-top: 10px;
+}
+
 @media screen and (max-width: 840px) {
     h1 {
         font-size: 35px;
@@ -86,5 +113,9 @@ h1 {
 
     .headline-text {
         font-size: 15px !important;
+    }
+
+    .custom-input, .custom-textarea {
+        width: 250px;
     }
 }
