@@ -39,28 +39,20 @@ function CreateProject() {
     }, [files])
 
     function addImage(file: File) {
-        if (!file.type.includes('image')) { return; }
+        if (!file.type.includes('image')) { setMessage("Invalid Image Format!"); return; }
         setIsLoding(true);
         uploadImage(file).then((data: IUploadedImage) => {
             let arr = [...files];
             arr.push(data);
             setFiles(arr);
-        }).catch(console.error).finally(() => setIsLoding(false))
+        }).catch(err => setMessage(err.message)).finally(() => setIsLoding(false))
     }
 
     function isValidData() {
         if (!title || title.length < 4) { setMessage('Title - Minimum chars are 4.'); return false; }
         if (!description || description.length < 20) { setMessage('Description - Minimum chars are 20.'); return false; }
         if (files.length < 1) { setMessage('Minimum images is 1!'); return false; }
-
-        if (link !== '') {
-            const isValid = isURL(link);
-            if (!isValid) {
-                setMessage('Link is not required, but if you write it - it must be valid.');
-            }
-            return isValid;
-        }
-
+        if (link !== '' && !isURL(link)) { setMessage('Link is not required, but if you write it - it must be valid.'); return false; }
         return true;
     }
 
