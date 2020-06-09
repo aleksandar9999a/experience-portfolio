@@ -36,3 +36,11 @@ export function sendEmail(data: IEmail) {
 export function getEmail() {
     return Axios.get('/contact', config.credentials);
 }
+
+export function deleteEmail(id: string) {
+    return Axios.delete('/contact', { data: { id }, withCredentials: true });
+}
+
+export function updateEmail(data: IEmail) {
+    return Axios.put('/contact', data, config.credentials );
+}
