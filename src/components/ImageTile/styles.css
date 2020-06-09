@@ -5,6 +5,11 @@
     filter: brightness(90%);
     display: flex;
     cursor: pointer;
+    transition: transform .2s;
+}
+
+.img-tile:hover {
+    opacity: 0.8;
 }
 
 .tile-preview-img {
