@@ -45,7 +45,7 @@ function Slideshow({ images }: { images: IUploadedImage[] }) {
     useEffect(() => { setState(true); }, [state])
 
     useEffect(() => {
-        const tiles = images.map(x => <div key={x._id} id={x._id} onClick={handleClick.bind(undefined, x._id)}><ImageTile url={x.url} size="100px" /></div>);
+        const tiles = images.map(x => <div key={x._id} id={x._id} onClick={handleClick.bind(undefined, x._id)}><ImageTile id={x._id} url={x.url} size="100px" /></div>);
         setImgTiles(tiles);
     }, [])
 
