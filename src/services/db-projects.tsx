@@ -8,9 +8,12 @@ function generateDateID() {
     return `${date.getFullYear()}${date.getMonth()}${date.getDay()}${date.getHours()}${date.getMinutes()}${date.getMilliseconds()}`;
 }
 
-function uploadFile(file: File) {
-    const dateID = generateDateID()
-    return storage.ref(`images/${dateID}${file.name}`).put(file);
+function uploadFile(file: File, id: string) {
+    return storage.ref(`images/${id}`).put(file);
+}
+
+export function deleteFile(id: string) {
+    return storage.ref(`images/${id}`).delete();
 }
 
 function getURL(shot: firebase.storage.UploadTaskSnapshot) {
@@ -20,7 +23,8 @@ function getURL(shot: firebase.storage.UploadTaskSnapshot) {
 export function getAuthProjects() { return Axios.get(`/projects`, config.credentials); }
 
 export function uploadImage(file: File) {
-    return uploadFile(file).then(getURL).then(url => { return { _id: generateDateID(), url }; });
+    const _id = `${generateDateID()}${file.name}`;
+    return uploadFile(file, _id).then(getURL).then(url => { return { _id, url }; });
 }
 
 export function createProject(data: IProject) {
