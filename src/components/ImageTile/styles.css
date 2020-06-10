@@ -2,20 +2,31 @@
     width: 140px;
     height: 140px;
     background: #08fdd8;
-    filter: brightness(90%);
     display: flex;
     cursor: pointer;
-    transition: transform .2s;
-}
-
-.img-tile:hover {
-    opacity: 0.8;
+    position: relative;
 }
 
 .tile-preview-img {
     width: 140px;
     height: 140px;
     object-fit: cover;
+    position: absolute;
+}
+
+.img-tile-actions {
+    width: 140px;
+    height: 140px;
+    position: absolute;
+    display: none;
+}
+
+.img-tile:hover .tile-preview-img {
+    filter: brightness(10%);
+}
+
+.img-tile:hover .img-tile-actions {
+    display: flex;
 }
 
 @media screen and (max-width: 840px) {
@@ -23,7 +34,6 @@
         width: 140px !important;
         height: 140px !important;
     }
-
     .img-tile {
         width: 140px !important;
         height: 140px !important;
