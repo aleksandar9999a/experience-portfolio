@@ -1,0 +1,21 @@
+import React from 'react';
+import './styles.css';
+
+function Logo({ width = '80px', height = '60px', logoSize = '20px', nameSize = '10' }: { width?: string, height?: string, logoSize?: string, nameSize?: string }) {
+    const styles = {
+        container: { width, height },
+        logo: { fontSize: logoSize },
+        name: { fontSize: nameSize }
+    };
+
+    return (
+        <div className="logo" style={styles.container} >
+            <div className="logo-wrapper">
+                <p className="logo-a" style={styles.logo}>A</p>
+                <p className="logo-name" style={styles.name}>Alexandar</p>
+            </div>
+        </div>
+    )
+}
+
+export default Logo;
