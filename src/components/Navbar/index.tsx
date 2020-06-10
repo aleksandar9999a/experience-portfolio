@@ -4,6 +4,8 @@ import ITab from '../../interfaces/ITab';
 import Tab from '../Tab';
 import { auth } from '../../services/db-auth';
 import tabsConfig from '../../configs/navbar';
+import Logo from '../Logo';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
     const [tabs, setTabs] = useState<JSX.Element[]>();
@@ -30,10 +32,14 @@ function Navbar() {
         }
     }, [])
 
-
     return (
         <div className="navbar">
-            <ul className="tabs">{tabs}</ul>
+            <Link to="/" className="custom-tab">
+                <Logo width="70px" height="60px" />
+            </Link>
+            <ul className="tabs">
+                {tabs}
+            </ul>
         </div>
     );
 }

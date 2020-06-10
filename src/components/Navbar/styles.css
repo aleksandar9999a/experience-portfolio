@@ -17,8 +17,16 @@
     justify-content: space-between;
 }
 
+.custom-tab {
+    position: absolute;
+}
+
 @media screen and (max-width: 780px) {
     .tabs {
         width: 80%;
+    }
+
+    .custom-tab {
+        display: none;
     }
 }
