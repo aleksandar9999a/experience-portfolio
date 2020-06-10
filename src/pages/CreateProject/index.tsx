@@ -34,18 +34,27 @@ function CreateProject() {
     }, [id])
 
     useEffect(() => {
-        const arr = files.map(data => <div className="image-tile-wrapper" key={data._id}><ImageTile url={data.url} /></div>);
+        const arr = files.map(data => <div className="image-tile-wrapper" key={data._id}><ImageTile id={data._id} url={data.url} isEditable={true} handleRemove={handleRemoveImg} /></div>);
         setImages(arr);
     }, [files])
 
-    function addImage(file: File) {
-        if (!file.type.includes('image')) { setMessage("Invalid Image Format!"); return; }
+    function handleRemoveImg(imgId: string) {
         setIsLoding(true);
-        uploadImage(file).then((data: IUploadedImage) => {
-            let arr = [...files];
-            arr.push(data);
-            setFiles(arr);
-        }).catch(err => setMessage(err.message)).finally(() => setIsLoding(false))
+        const newFiles = files.filter(file => file._id != imgId);
+        setFiles(newFiles);
+        setIsLoding(false);
+    }
+
+    function addImage(newFiles: File[]) {
+        if (newFiles.find(file => !file.type.includes('image'))) { setMessage("Invalid Image Format!"); return; }
+        setIsLoding(true);
+        Promise.all(newFiles.map(uploadImage))
+            .then((data: IUploadedImage[]) => {
+                const arr = [...files, ...data];
+                setFiles(arr as IUploadedImage[]);
+            })
+            .catch(err => setMessage(err.message))
+            .finally(() => setIsLoding(false));
     }
 
     function isValidData() {
@@ -56,12 +65,20 @@ function CreateProject() {
         return true;
     }
 
+    function adaptedFiles(files: FileList) {
+        let arr = [];
+        for (let i = 0; i < files.length; i++) { arr.push(files.item(i)); }
+        return arr;
+    }
     function handleChange(type: string, e: any) {
         const target = e.target;
         if (type === 'title') { setTitle(target.value); }
         if (type === 'description') { setDescription(target.value); }
         if (type === 'link') { setLink(target.value); }
-        if (type === 'files') { addImage(target.files[0]); }
+        if (type === 'files') {
+            const files = adaptedFiles(target.files);
+            addImage(files as File[]);
+        }
     }
 
     const titleChange = (e: any) => handleChange('title', e);
@@ -105,11 +122,12 @@ function CreateProject() {
                 />
                 <div className="upload-file-wrapper">
                     {images}
-                    <div className="add-tile">
+                    <div className="add-tile" style={isLoading ? { display: 'none' } : { display: 'flex' }}>
                         <input
                             className="custom-input upload-file"
                             type="file"
-                            onChange={fileChange} />
+                            onChange={fileChange}
+                            multiple={true} />
                         <Plus className="add-image" />
                     </div>
                 </div>
