@@ -68,7 +68,7 @@ function Slideshow({ images }: ISlideshow ) {
             <div className="modal" style={{ display }}>
                 <span className="close" onClick={handleClose} >&times;</span>
                 <div className="modal-content-wrapper">
-                    <img className="modal-content" src={img.url} />
+                    <img className="modal-content" src={img.url} alt="modal-img"/>
                 </div>
                 <div className="modal-nav">
                     <ArrowLeft className="slideshow-arrow" onClick={handleBack} />
