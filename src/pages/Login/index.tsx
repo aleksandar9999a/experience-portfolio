@@ -63,6 +63,11 @@ function Login() {
                         : <button className="custom-btn">Login</button>
                     }
                 </div>
+                <p className="custom-message">
+                    Wondering why there is a login page? <br />
+                    Our site also has an administrative part, which is available after logging in. <br />
+                    Only the owner of this site has access to it.
+                </p>
             </form>
         </div>
     );
