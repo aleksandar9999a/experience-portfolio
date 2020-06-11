@@ -1,9 +1,9 @@
 import React from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
-import IProject from '../../interfaces/IProject';
+import IProjectTile from '../../interfaces/IProjectTile';
 
-function ProjectTile({ project, basicRoute }: { project: IProject, basicRoute: string }) {
+function ProjectTile({ project, basicRoute }: IProjectTile) {
     return (
         <Link className="project-tile" to={`${basicRoute}/${project._id}`}>
             <img src={(project.images)[0].url} className="project-tile-preview-img" alt="preview" />

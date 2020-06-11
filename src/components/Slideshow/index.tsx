@@ -3,8 +3,9 @@ import './styles.css';
 import IUploadedImage from '../../interfaces/IUploadedImage';
 import ImageTile from '../ImageTile';
 import { ArrowLeft, ArrowRight } from 'react-bootstrap-icons';
+import ISlideshow from '../../interfaces/ISlideshow';
 
-function Slideshow({ images }: { images: IUploadedImage[] }) {
+function Slideshow({ images }: ISlideshow ) {
     const [img, setImg] = useState<IUploadedImage>(images[0]);
     const [imgTiles, setImgTiles] = useState<JSX.Element[]>([]);
     const [display, setDisplay] = useState<string>('none');

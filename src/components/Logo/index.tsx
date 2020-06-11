@@ -1,7 +1,8 @@
 import React from 'react';
 import './styles.css';
+import ILogo from '../../interfaces/ILogo';
 
-function Logo({ width = '80px', height = '60px', logoSize = '20px', nameSize = '10' }: { width?: string, height?: string, logoSize?: string, nameSize?: string }) {
+function Logo({ width = '80px', height = '60px', logoSize = '20px', nameSize = '10' }: ILogo) {
     const styles = {
         container: { width, height },
         logo: { fontSize: logoSize },

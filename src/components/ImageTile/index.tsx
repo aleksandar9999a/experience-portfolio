@@ -1,7 +1,8 @@
 import React, { SyntheticEvent } from 'react';
 import './styles.css';
+import IImageTile from '../../interfaces/IImageTile';
 
-function ImageTile({ url, size, isEditable = false, handleRemove, id }: { id: string, url: string, size?: string, isEditable?: boolean, handleRemove?: Function }) {
+function ImageTile({ url, size, isEditable = false, handleRemove, id }: IImageTile) {
     const style = {
         container: {
             width: size,
