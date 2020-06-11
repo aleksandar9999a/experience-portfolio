@@ -40,7 +40,7 @@ function CreateProject() {
 
     function handleRemoveImg(imgId: string) {
         setIsLoding(true);
-        const newFiles = files.filter(file => file._id != imgId);
+        const newFiles = files.filter(file => file._id !== imgId);
         setFiles(newFiles);
         setIsLoding(false);
     }
