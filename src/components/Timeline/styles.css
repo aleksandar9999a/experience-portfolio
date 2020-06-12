@@ -1,11 +1,25 @@
 .timeline {
-  list-style: none;
-  position: relative;
+    list-style: none;
+    position: relative;
+    max-width: 90vw;
+    overflow-x: auto;
 }
 
+.timeline::-webkit-scrollbar {
+    height: 8px;
+}
+
+.timeline::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+.timeline::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #08fdd8;
+}
 
 @media screen and (max-width: 780px) {
-  .timeline {
-    padding-inline-start: 0;
-  }
+    .timeline {
+        padding-inline-start: 0;
+    }
 }
