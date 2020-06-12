@@ -80,7 +80,8 @@ h1 {
     color: #08fdd8;
 }
 
-.custom-input, .custom-textarea {
+.custom-input,
+.custom-textarea {
     display: flex;
     margin: auto;
     border: 0;
@@ -98,12 +99,15 @@ h1 {
     padding: 20px 20px;
 }
 
-.custom-textarea:focus, .custom-input:focus {
+.custom-textarea:focus,
+.custom-input:focus {
     outline: none !important;
-    border:1px solid #08fdd8;
+    border: 1px solid #08fdd8;
 }
 
-.custom-input + .custom-input, .custom-input + .custom-textarea, .custom-textarea + .custom-input{
+.custom-input+.custom-input,
+.custom-input+.custom-textarea,
+.custom-textarea+.custom-input {
     margin-top: 10px;
 }
 
@@ -111,12 +115,11 @@ h1 {
     h1 {
         font-size: 35px;
     }
-
     .headline-text {
         font-size: 15px !important;
     }
-
-    .custom-input, .custom-textarea {
+    .custom-input,
+    .custom-textarea {
         width: 250px;
     }
 }

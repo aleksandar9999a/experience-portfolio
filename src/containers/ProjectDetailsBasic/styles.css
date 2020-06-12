@@ -18,7 +18,8 @@
     flex-wrap: wrap;
 }
 
-.project-details-description, .project-details-link {
+.project-details-description,
+.project-details-link {
     display: flex;
     justify-content: center;
 }
@@ -45,6 +46,4 @@ a {
     .project-details-description-text {
         font-size: 20px;
     }
-
-    
 }

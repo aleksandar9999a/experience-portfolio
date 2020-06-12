@@ -5,7 +5,7 @@ import Slideshow from '../../components/Slideshow';
 
 function ProjectDetailsBasic({ title, description, images, link }: IProject) {
     return ( 
-        <div className="project-details-wrapper">
+        <div className="container">
             <div className="project-details-title">
                 <h1 className="project-details-title-text">{title}</h1>
             </div>

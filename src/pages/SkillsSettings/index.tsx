@@ -7,7 +7,7 @@ import { getAuthSkills, updateAuthSkills } from '../../services';
 import LoadingPage from '../LoadingPage';
 
 function SkillsSettings() {
-    const [description, setDescription] = useState<string>();
+    const [description, setDescription] = useState<string>('');
     const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([{ id: 1, title: '', desc: '', link: '', }]);
     const [data, setData] = useState<ISkills>();
     const [message, setMessage] = useState<string>();
@@ -42,15 +42,25 @@ function SkillsSettings() {
         }, time);
     }
 
+    function dataValidation() {
+        if (!description || description.length < 4) {
+            setMessage('Invalid Description. Minimum length is 4 chars!');
+            return false;
+        }
+        if (!timelineItems || timelineItems.length < 1) {
+            setMessage('Invalid Experience. Minimum length is 1 item!');
+            return false;
+        }
+        return true;
+    }
+
     function handleSubmit(e: SyntheticEvent) {
         e.preventDefault();
-        if (!data || !data._id || !description) {
-            return;
-        }
+        if (!dataValidation()) { return; }
 
-        const newData = {
-            id: data._id,
-            creatorId: data.creatorId,
+        let newData: ISkills = {
+            _id: data?._id,
+            creatorId: data?.creatorId,
             description: description,
             experience: timelineItems
         };

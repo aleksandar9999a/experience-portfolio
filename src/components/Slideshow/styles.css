@@ -120,6 +120,7 @@
 .modal-content {
     margin: auto;
     max-width: 70vw;
+    max-height: 90vh;
     animation-name: zoom;
     animation-duration: 0.6s;
 }
@@ -134,7 +135,8 @@
     transition: 0.3s;
 }
 
-.close:hover, .close:focus {
+.close:hover,
+.close:focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;

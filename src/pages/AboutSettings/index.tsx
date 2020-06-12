@@ -8,7 +8,7 @@ import LoadingPage from '../LoadingPage';
 
 function AboutSettings() {
     const [data, setData] = useState<IAbout>();
-    const [description, setDescription] = useState<string>();
+    const [description, setDescription] = useState<string>('');
     const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([{ id: 1, title: '', desc: '', link: '', }]);
     const [message, setMessage] = useState<string>();
     const [isLoading, setIsLoding] = useState<boolean>(true);
@@ -42,13 +42,25 @@ function AboutSettings() {
         }, time);
     }
 
+    function dataValidation() {
+        if (!description || description.length < 4) {
+            setMessage('Invalid Description. Minimum length is 4 chars!');
+            return false;
+        }
+        if (!timelineItems || timelineItems.length < 1) {
+            setMessage('Invalid Experience. Minimum length is 1 item!');
+            return false;
+        }
+        return true;
+    }
+
     function handleSubmit(e: SyntheticEvent) {
         e.preventDefault();
-        if (!data || !data._id || !description) { setMessage('Input data is incorrect format!'); return; }
+        if (!dataValidation()) { return; }
 
         const newData = {
-            id: data._id,
-            creatorId: data.creatorId,
+            _id: data?._id,
+            creatorId: data?.creatorId,
             description: description,
             courses: timelineItems
         };
