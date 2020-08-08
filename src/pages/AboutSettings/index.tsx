@@ -11,29 +11,45 @@ function AboutSettings() {
     const [description, setDescription] = useState<string>('');
     const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([{ id: 1, title: '', desc: '', link: '', }]);
     const [message, setMessage] = useState<string>();
-    const [isLoading, setIsLoding] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        getAuthAbout().then(({ data }: { data: IAbout }) => {
-            if (data) {
+        getAuthAbout()
+            .then(({ data }: { data: IAbout }) => {
+                if (!data) {
+                    Promise.reject(new Error('No information!'));
+                    return;
+                }
+
                 setData(data);
                 setDescription(data.description);
                 setTimelineItems(data.courses);
-            } else {
-                setMessage('No information');
-            }
-        }).catch(err => {
-            setMessage(err.message);
-            removeMessage(3000);
-        }).finally(() => setIsLoding(false));
+            })
+            .catch(err => {
+                setMessage(err.message);
+                removeMessage(3000);
+            })
+            .finally(() => setIsLoading(false));
     }, [])
 
     function handleDescriptionChange(e: any) {
         setDescription(e.target.value);
     }
 
-    function handleTimelineChange(items: ITimelineItems[]) {
-        setTimelineItems(items);
+    function handleTimelineChange(item: ITimelineItems) {
+        let itemsCopy = [...timelineItems];
+        const index = itemsCopy.findIndex(x => x.id === item.id);
+        itemsCopy[index] = item;
+        setTimelineItems(itemsCopy);
+    }
+
+    function handleTimelineAdd(item: ITimelineItems) {
+        setTimelineItems([...timelineItems, item]);
+    }
+
+    function handleTimelineRemove(item: ITimelineItems) {
+        const index = timelineItems.findIndex(x => x.id === item.id);
+        setTimelineItems([...timelineItems.slice(0, index), ...timelineItems.slice(index + 1)]);
     }
 
     function removeMessage(time: number) {
@@ -56,7 +72,9 @@ function AboutSettings() {
 
     function handleSubmit(e: SyntheticEvent) {
         e.preventDefault();
-        if (!dataValidation()) { return; }
+        if (!dataValidation()) {
+            return;
+        }
 
         const newData = {
             _id: data?._id,
@@ -65,17 +83,22 @@ function AboutSettings() {
             courses: timelineItems
         };
 
-        setIsLoding(true);
-        updateAuthAbout(newData).then(() => {
-            setMessage('Successful updated!');
-            removeMessage(3000);
-        }).catch(err => {
-            setMessage('Something is wrong!');
-            removeMessage(3000);
-        }).finally(() => setIsLoding(false));
+        setIsLoading(true);
+        updateAuthAbout(newData)
+            .then(() => {
+                setMessage('Successful updated!');
+                removeMessage(3000);
+            })
+            .catch(err => {
+                setMessage('Something is wrong!');
+                removeMessage(3000);
+            })
+            .finally(() => setIsLoading(false));
     }
 
-    if (isLoading) { return <LoadingPage />; }
+    if (isLoading) {
+        return <LoadingPage />;
+    }
 
     return (
         <div className="container">
@@ -83,10 +106,20 @@ function AboutSettings() {
                 <h1>About</h1>
             </div>
             <form className="about-settings-form">
-                <textarea className="custom-textarea" placeholder="About me"
-                    value={description} onChange={handleDescriptionChange} />
+                <textarea
+                    className="custom-textarea"
+                    placeholder="About me"
+                    value={description}
+                    onChange={handleDescriptionChange}
+                />
                 <div className="about-settings-timeline">
-                    <Timeline items={timelineItems} isEditable={true} onChange={handleTimelineChange} />
+                    <Timeline
+                        items={timelineItems}
+                        isEditable={true}
+                        onChange={handleTimelineChange}
+                        onAdd={handleTimelineAdd}
+                        onRemove={handleTimelineRemove}
+                    />
                 </div>
                 <p className="about-settings-message">{message}</p>
                 <div className="custom-btn-wrapper">

@@ -7,33 +7,49 @@ import { getAuthSkills, updateAuthSkills } from '../../services';
 import LoadingPage from '../LoadingPage';
 
 function SkillsSettings() {
+    const [data, setData] = useState<ISkills>();
     const [description, setDescription] = useState<string>('');
     const [timelineItems, setTimelineItems] = useState<ITimelineItems[]>([{ id: 1, title: '', desc: '', link: '', }]);
-    const [data, setData] = useState<ISkills>();
     const [message, setMessage] = useState<string>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        getAuthSkills().then(({ data }: { data: ISkills }) => {
-            if (data) {
+        getAuthSkills()
+            .then(({ data }: { data: ISkills }) => {
+                if (!data) {
+                    Promise.reject(new Error('No information!'));
+                    return;
+                }
+
                 setData(data);
                 setDescription(data.description);
                 setTimelineItems(data.experience);
-            } else {
-                setMessage('No skills')
-            }
-        }).catch(err => {
-            setMessage(err.message);
-            removeMessage(3000);
-        }).finally(() => setIsLoading(false))
+            })
+            .catch(err => {
+                setMessage(err.message);
+                removeMessage(3000);
+            })
+            .finally(() => setIsLoading(false))
     }, [])
 
     function handleDescriptionChange(e: any) {
         setDescription(e.target.value);
     }
 
-    function handleTimelineChange(items: ITimelineItems[]) {
-        setTimelineItems(items);
+    function handleTimelineChange(item: ITimelineItems) {
+        let itemsCopy = [...timelineItems];
+        const index = itemsCopy.findIndex(x => x.id === item.id);
+        itemsCopy[index] = item;
+        setTimelineItems(itemsCopy);
+    }
+
+    function handleTimelineAdd(item: ITimelineItems) {
+        setTimelineItems([...timelineItems, item]);
+    }
+
+    function handleTimelineRemove(item: ITimelineItems) {
+        const index = timelineItems.findIndex(x => x.id === item.id);
+        setTimelineItems([...timelineItems.slice(0, index), ...timelineItems.slice(index + 1)]);
     }
 
     function removeMessage(time: number) {
@@ -56,25 +72,33 @@ function SkillsSettings() {
 
     function handleSubmit(e: SyntheticEvent) {
         e.preventDefault();
-        if (!dataValidation()) { return; }
+        if (!dataValidation()) {
+            return;
+        }
 
-        let newData: ISkills = {
+        const newData: ISkills = {
             _id: data?._id,
             creatorId: data?.creatorId,
             description: description,
             experience: timelineItems
         };
 
-        updateAuthSkills(newData).then(() => {
-            setMessage('Successful updated!');
-            removeMessage(3000);
-        }).catch(err => {
-            setMessage('Something is wrong!');
-            removeMessage(3000);
-        })
+        setIsLoading(true);
+        updateAuthSkills(newData)
+            .then(() => {
+                setMessage('Successful updated!');
+                removeMessage(3000);
+            })
+            .catch(err => {
+                setMessage('Something is wrong!');
+                removeMessage(3000);
+            })
+            .finally(() => setIsLoading(false));
     }
 
-    if (isLoading) { return <LoadingPage />; }
+    if (isLoading) {
+        return <LoadingPage />;
+    }
 
     return (
         <div className="container">
@@ -82,10 +106,20 @@ function SkillsSettings() {
                 <h1>Skills</h1>
             </div>
             <form className="skills-settings-form">
-                <textarea className="custom-textarea" placeholder="Skills Resume"
-                    value={description} onChange={handleDescriptionChange} />
+                <textarea
+                    className="custom-textarea"
+                    placeholder="Skills Resume"
+                    value={description}
+                    onChange={handleDescriptionChange}
+                />
                 <div className="skills-settings-timeline">
-                    < Timeline items={timelineItems} isEditable={true} onChange={handleTimelineChange} />
+                    <Timeline
+                        items={timelineItems}
+                        isEditable={true}
+                        onChange={handleTimelineChange}
+                        onAdd={handleTimelineAdd}
+                        onRemove={handleTimelineRemove}
+                    />
                 </div>
                 <p className="skills-settings-message">{message}</p>
                 <div className="custom-btn-wrapper">

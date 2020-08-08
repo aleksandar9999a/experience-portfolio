@@ -5,70 +5,71 @@ import ImageTile from '../ImageTile';
 import { ArrowLeft, ArrowRight } from 'react-bootstrap-icons';
 import ISlideshow from '../../interfaces/ISlideshow';
 
-function Slideshow({ images }: ISlideshow ) {
+function Slideshow({ images }: ISlideshow) {
     const [img, setImg] = useState<IUploadedImage>(images[0]);
-    const [imgTiles, setImgTiles] = useState<JSX.Element[]>([]);
-    const [display, setDisplay] = useState<string>('none');
-    const [state, setState] = useState<boolean>(true);
+    const [display, setDisplay] = useState<boolean>(false);
 
     function handleClick(id: string) {
-        setState(false);
         const image = images.find(x => x._id === id);
-        if (!image) { return; }
+
+        if (!image) {
+            return;
+        }
+
         setImg(image);
     }
-    function handleZoom() { setDisplay('block'); }
-    function handleClose() { setDisplay('none'); }
-    function handleNext() { return handleMove('next'); }
-    function handleBack() { return handleMove('back'); }
-    function handleMove(type: string) {
-        setState(false);
-        const index = images.findIndex(x => x._id === img._id);
-        if (type === 'next' && index >= images.length - 1) {
-            setImg(images[0]);
-            return;
-        }
-        if (type === 'next' && index < images.length - 1) {
-            setImg(images[index + 1]);
-            return;
-        }
-        if (type === 'back' && index > 0) {
-            setImg(images[index - 1]);
-            return;
-        }
-        if (type === 'back' && index === 0) {
-            setImg(images[images.length - 1]);
-            return;
-        }
-        return;
+
+    function handleNext() {
+        handleMove('next');
     }
 
-    useEffect(() => { setState(true); }, [state])
+    function handleBack() {
+        handleMove('back');
+    }
 
-    useEffect(() => {
-        const tiles = images.map(x => <div key={x._id} id={x._id} onClick={handleClick.bind(undefined, x._id)}><ImageTile id={x._id} url={x.url} size="100px" /></div>);
-        setImgTiles(tiles);
-    }, [])
+    function handleMove(type: string) {
+        const index = images.findIndex(x => x._id === img._id);
+
+        if (type === 'next' && index >= images.length - 1) {
+            setImg(images[0]);
+        } else if (type === 'next' && index < images.length - 1) {
+            setImg(images[index + 1]);
+        } else if (type === 'back' && index > 0) {
+            setImg(images[index - 1]);
+        } else if (type === 'back' && index === 0) {
+            setImg(images[images.length - 1]);
+        }
+    }
 
     return (
         <div className="slideshow">
             <div className="img-wrapper">
                 <ArrowLeft className="slideshow-arrow img-nav" onClick={handleBack} />
-                {state
-                    ? <img src={img.url} className="slideshow-current-image fade-in" alt="slideshow" onClick={handleZoom} />
-                    : null
-                }
+                <img
+                    src={img.url}
+                    className="slideshow-current-image fade-in"
+                    alt="slideshow"
+                    onClick={() => setDisplay(true)}
+                />
                 <ArrowRight className="slideshow-arrow img-nav" onClick={handleNext} />
             </div>
             <div className="img-tiles-wrapper">
                 <div className="img-tiles-wrapped-wrapper">
-                    {imgTiles}
+                    {images.map(x => {
+                        return <div
+                            key={x._id}
+                            id={x._id}
+                            onClick={() => handleClick(x._id)}
+                        >
+                            <ImageTile id={x._id} url={x.url} size="100px" />
+                        </div>
+                    })}
                 </div>
             </div>
-            <div className="modal" style={{ display }}>
-                <span className="close" onClick={handleClose} >&times;</span>
+            <div className="modal" style={{ display: display ? 'block' : 'none' }}>
+                <span className="close" onClick={() => setDisplay(false)} >&times;</span>
                 <div className="modal-content-wrapper">
-                    <img className="modal-content" src={img.url} alt="modal-img"/>
+                    <img className="modal-content" src={img.url} alt="modal-img" />
                 </div>
                 <div className="modal-nav">
                     <ArrowLeft className="slideshow-arrow" onClick={handleBack} />

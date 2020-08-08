@@ -15,15 +15,27 @@ function Skills() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    getDefaultSkills().then(({ data }: { data: ISkills }) => {
-      if (!data) { setError('No data!'); return; }
-      setDescription(data.description);
-      setTimelineItems(data.experience);
-    }).catch(err => setError(err.message)).finally(() => setIsLoading(false));
+    getDefaultSkills()
+      .then(({ data }: { data: ISkills }) => {
+        if (!data) {
+          setError('No data!');
+          return;
+        }
+
+        setDescription(data.description);
+        setTimelineItems(data.experience);
+      })
+      .catch(err => setError(err.message))
+      .finally(() => setIsLoading(false));
   }, [])
 
-  if (isLoading) { return <LoadingPage />; }
-  if (!!error) { return <Error title="Skills" error={error} />; }
+  if (isLoading) {
+    return <LoadingPage />;
+  }
+
+  if (!!error) {
+    return <Error title="Skills" error={error} />;
+  }
 
   return (
     <div className="container">

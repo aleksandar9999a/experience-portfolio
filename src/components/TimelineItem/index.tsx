@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent, useEffect } from 'react';
+import React, { useState, SyntheticEvent } from 'react';
 import './styles.css';
 import TTimelineValue from '../../types/TTimelineValue';
 import ITimelineItem from '../../interfaces/ITimelineItem';
@@ -10,11 +10,6 @@ function TimelineItem({ item, isEditable, id, onChange, onRemove }: ITimelineIte
     const [link, setLink] = useState<string>(item.link || '');
     const [start, setStart] = useState<string>(item.start || '');
     const [end, setEnd] = useState<string>(item.end || '');
-
-    useEffect(() => {
-        if (!onChange) { return; }
-        onChange({ id, title, desc, link, start, end });
-    }, [id, title, desc, link, start, end])
 
     function handleChange(type: string, event: any) {
         const value = event.target.value as string;
@@ -29,10 +24,17 @@ function TimelineItem({ item, isEditable, id, onChange, onRemove }: ITimelineIte
         if (types[type]) {
             types[type](value);
         }
+
+        if (onChange) {
+            onChange({ id, title, desc, link, start, end });
+        }
     }
 
-    function remove(e: SyntheticEvent) {
-        e.preventDefault(); if (onRemove) { onRemove(id); }
+    function handleRemove(e: SyntheticEvent) {
+        e.preventDefault();
+        if (onRemove) {
+            onRemove(item);
+        }
     }
 
     const handleTitle = (event: any) => handleChange('title', event);
@@ -89,7 +91,7 @@ function TimelineItem({ item, isEditable, id, onChange, onRemove }: ITimelineIte
                         />
                     </div>
                     <div className="timeline-submit">
-                        <button onClick={remove} className="timeline-submit-button">Remove</button>
+                        <button onClick={handleRemove} className="timeline-submit-button">Remove</button>
                     </div>
                 </div>
             </li>

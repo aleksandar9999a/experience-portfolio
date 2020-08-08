@@ -2,10 +2,12 @@ import React from 'react';
 import './styles.css';
 import { Plus } from 'react-bootstrap-icons';
 import ITimelineAddItem from '../../interfaces/ITimelineAddItem';
+import { generateDateID } from '../../utils/utils';
 
 function TimelineAddItem({ onClick }: ITimelineAddItem) {
     function addItem() {
         onClick({
+            id: generateDateID(),
             title: '',
             desc: '',
             link: '',

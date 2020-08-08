@@ -3,5 +3,7 @@ import ITimelineItems from "./ITimelineItems";
 export default interface ITimeline {
     items: ITimelineItems[], 
     isEditable?: boolean, 
-    onChange?: Function
+    onChange?: Function,
+    onRemove?: Function,
+    onAdd?: Function
 }
