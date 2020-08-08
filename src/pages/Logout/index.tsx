@@ -5,10 +5,14 @@ import LoadingPage from '../LoadingPage';
 
 function Logout() {
     const [redirect, setRedirect] = useState<boolean>(false);
-    useEffect(() => { logout().then(() => setRedirect(true)); })
-    
-    if (redirect) { return <Redirect to="/" />; }
-    return <LoadingPage />;
+
+    useEffect(() => {
+        logout().then(() => setRedirect(true));
+    })
+
+    return redirect
+        ? <Redirect to="/" />
+        : <LoadingPage />
 }
 
 export default Logout;
