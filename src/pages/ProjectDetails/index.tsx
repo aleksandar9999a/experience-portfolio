@@ -16,9 +16,13 @@ function ProjectDetails() {
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        getDefaultProjectByID(id).then(({ data }: { data: IProject }) => {
-            setProject(data);
-        }).catch(console.error).finally(() => setIsLoading(false));
+        getDefaultProjectByID(id)
+            .then(({ data }: { data: IProject }) => {
+                setProject(data);
+            })
+            .catch(console.error)
+            .finally(() => setIsLoading(false));
+
         const subscriber = auth.subscribe(u => setUser(u));
 
         return () => {
@@ -34,32 +38,37 @@ function ProjectDetails() {
         }
     }, [project, user])
 
-    if (isLoading) { return <LoadingPage />; }
-    if (!project) { return <Error title="Project Details" error="No Data!"/> }
-
-    if (isAuth) {
-        return (
-            <div className="project-details">
-                <ProjectDetailsBasic _id={project._id} title={project.title} description={project.description} images={project.images} link={project.link} />
-                <div className="project-actions">
-                    <Link className="link-button" to={`/projects/edit/${project._id}`}>
-                        Edit
-                    </Link>
-                    <Link className="link-button" to={`/projects/delete/${project._id}`}>
-                        Delete
-                    </Link>
-                </div>
-            </div>
-        )
-    } else {
-        return (
-            <div className="project-details">
-                <ProjectDetailsBasic _id={project._id} title={project.title} description={project.description} images={project.images} link={project.link} />
-            </div>
-        )
+    if (isLoading) {
+        return <LoadingPage />;
     }
 
+    if (!project) {
+        return <Error title="Project Details" error="No Data!" />
+    }
 
+    return (
+        <div className="project-details">
+            <ProjectDetailsBasic
+                _id={project._id}
+                title={project.title}
+                description={project.description}
+                images={project.images}
+                link={project.link}
+            />
+            {isAuth
+                ? (
+                    <div className="project-actions">
+                        <Link className="link-button" to={`/projects/edit/${project._id}`}>
+                            Edit
+                        </Link>
+                        <Link className="link-button" to={`/projects/delete/${project._id}`}>
+                            Delete
+                        </Link>
+                    </div>
+                )
+                : null}
+        </div>
+    )
 }
 
 export default ProjectDetails;
