@@ -4,7 +4,9 @@ import ICustomLink from '../../interfaces/ICustomLink';
 import icons from '../../configs/icons';
 
 function CustomLink({ alt, icon, link }: ICustomLink) {
-    if (!icons[icon]) { icon = 'unknown'; }
+    if (!icons[icon]) {
+        icon = 'unknown';
+    }
 
     return (
         <a href={link} target="_blank" className="social-link" rel="noopener noreferrer">

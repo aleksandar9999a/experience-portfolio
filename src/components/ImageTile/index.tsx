@@ -20,7 +20,11 @@ function ImageTile({ url, size, isEditable = false, handleRemove, id }: IImageTi
 
     function handleDelete(e: SyntheticEvent) {
         e.preventDefault();
-        if (!isEditable || !handleRemove) { return; }
+
+        if (!isEditable || !handleRemove) {
+            return;
+        }
+
         handleRemove(id);
     }
 
@@ -30,7 +34,7 @@ function ImageTile({ url, size, isEditable = false, handleRemove, id }: IImageTi
             {isEditable
                 ? <div className="img-tile-actions" style={style.actions}>
                     <button className="custom-btn" onClick={handleDelete}>Delete</button>
-                </div>
+                  </div>
                 : null
             }
         </div>

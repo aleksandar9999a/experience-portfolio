@@ -8,13 +8,24 @@ function ContactItem({ email, handleDelete, handleUpdate }: IContactItem) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isAnsweredState, setIsAnsweredState] = useState<boolean>(email.isAnswered || false);
 
-    function changeState() { setIsOpen(!isOpen); }
-    function handleIsAnswered() { setIsAnsweredState(!isAnsweredState); }
-    function handleRemove() { handleDelete(email._id); }
+    function changeState() {
+        setIsOpen(!isOpen);
+    }
+
+    function handleIsAnswered() {
+        setIsAnsweredState(!isAnsweredState);
+    }
+
+    function handleRemove() {
+        handleDelete(email._id);
+    }
 
     useEffect(() => {
         setIsLoading(true);
-        handleUpdate({ ...email, isAnswered: isAnsweredState }).finally(() => setIsLoading(false));
+        handleUpdate({ ...email, isAnswered: isAnsweredState })
+            .finally(() => {
+                setIsLoading(false);
+            });
     }, [isAnsweredState])
 
     return (
