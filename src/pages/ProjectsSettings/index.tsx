@@ -8,17 +8,22 @@ import { getAuthProjects } from '../../services';
 import LoadingPage from '../LoadingPage';
 
 function ProjectsSettings() {
-    let [projects, setProjects] = useState<JSX.Element[]>([]);
+    let [projects, setProjects] = useState<IProject[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        getAuthProjects().then(({ data }: { data: IProject[] }) => {
-            const list = data.map(project => (<div key={project._id} className="project-wrapper"><ProjectTile project={project} basicRoute="/settings/projects"/></div>))
-            setProjects(list);
-        }).catch(console.error).finally(() => setIsLoading(false));
+        getAuthProjects()
+            .then(({ data }: { data: IProject[] }) => {
+                setProjects(data);
+            })
+            .catch(console.error)
+            .finally(() => setIsLoading(false));
     }, [])
 
-    if (isLoading) { return <LoadingPage />; }
+    if (isLoading) {
+        return <LoadingPage />;
+    }
+
     return (
         <div className="container">
             <div className="title">
@@ -26,7 +31,11 @@ function ProjectsSettings() {
             </div>
             <div className="projects-form">
                 <div className="projects-tiles">
-                    {projects}
+                    {projects.map(project => {
+                        return <div key={project._id} className="project-wrapper">
+                                    <ProjectTile project={project} basicRoute="/settings/projects" />
+                                </div>
+                    })}
                     <Link className="projects-tile" to="/settings/projects/createProject">
                         <Plus className="projects-add-icon" />
                     </Link>
