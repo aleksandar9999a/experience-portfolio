@@ -8,23 +8,26 @@ import Logo from '../Logo';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
-    const [tabs, setTabs] = useState<JSX.Element[]>();
+    const [isAuth, setIsAuth] = useState<boolean>(false);
+    const authTabs = ['Settings', 'Log Out'];
 
-    function loadTabList(tabsConfig: ITab[]) {
-        const generateTab = (tab: ITab, i: number) => <Tab name={tab.name} route={tab.route} Icon={tab.Icon} key={i} />;
-        const list = tabsConfig.map(generateTab);
-        setTabs(list);
+    function generateAuthTabs() {
+        return tabsConfig.map((tab: ITab, i: number) => {
+            return <Tab name={tab.name} route={tab.route} Icon={tab.Icon} key={i} />
+        })
     }
 
-    function filterTabs(user: any) {
-        return !!user ? (tab: ITab) => tab.name !== 'Contacts' : (tab: ITab) => tab.name !== 'Settings' && tab.name !== 'Log Out';
+    function generateUnauthTabs() {
+        return tabsConfig.map((tab: ITab, i: number) => {
+            return ! authTabs.includes(tab.name)
+                ? <Tab name={tab.name} route={tab.route} Icon={tab.Icon} key={i} />
+                : null
+        })
     }
 
     useEffect(() => {
         const userdata = auth.subscribe(user => {
-            const filterFn = filterTabs(user);
-            const newTabsConfig = tabsConfig.filter(filterFn);
-            loadTabList(newTabsConfig);
+            setIsAuth(!!user)
         });
 
         return () => {
@@ -38,7 +41,11 @@ function Navbar() {
                 <Logo width="70px" height="60px" />
             </Link>
             <ul className="tabs">
-                {tabs}
+                { 
+                    isAuth 
+                        ? generateAuthTabs()
+                        : generateUnauthTabs()
+                }
             </ul>
         </div>
     );
