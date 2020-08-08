@@ -8,26 +8,15 @@ import Logo from '../Logo';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
-    const [isAuth, setIsAuth] = useState<boolean>(false);
-    const authTabs = ['Settings', 'Log Out'];
-
-    function generateAuthTabs() {
-        return tabsConfig.map((tab: ITab, i: number) => {
-            return <Tab name={tab.name} route={tab.route} Icon={tab.Icon} key={i} />
-        })
-    }
-
-    function generateUnauthTabs() {
-        return tabsConfig.map((tab: ITab, i: number) => {
-            return ! authTabs.includes(tab.name)
-                ? <Tab name={tab.name} route={tab.route} Icon={tab.Icon} key={i} />
-                : null
-        })
-    }
+    const [tabs, setTabs] = useState<ITab[]>([]);
 
     useEffect(() => {
         const userdata = auth.subscribe(user => {
-            setIsAuth(!!user)
+            if (!!user) {
+                setTabs(tabsConfig);
+            } else {
+                setTabs(tabsConfig.filter(tab => !tab.auth));
+            }
         });
 
         return () => {
@@ -41,11 +30,9 @@ function Navbar() {
                 <Logo width="70px" height="60px" />
             </Link>
             <ul className="tabs">
-                { 
-                    isAuth 
-                        ? generateAuthTabs()
-                        : generateUnauthTabs()
-                }
+                {tabs.map(tab => {
+                    return <Tab {...tab} key={tab.id} />
+                })}
             </ul>
         </div>
     );
