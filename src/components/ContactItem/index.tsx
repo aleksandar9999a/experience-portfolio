@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './styles.css';
 import IContactItem from '../../interfaces/IContactItem';
 import Loader from '../Loader';
@@ -13,20 +13,16 @@ function ContactItem({ email, handleDelete, handleUpdate }: IContactItem) {
     }
 
     function handleIsAnswered() {
+        setIsLoading(true);
         setIsAnsweredState(!isAnsweredState);
+        handleUpdate(email)
+            .catch(console.error)
+            .finally(() => setIsLoading(false));
     }
 
     function handleRemove() {
         handleDelete(email._id);
     }
-
-    useEffect(() => {
-        setIsLoading(true);
-        handleUpdate({ ...email, isAnswered: isAnsweredState })
-            .finally(() => {
-                setIsLoading(false);
-            });
-    }, [isAnsweredState])
 
     return (
         <tr className="contact-item">

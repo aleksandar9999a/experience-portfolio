@@ -4,11 +4,11 @@ import settingsLinks from '../../configs/settingsLinks';
 
 
 function SettingsContainer() {
-    const listOfRoutes = settingsLinks.map(({ path, Component }, i) => <Route path={path} key={i} exact><Component /></Route>);
-
     return (
         <Switch>
-            {listOfRoutes}
+            {settingsLinks.map(({ path, Component }, i) => {
+                return <Route path={path} key={i} exact><Component /></Route>
+            })}
         </Switch>
     );
 }

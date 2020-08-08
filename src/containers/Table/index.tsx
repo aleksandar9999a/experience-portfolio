@@ -7,30 +7,33 @@ import LoadingPage from '../../pages/LoadingPage';
 
 function Table() {
     const [items, setItems] = useState<IEmail[]>([]);
-    const [list, setList] = useState<JSX.Element[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    useEffect(() => { setIsLoading(true); setEmails().finally(() => setIsLoading(false)); }, [])
-
     useEffect(() => {
-        const newList = items.map(x => <ContactItem key={x._id} email={x} handleDelete={handleDelete} handleUpdate={handleUpdate} />);
-        setList(newList);
-    }, [items])
+        setEmails();
+    }, [])
 
     function setEmails() {
-        return getEmail().then(({ data }: { data: IEmail[] }) => { setItems(data); }).catch(console.error);
-    }
-
-    function handleUpdate(item: IEmail) {
-        return updateEmail(item).then(() => setEmails()).catch(console.error);
+        setIsLoading(true);
+        getEmail()
+            .then(({ data }: { data: IEmail[] }) => {
+                setItems(data);
+            })
+            .catch(console.error)
+            .finally(() => setIsLoading(false));
     }
 
     function handleDelete(id: string) {
         setIsLoading(true);
-        deleteEmail(id).then(() => setEmails()).catch(console.error).finally(() => setIsLoading(false));
+        deleteEmail(id)
+            .then(() => setEmails())
+            .catch(console.error)
+            .finally(() => setIsLoading(false));
     }
 
-    if (isLoading) { return <LoadingPage />; }
+    if (isLoading) {
+        return <LoadingPage />;
+    }
 
     return (
         <table className="contact-list">
@@ -41,8 +44,15 @@ function Table() {
                 </tr>
             </thead>
             <tbody>
-                {list.length > 0
-                    ? list
+                {items.length > 0
+                    ? items.map(x => {
+                        return <ContactItem
+                            key={x._id}
+                            email={x}
+                            handleDelete={handleDelete}
+                            handleUpdate={updateEmail}
+                        />;
+                    })
                     : <tr className="contact-item">
                         <td colSpan={3}>
                             No Emails!
