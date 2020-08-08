@@ -4,7 +4,7 @@ import ITimelineItems from '../../interfaces/ITimelineItems';
 import Timeline from '../../components/Timeline';
 import { getDefaultSkills } from '../../services';
 import ISkills from '../../interfaces/ISkills';
-import Error from '../../containers/Error';
+import ErrorPage from '../../containers/Error';
 import LoadingPage from '../LoadingPage';
 
 
@@ -18,7 +18,7 @@ function Skills() {
     getDefaultSkills()
       .then(({ data }: { data: ISkills }) => {
         if (!data) {
-          setError('No data!');
+          Promise.reject(new Error('No data!'));
           return;
         }
 
@@ -34,7 +34,7 @@ function Skills() {
   }
 
   if (!!error) {
-    return <Error title="Skills" error={error} />;
+    return <ErrorPage title="Skills" error={error} />;
   }
 
   return (
