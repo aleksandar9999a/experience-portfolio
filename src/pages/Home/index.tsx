@@ -5,17 +5,10 @@ import IContact from '../../interfaces/IContact';
 import { Link } from 'react-router-dom';
 import IMainUser from '../../interfaces/IMainUser';
 import { getDefaultMainInfo } from '../../services';
-import Error from '../../containers/Error';
+import ErrorPage from '../../containers/Error';
 import LoadingPage from '../LoadingPage';
+import contacts from '../../configs/contacts';
 
-const contacts: IContact[] = [
-    { alt: 'instagram', icon: 'instagram', href: 'https://www.instagram.com/sandi9999a/' },
-    { alt: 'github', icon: 'git', href: 'https://github.com/aleksandar9999a' },
-    { alt: 'linkedin', icon: 'linkedin', href: 'https://www.linkedin.com/in/alexandar-todorov/' }
-]
-
-const generateCustomLinks = (c: IContact, i: number) => <CustomLink key={i} alt={c.alt} icon={c.icon} link={c.href} />;
-const links = contacts.map(generateCustomLinks);
 
 function Home() {
     const [info, setInfo] = useState<IMainUser>({ firstName: '', lastName: '', devType: '' });
@@ -23,16 +16,27 @@ function Home() {
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        getDefaultMainInfo().then(({ data }: { data: IMainUser }) => {
-            if (!data) { setError('No Data'); return; }
-            setInfo(data)
-        }).catch(err => {
-            setError(err.message)
-        }).finally(() => setIsLoading(false));
+        getDefaultMainInfo()
+            .then(({ data }: { data: IMainUser }) => {
+                if (!data) {
+                    Promise.reject(new Error('No Data'));
+                    return;
+                }
+                setInfo(data);
+            })
+            .catch(err => {
+                setError(err.message);
+            })
+            .finally(() => setIsLoading(false));
     }, [])
 
-    if (isLoading) { return <LoadingPage /> }
-    if (!!error) { return <Error title="Home" error={error} />; }
+    if (isLoading) {
+        return <LoadingPage />;
+    }
+
+    if (!!error) {
+        return <ErrorPage title="Home" error={error} />;
+    }
 
     return (
         <div className="container custom-container">
@@ -52,7 +56,14 @@ function Home() {
                     </Link>
                 </div>
                 <div className="social-contacts">
-                    {links}
+                    {contacts.map((c: IContact, i: number) => {
+                        return <CustomLink
+                            key={i}
+                            alt={c.alt}
+                            icon={c.icon}
+                            link={c.href}
+                        />
+                    })}
                 </div>
             </div>
         </div>
