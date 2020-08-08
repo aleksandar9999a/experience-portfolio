@@ -10,27 +10,42 @@ function MainInfoSettings() {
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        getUserdata().then((user: any) => {
-            if (user) {
+        getUserdata()
+            .then((user: any) => {
+                if (!user) {
+                    return;
+                }
+
                 setFirstName(user.firstName);
                 setLastName(user.lastName);
                 setDevType(user.devType);
-            }
-        }).catch(err => {
-            setMessage(err.message);
-        }).finally(() => setIsLoading(false));
+            })
+            .catch(err => {
+                setMessage(err.message);
+            })
+            .finally(() => setIsLoading(false));
     }, []);
 
     useEffect(() => {
-        const sub = setTimeout(() => { setMessage(''); }, 3000)
-        return () => { clearTimeout(sub); }
+        const sub = setTimeout(() => {
+            setMessage('');
+        }, 3000)
+
+        return () => {
+            clearTimeout(sub);
+        }
     }, [message])
 
     function handleChange(type: string, event: any) {
-        const value = event.target.value
-        if (type === 'firstName') { setFirstName(value); return; }
-        if (type === 'lastName') { setLastName(value); return; }
-        if (type === 'devType') { setDevType(value); return; }
+        const types = {
+            firstName: setFirstName,
+            lastName: setLastName,
+            devType: setDevType
+        }
+
+        if (typeof (types as any)[type] === 'function') {
+            (types as any)[type](event.target.value);
+        }
     }
 
     function handleSubmit(e: SyntheticEvent) {
@@ -40,30 +55,50 @@ function MainInfoSettings() {
             return;
         }
 
-        updateAuthUserdata({ firstName, lastName, devType }).then(() => {
-            setMessage('Successful updated!');
-        }).catch(err => {
-            setMessage(err.message);
-        });
+        updateAuthUserdata({ firstName, lastName, devType })
+            .then(() => {
+                setMessage('Successful updated!');
+            })
+            .catch(err => {
+                setMessage(err.message);
+            });
     }
 
     const handleFirstName = (event: any) => handleChange('firstName', event);
     const handleLastName = (event: any) => handleChange('lastName', event);
     const handleDevType = (event: any) => handleChange('devType', event);
 
-    if (isLoading) { return <LoadingPage />; }
+    if (isLoading) {
+        return <LoadingPage />;
+    }
+
     return (
         <div className="container">
             <div className="title">
                 <h1>Main Information</h1>
             </div>
             <form className="main-info-form">
-                <input className="custom-input" type="text" placeholder="First Name"
-                    defaultValue={firstName} onChange={handleFirstName} />
-                <input className="custom-input" type="text" placeholder="Last Name"
-                    defaultValue={lastName} onChange={handleLastName} />
-                <input className="custom-input" type="text" placeholder="Dev Type"
-                    defaultValue={devType} onChange={handleDevType} />
+                <input
+                    className="custom-input"
+                    type="text"
+                    placeholder="First Name"
+                    defaultValue={firstName}
+                    onChange={handleFirstName}
+                />
+                <input
+                    className="custom-input"
+                    type="text"
+                    placeholder="Last Name"
+                    defaultValue={lastName}
+                    onChange={handleLastName}
+                />
+                <input
+                    className="custom-input"
+                    type="text"
+                    placeholder="Dev Type"
+                    defaultValue={devType}
+                    onChange={handleDevType}
+                />
                 <p className="custom-message">{message}</p>
                 <div className="custom-btn-wrapper">
                     <button className="custom-btn" onClick={handleSubmit}>Update Main Information</button>
