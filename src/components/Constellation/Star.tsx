@@ -80,12 +80,12 @@ export default class Star {
 
     private initWriting(starOne: IStarCoords, starTwo: IStarCoords) {
         if (
-            this.context &&
-            (
-                this.isValidDistance(starOne, starTwo) &&
-                (
-                    this.isValidRadius(starOne, this.width * 0.1, this.height * 0.3) ||
-                    this.isValidRadius(starOne, this.width * 0.8, this.height * 0.6)
+            this.context
+            && (
+                this.isValidDistance(starOne, starTwo)
+                && (
+                    this.isValidRadius(starOne, this.width * 0.1, this.height * 0.3)
+                    || this.isValidRadius(starOne, this.width * 0.8, this.height * 0.6)
                 )
             )
         ) {
