@@ -22,7 +22,7 @@ function Projects() {
 
     useEffect(() => {
         getDefaultProjects()
-            .then(({ data }: { data: IProject[] }) => {
+            .then(data => {
                 setProjects(data);
             })
             .catch(err => setError(err.message))

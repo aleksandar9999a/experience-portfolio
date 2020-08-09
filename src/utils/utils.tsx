@@ -1,3 +1,5 @@
+import { AxiosResponse } from "axios";
+
 /**
  * Generate Command - 'put' or 'post'
  * 
@@ -13,9 +15,11 @@ export function generateCommand(data: any): string {
 /**
  * Generate ID by date
  * 
+ * @param {String} str
+ * 
  * @returns {String}
  */
-export function generateDateID(str?: string) {
+export function generateDateID(str?: string): string {
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth();
@@ -28,4 +32,14 @@ export function generateDateID(str?: string) {
         : '';
 
     return `${year}${month}${day}${hour}${minutes}${milliseconds}${customEnd}`;
+}
+
+/**
+ * Axios Response Transmutation
+ * 
+ * @param res {AxiosResponse}
+ * @returns {Mixin}
+ */
+export function responseTransmutation(res: AxiosResponse<any>) {
+    return res.data;
 }

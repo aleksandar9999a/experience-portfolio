@@ -7,7 +7,6 @@ import React, { useState, useEffect } from 'react';
  * Internal dependencies.
  */
 import ITimelineItems from '../../interfaces/ITimelineItems';
-import ISkills from '../../interfaces/ISkills';
 import Timeline from '../../components/Timeline';
 import ErrorPage from '../ErrorPage';
 import LoadingPage from '../LoadingPage';
@@ -24,7 +23,7 @@ function Skills() {
 
   useEffect(() => {
     getDefaultSkills()
-      .then(({ data }: { data: ISkills }) => {
+      .then(data => {
         if (!data) {
           Promise.reject(new Error('No data!'));
           return;

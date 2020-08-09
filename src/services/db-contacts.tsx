@@ -1,13 +1,16 @@
 import Axios from 'axios';
 import IEmail from '../interfaces/IEmail';
 import config from './../configs/dbConfig';
+import { responseTransmutation } from '../utils/utils';
 
 /**
  * Send Email
  * 
  * @param {Object} data 
+ * 
+ * @returns {Promise}
  */
-export function sendEmail(data: IEmail) {
+export function sendEmail(data: IEmail): Promise<any> {
     return Axios.post('/contact', data);
 }
 
@@ -16,8 +19,9 @@ export function sendEmail(data: IEmail) {
  * 
  * @returns {Promise}
  */
-export function getEmail() {
-    return Axios.get('/contact', config.credentials);
+export function getEmail(): Promise<IEmail[]> {
+    return Axios.get('/contact', config.credentials)
+        .then(responseTransmutation);
 }
 
 /**
@@ -27,7 +31,7 @@ export function getEmail() {
  * 
  * @returns {Promise} 
  */
-export function deleteEmail(id: string) {
+export function deleteEmail(id: string): Promise<any> {
     return Axios.delete('/contact', { data: { id }, withCredentials: true });
 }
 
@@ -38,6 +42,6 @@ export function deleteEmail(id: string) {
  * 
  * @returns {Promise}
  */
-export function updateEmail(data: IEmail) {
+export function updateEmail(data: IEmail): Promise<any> {
     return Axios.put('/contact', data, config.credentials);
 }

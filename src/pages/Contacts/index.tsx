@@ -10,6 +10,7 @@ import isEmail from 'validator/lib/isEmail';
 import Loader from '../../components/Loader';
 import { sendEmail } from '../../services';
 
+
 function Contacts() {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');

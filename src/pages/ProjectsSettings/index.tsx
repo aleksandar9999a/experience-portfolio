@@ -15,15 +15,14 @@ import { getAuthProjects } from '../../services';
 
 import './styles.css';
 
+
 function ProjectsSettings() {
     let [projects, setProjects] = useState<IProject[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         getAuthProjects()
-            .then(({ data }: { data: IProject[] }) => {
-                setProjects(data);
-            })
+            .then(setProjects)
             .catch(console.error)
             .finally(() => setIsLoading(false));
     }, [])
@@ -41,8 +40,8 @@ function ProjectsSettings() {
                 <div className="projects-tiles">
                     {projects.map(project => {
                         return <div key={project._id} className="project-wrapper">
-                                    <ProjectTile project={project} basicRoute="/settings/projects" />
-                                </div>
+                            <ProjectTile project={project} basicRoute="/settings/projects" />
+                        </div>
                     })}
                     <Link className="projects-tile" to="/settings/projects/createProject">
                         <Plus className="projects-add-icon" />

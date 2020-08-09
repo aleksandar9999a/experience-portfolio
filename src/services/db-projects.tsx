@@ -2,7 +2,7 @@ import storage from './firebase';
 import config from './../configs/dbConfig';
 import Axios from 'axios';
 import IProject from '../interfaces/IProject';
-import { generateCommand, generateDateID } from '../utils/utils';
+import { generateCommand, generateDateID, responseTransmutation } from '../utils/utils';
 
 /**
  * Upload File
@@ -47,8 +47,9 @@ function getURL(shot: firebase.storage.UploadTaskSnapshot) {
  * 
  * @returns {Promise} 
  */
-export function getAuthProjects() {
-    return Axios.get(`/projects`, config.credentials);
+export function getAuthProjects(): Promise<IProject[]> {
+    return Axios.get(`/projects`, config.credentials)
+    .then(responseTransmutation);
 }
 
 /**

@@ -2,6 +2,7 @@ import { BehaviorSubject } from "rxjs";
 import Axios from "axios";
 import config from './../configs/dbConfig';
 import ILoginData from "../interfaces/ILoginData";
+import IUser from "../interfaces/IUser";
 
 Axios.defaults.baseURL = `${config.port}/api`;
 
@@ -13,7 +14,7 @@ getUserdata();
  * 
  * @returns {Promise}
  */
-export function getUserdata(): Promise<any> {
+export function getUserdata(): Promise<IUser | null> {
     return Axios.get(`/auth`, config.credentials)
         .then(res => {
             auth.next(res.data || null);
@@ -42,7 +43,7 @@ export function logout(): Promise<any> {
  * 
  * @returns {Promise}
  */
-export function submitLogin(loginData: ILoginData): Promise<any> {
+export function submitLogin(loginData: ILoginData): Promise<IUser> {
     return Axios.post(`/auth/login`, loginData, config.credentials)
         .then(res => {
             auth.next(res.data || null);

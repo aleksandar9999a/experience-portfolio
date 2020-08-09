@@ -24,7 +24,7 @@ function SkillsSettings() {
 
     useEffect(() => {
         getAuthSkills()
-            .then(({ data }: { data: ISkills }) => {
+            .then(data => {
                 if (!data) {
                     Promise.reject(new Error('No information!'));
                     return;

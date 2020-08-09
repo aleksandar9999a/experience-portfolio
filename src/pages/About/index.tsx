@@ -6,14 +6,14 @@ import React, { useState, useEffect } from 'react';
 /**
  * Internal dependencies.
  */
-import IAbout from '../../interfaces/IAbout';
-import Timeline from '../../components/Timeline';
 import ITimelineItems from '../../interfaces/ITimelineItems';
+import Timeline from '../../components/Timeline';
 import ErrorPage from './../ErrorPage';
 import LoadingPage from '../LoadingPage';
 import { getDefaultAbout } from '../../services';
 
 import './styles.css';
+
 
 function About() {
     const [headline, setHeadline] = useState<string>();
@@ -23,7 +23,7 @@ function About() {
 
     useEffect(() => {
         getDefaultAbout()
-            .then(({ data }: { data: IAbout }) => {
+            .then(data => {
                 if (!data) {
                     Promise.reject(new Error('No data!'));
                     return;

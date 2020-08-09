@@ -1,5 +1,10 @@
 import Axios from "axios";
 import config from './../configs/dbConfig';
+import IAbout from "../interfaces/IAbout";
+import ISkills from "../interfaces/ISkills";
+import IProject from "../interfaces/IProject";
+import { responseTransmutation } from "../utils/utils";
+import IMainUser from "../interfaces/IMainUser";
 
 Axios.create({ baseURL: `${config.port}/api` });
 
@@ -8,8 +13,9 @@ Axios.create({ baseURL: `${config.port}/api` });
  * 
  * @returns {Promise}
  */
-export function getDefaultAbout() {
-    return Axios.get(`/defaults/about`);
+export function getDefaultAbout(): Promise<IAbout | null> {
+    return Axios.get(`/defaults/about`)
+        .then(responseTransmutation);
 }
 
 /**
@@ -17,8 +23,9 @@ export function getDefaultAbout() {
  * 
  * @returns {Promise}
  */
-export function getDefaultSkills() {
-    return Axios.get(`/defaults/skills`);
+export function getDefaultSkills(): Promise<ISkills | null> {
+    return Axios.get(`/defaults/skills`)
+        .then(responseTransmutation);
 }
 
 /**
@@ -26,8 +33,9 @@ export function getDefaultSkills() {
  * 
  * @returns {Promise}
  */
-export function getDefaultProjects() {
-    return Axios.get(`/defaults/projects`);
+export function getDefaultProjects(): Promise<IProject[]> {
+    return Axios.get(`/defaults/projects`)
+        .then(responseTransmutation);
 }
 
 /**
@@ -37,8 +45,9 @@ export function getDefaultProjects() {
  * 
  * @returns {Promise}
  */
-export function getDefaultProjectByID(id: string) {
-    return Axios.get(`/defaults/projects/${id}`);
+export function getDefaultProjectByID(id: string): Promise<IProject> {
+    return Axios.get(`/defaults/projects/${id}`)
+        .then(responseTransmutation);
 }
 
 /**
@@ -46,6 +55,7 @@ export function getDefaultProjectByID(id: string) {
  * 
  * @returns {Promise}
  */
-export function getDefaultMainInfo() {
-    return Axios.get(`/defaults`);
+export function getDefaultMainInfo(): Promise<IMainUser | null> {
+    return Axios.get(`/defaults`)
+        .then(responseTransmutation);
 }

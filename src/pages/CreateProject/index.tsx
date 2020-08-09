@@ -9,7 +9,6 @@ import { useParams } from 'react-router-dom';
 /**
  * Internal dependencies.
  */
-import IProject from '../../interfaces/IProject';
 import IUploadedImage from '../../interfaces/IUploadedImage';
 import ImageTile from '../../components/ImageTile';
 import Loader from '../../components/Loader';
@@ -33,7 +32,7 @@ function CreateProject() {
         }
 
         getDefaultProjectByID(id)
-            .then(({ data }: { data: IProject }) => {
+            .then(data => {
                 if (!data) {
                     return;
                 }

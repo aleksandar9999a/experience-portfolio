@@ -26,7 +26,7 @@ function ProjectDetails() {
 
     useEffect(() => {
         getDefaultProjectByID(id)
-            .then(({ data }: { data: IProject }) => {
+            .then(data => {
                 setProject(data);
             })
             .catch(console.error)

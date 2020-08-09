@@ -9,6 +9,7 @@ import React, { useState, SyntheticEvent, useEffect } from 'react';
 import LoadingPage from '../LoadingPage';
 import { getUserdata, updateAuthUserdata } from '../../services';
 
+
 function MainInfoSettings() {
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
@@ -18,7 +19,7 @@ function MainInfoSettings() {
 
     useEffect(() => {
         getUserdata()
-            .then((user: any) => {
+            .then(user => {
                 if (!user) {
                     return;
                 }

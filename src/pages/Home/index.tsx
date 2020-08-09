@@ -24,7 +24,7 @@ function Home() {
 
     useEffect(() => {
         getDefaultMainInfo()
-            .then(({ data }: { data: IMainUser }) => {
+            .then(data => {
                 if (!data) {
                     Promise.reject(new Error('No Data'));
                     return;

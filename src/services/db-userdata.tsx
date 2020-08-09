@@ -3,7 +3,7 @@ import Axios from 'axios';
 import ISkills from '../interfaces/ISkills';
 import IMainUser from '../interfaces/IMainUser';
 import IAbout from '../interfaces/IAbout';
-import { generateCommand } from '../utils/utils';
+import { generateCommand, responseTransmutation } from '../utils/utils';
 
 /**
  * Update userdata
@@ -12,7 +12,7 @@ import { generateCommand } from '../utils/utils';
  * 
  * @returns {Promise}
  */
-export function updateAuthUserdata(userdata: IMainUser) {
+export function updateAuthUserdata(userdata: IMainUser): Promise<any> {
     return Axios.put(`/auth`, userdata, config.credentials);
 }
 
@@ -23,7 +23,7 @@ export function updateAuthUserdata(userdata: IMainUser) {
  * 
  * @returns {Promise} 
  */
-export function updateAuthSkills(data: ISkills) {
+export function updateAuthSkills(data: ISkills): Promise<any> {
     const command = generateCommand(data);
     return (Axios as any)[command](`/skills`, data, config.credentials);
 }
@@ -35,7 +35,7 @@ export function updateAuthSkills(data: ISkills) {
  * 
  * @returns {Promise} 
  */
-export function updateAuthAbout(data: IAbout) {
+export function updateAuthAbout(data: IAbout): Promise<any> {
     const command = generateCommand(data);
     return (Axios as any)[command](`/about`, data, config.credentials);
 }
@@ -45,8 +45,9 @@ export function updateAuthAbout(data: IAbout) {
  * 
  * @returns {Promise} 
  */
-export function getAuthSkills() {
-    return Axios.get(`/skills`, config.credentials);
+export function getAuthSkills(): Promise<ISkills | null> {
+    return Axios.get(`/skills`, config.credentials)
+        .then(responseTransmutation);
 }
 
 /**
@@ -54,6 +55,7 @@ export function getAuthSkills() {
  * 
  * @returns {Promise} 
  */
-export function getAuthAbout() {
-    return Axios.get(`/about`, config.credentials);
+export function getAuthAbout(): Promise<IAbout | null> {
+    return Axios.get(`/about`, config.credentials)
+        .then(responseTransmutation);
 }

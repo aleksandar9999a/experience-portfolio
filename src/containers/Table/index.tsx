@@ -25,7 +25,7 @@ function Table() {
     function setEmails() {
         setIsLoading(true);
         getEmail()
-            .then(({ data }: { data: IEmail[] }) => {
+            .then(data => {
                 setItems(data);
             })
             .catch(console.error)

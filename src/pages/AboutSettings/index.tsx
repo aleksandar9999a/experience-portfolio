@@ -24,7 +24,7 @@ function AboutSettings() {
 
     useEffect(() => {
         getAuthAbout()
-            .then(({ data }: { data: IAbout }) => {
+            .then(data => {
                 if (!data) {
                     Promise.reject(new Error('No information!'));
                     return;
