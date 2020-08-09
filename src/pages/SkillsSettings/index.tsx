@@ -10,7 +10,7 @@ import ITimelineItems from '../../interfaces/ITimelineItems';
 import ISkills from '../../interfaces/ISkills';
 import Timeline from '../../components/Timeline';
 import LoadingPage from '../LoadingPage';
-import { getAuthSkills, updateAuthSkills } from '../../services';
+import { getAuthSkills, upsertAuthSkills } from '../../services';
 
 import './styles.css';
 
@@ -93,7 +93,7 @@ function SkillsSettings() {
         };
 
         setIsLoading(true);
-        updateAuthSkills(newData)
+        upsertAuthSkills(newData)
             .then(() => {
                 setMessage('Successful updated!');
                 removeMessage(3000);

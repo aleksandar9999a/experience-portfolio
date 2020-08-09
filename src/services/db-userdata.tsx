@@ -23,7 +23,7 @@ export function updateAuthUserdata(userdata: IMainUser): Promise<any> {
  * 
  * @returns {Promise} 
  */
-export function updateAuthSkills(data: ISkills): Promise<any> {
+export function upsertAuthSkills(data: ISkills): Promise<any> {
     const command = generateCommand(data);
     return (Axios as any)[command](`/skills`, data, config.credentials);
 }
@@ -35,7 +35,7 @@ export function updateAuthSkills(data: ISkills): Promise<any> {
  * 
  * @returns {Promise} 
  */
-export function updateAuthAbout(data: IAbout): Promise<any> {
+export function upsertAuthAbout(data: IAbout): Promise<any> {
     const command = generateCommand(data);
     return (Axios as any)[command](`/about`, data, config.credentials);
 }

@@ -12,7 +12,7 @@ import { useParams } from 'react-router-dom';
 import IUploadedImage from '../../interfaces/IUploadedImage';
 import ImageTile from '../../components/ImageTile';
 import Loader from '../../components/Loader';
-import { createProject, getDefaultProjectByID, uploadImage } from '../../services';
+import { upsertProject, getDefaultProjectByID, uploadImage } from '../../services';
 
 import './styles.css';
 
@@ -119,7 +119,7 @@ function CreateProject() {
         }
 
         setIsLoding(true);
-        createProject({ _id: id, creatorId, title, description, images: files, link })
+        upsertProject({ _id: id, creatorId, title, description, images: files, link })
             .then(() => setMessage('Successful uploaded!'))
             .catch((err: Error) => setMessage(err.message))
             .finally(() => setIsLoding(false))

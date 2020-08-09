@@ -10,7 +10,7 @@ import IAbout from '../../interfaces/IAbout';
 import ITimelineItems from '../../interfaces/ITimelineItems';
 import Timeline from '../../components/Timeline';
 import LoadingPage from '../LoadingPage';
-import { getAuthAbout, updateAuthAbout } from '../../services';
+import { getAuthAbout, upsertAuthAbout } from '../../services';
 
 import './styles.css';
 
@@ -93,7 +93,7 @@ function AboutSettings() {
         };
 
         setIsLoading(true);
-        updateAuthAbout(newData)
+        upsertAuthAbout(newData)
             .then(() => {
                 setMessage('Successful updated!');
                 removeMessage(3000);

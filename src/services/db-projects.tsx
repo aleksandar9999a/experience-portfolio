@@ -3,6 +3,7 @@ import config from './../configs/dbConfig';
 import Axios from 'axios';
 import IProject from '../interfaces/IProject';
 import { generateCommand, generateDateID, responseTransmutation } from '../utils/utils';
+import IUploadImageResponse from '../interfaces/IUploadImageResponse';
 
 /**
  * Upload File
@@ -25,7 +26,7 @@ function uploadFile(file: File, id: string) {
  * 
  * @returns {Promise} 
  */
-export function deleteFile(id: string) {
+export function deleteFile(id: string): Promise<any> {
     return storage
         .ref(`images/${id}`)
         .delete();
@@ -38,7 +39,7 @@ export function deleteFile(id: string) {
  * 
  * @returns {Promise} 
  */
-function getURL(shot: firebase.storage.UploadTaskSnapshot) {
+function getURL(shot: firebase.storage.UploadTaskSnapshot): Promise<any> {
     return shot.ref.getDownloadURL();
 }
 
@@ -59,7 +60,7 @@ export function getAuthProjects(): Promise<IProject[]> {
  * 
  * @returns {Promise}
  */
-export function uploadImage(file: File) {
+export function uploadImage(file: File): Promise<IUploadImageResponse> {
     const _id = generateDateID(file.name);
     return uploadFile(file, _id)
         .then(getURL)
@@ -69,13 +70,13 @@ export function uploadImage(file: File) {
 }
 
 /**
- * Create Project
+ * Upsert Project
  * 
  * @param {Object} data
  * 
  * @returns {Promise} 
  */
-export function createProject(data: IProject) {
+export function upsertProject(data: IProject): Promise<any> {
     const command = generateCommand(data);
     return (Axios as any)[command]('/projects', data, config.credentials);
 }
@@ -87,6 +88,6 @@ export function createProject(data: IProject) {
  * 
  * @returns {Promise} 
  */
-export function deleteProject(id: string) {
+export function deleteProject(id: string): Promise<any> {
     return Axios.delete(`/projects`, { data: { id }, withCredentials: true });
 }
