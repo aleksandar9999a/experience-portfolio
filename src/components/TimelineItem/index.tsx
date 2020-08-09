@@ -1,7 +1,15 @@
+/**
+ * External dependencies.
+ */
 import React, { useState, SyntheticEvent } from 'react';
-import './styles.css';
+
+/**
+ * Internal dependencies.
+ */
 import TTimelineValue from '../../types/TTimelineValue';
 import ITimelineItem from '../../interfaces/ITimelineItem';
+
+import './styles.css';
 
 
 function TimelineItem({ item, isEditable, id, onChange, onRemove }: ITimelineItem) {

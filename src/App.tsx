@@ -1,7 +1,15 @@
+/**
+ * External dependencies.
+ */
 import React from 'react';
-import './App.css';
+
+/**
+ * Internal dependencies.
+ */
 import Constellation from './components/Constellation';
 import Overlay from './containers/Overlay';
+
+import './App.css';
 
 function App() {
   return (

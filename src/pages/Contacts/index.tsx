@@ -1,7 +1,14 @@
+/**
+ * External dependencies.
+ */
 import React, { useState, SyntheticEvent, useEffect } from 'react';
 import isEmail from 'validator/lib/isEmail';
-import { sendEmail } from '../../services';
+
+/**
+ * Internal dependencies.
+ */
 import Loader from '../../components/Loader';
+import { sendEmail } from '../../services';
 
 function Contacts() {
   const [name, setName] = useState<string>('');

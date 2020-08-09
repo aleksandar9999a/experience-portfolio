@@ -1,6 +1,14 @@
+/**
+ * External dependencies.
+ */
 import React, { useState } from 'react';
+
+/**
+ * Internal dependencies.
+ */
 import IContactItem from '../../interfaces/IContactItem';
 import Loader from '../Loader';
+
 import './styles.css';
 
 function ContactItem({ email, handleDelete, handleUpdate }: IContactItem) {

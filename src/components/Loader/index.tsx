@@ -1,4 +1,8 @@
+/**
+ * External dependencies.
+ */
 import React from 'react';
+
 import './styles.css';
 
 function Loader() {

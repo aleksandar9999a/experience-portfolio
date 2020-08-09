@@ -1,10 +1,18 @@
+/**
+ * External dependencies.
+ */
 import React, { useState, useEffect } from 'react';
+
+/**
+ * Internal dependencies.
+ */
+import IAbout from '../../interfaces/IAbout';
 import Timeline from '../../components/Timeline';
 import ITimelineItems from '../../interfaces/ITimelineItems';
-import IAbout from '../../interfaces/IAbout';
-import { getDefaultAbout } from '../../services';
-import ErrorPage from '../../containers/Error';
+import ErrorPage from './../ErrorPage';
 import LoadingPage from '../LoadingPage';
+import { getDefaultAbout } from '../../services';
+
 import './styles.css';
 
 function About() {

@@ -1,9 +1,18 @@
+/**
+ * External dependencies.
+ */
 import React, { useState, useEffect } from 'react';
-import './styles.css';
+
+/**
+ * Internal dependencies.
+ */
 import IEmail from '../../interfaces/IEmail';
 import { getEmail, deleteEmail, updateEmail } from '../../services';
 import ContactItem from '../../components/ContactItem';
 import LoadingPage from '../../pages/LoadingPage';
+
+import './styles.css';
+
 
 function Table() {
     const [items, setItems] = useState<IEmail[]>([]);

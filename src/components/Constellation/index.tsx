@@ -1,4 +1,11 @@
+/**
+ * External dependencies.
+ */
 import React, { useEffect, useRef } from 'react';
+
+/**
+ * Internal dependencies.
+ */
 import { createConstellation } from './ConstellationAdapter';
 
 function Constellation() {

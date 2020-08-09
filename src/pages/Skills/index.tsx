@@ -1,11 +1,19 @@
+/**
+ * External dependencies.
+ */
 import React, { useState, useEffect } from 'react';
-import './styles.css';
+
+/**
+ * Internal dependencies.
+ */
 import ITimelineItems from '../../interfaces/ITimelineItems';
-import Timeline from '../../components/Timeline';
-import { getDefaultSkills } from '../../services';
 import ISkills from '../../interfaces/ISkills';
-import ErrorPage from '../../containers/Error';
+import Timeline from '../../components/Timeline';
+import ErrorPage from '../ErrorPage';
 import LoadingPage from '../LoadingPage';
+import { getDefaultSkills } from '../../services';
+
+import './styles.css';
 
 
 function Skills() {

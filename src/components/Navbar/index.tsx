@@ -1,10 +1,18 @@
+/**
+ * External dependencies.
+ */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+/**
+ * Internal dependencies.
+ */
 import ITab from '../../interfaces/ITab';
 import Tab from '../Tab';
 import { auth } from '../../services/db-auth';
 import tabsConfig from '../../configs/navbar';
 import Logo from '../Logo';
+
 import './styles.css';
 
 function Navbar() {

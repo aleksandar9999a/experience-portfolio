@@ -1,6 +1,13 @@
+/**
+ * External dependencies.
+ */
 import React, { useState, SyntheticEvent, useEffect } from 'react';
-import { getUserdata, updateAuthUserdata } from '../../services';
+
+/**
+ * Internal dependencies.
+ */
 import LoadingPage from '../LoadingPage';
+import { getUserdata, updateAuthUserdata } from '../../services';
 
 function MainInfoSettings() {
     const [firstName, setFirstName] = useState<string>('');

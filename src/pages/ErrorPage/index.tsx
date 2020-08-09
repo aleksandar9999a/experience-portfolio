@@ -1,7 +1,7 @@
 import React from 'react';
 import IErrorPage from '../../interfaces/IErrorPage';
 
-function Error({ title, error }: IErrorPage) {
+function ErrorPage({ title, error }: IErrorPage) {
   return (
     <div className="container">
       <div className="title">
@@ -14,4 +14,4 @@ function Error({ title, error }: IErrorPage) {
   );
 }
 
-export default Error;
+export default ErrorPage;

@@ -1,5 +1,13 @@
+/**
+ * External dependencies.
+ */
 import React from 'react';
+
+/**
+ * Internal dependencies.
+ */
 import Loader from '../../components/Loader';
+
 import './styles.css'
 
 function LoadingPage() {

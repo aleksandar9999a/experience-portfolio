@@ -1,8 +1,15 @@
+/**
+ * External dependencies.
+ */
 import React, { useState, SyntheticEvent, useEffect } from 'react';
-import { submitLogin } from '../../services';
 import { Redirect } from 'react-router-dom';
+
+/**
+ * Internal dependencies.
+ */
 import Loader from '../../components/Loader';
 import LoadingPage from '../LoadingPage';
+import { submitLogin } from '../../services';
 
 function Login() {
     const [email, setEmail] = useState<string>('');

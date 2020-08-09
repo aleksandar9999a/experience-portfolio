@@ -1,11 +1,19 @@
+/**
+ * External dependencies.
+ */
 import React, { useState, useEffect } from 'react';
-import './styles.css';
 import { Plus } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
+
+/**
+ * Internal dependencies.
+ */
 import IProject from '../../interfaces/IProject';
 import ProjectTile from '../../components/ProjectTile';
-import { getAuthProjects } from '../../services';
 import LoadingPage from '../LoadingPage';
+import { getAuthProjects } from '../../services';
+
+import './styles.css';
 
 function ProjectsSettings() {
     let [projects, setProjects] = useState<IProject[]>([]);

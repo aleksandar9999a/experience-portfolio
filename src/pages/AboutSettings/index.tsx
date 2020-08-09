@@ -1,10 +1,19 @@
+/**
+ * External dependencies.
+ */
 import React, { useEffect, useState, SyntheticEvent } from 'react';
-import './styles.css';
+
+/**
+ * Internal dependencies.
+ */
+import IAbout from '../../interfaces/IAbout';
 import ITimelineItems from '../../interfaces/ITimelineItems';
 import Timeline from '../../components/Timeline';
-import IAbout from '../../interfaces/IAbout';
-import { getAuthAbout, updateAuthAbout } from '../../services';
 import LoadingPage from '../LoadingPage';
+import { getAuthAbout, updateAuthAbout } from '../../services';
+
+import './styles.css';
+
 
 function AboutSettings() {
     const [data, setData] = useState<IAbout>();

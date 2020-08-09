@@ -1,6 +1,14 @@
+/**
+ * External dependencies.
+ */
 import React from 'react';
+
+/**
+ * Internal dependencies.
+ */
 import ICustomLink from '../../interfaces/ICustomLink';
 import icons from '../../configs/icons';
+
 import './styles.css';
 
 function CustomLink({ alt, icon, link }: ICustomLink) {

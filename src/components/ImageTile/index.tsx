@@ -1,5 +1,13 @@
+/**
+ * External dependencies.
+ */
 import React, { SyntheticEvent } from 'react';
+
+/**
+ * Internal dependencies.
+ */
 import IImageTile from '../../interfaces/IImageTile';
+
 import './styles.css';
 
 function ImageTile({ url, size, isEditable = false, handleRemove, id }: IImageTile) {

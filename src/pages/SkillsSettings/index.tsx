@@ -1,10 +1,19 @@
+/**
+ * External dependencies.
+ */
 import React, { useState, useEffect, SyntheticEvent } from 'react';
-import './styles.css';
+
+/**
+ * Internal dependencies.
+ */
 import ITimelineItems from '../../interfaces/ITimelineItems';
-import Timeline from '../../components/Timeline';
 import ISkills from '../../interfaces/ISkills';
-import { getAuthSkills, updateAuthSkills } from '../../services';
+import Timeline from '../../components/Timeline';
 import LoadingPage from '../LoadingPage';
+import { getAuthSkills, updateAuthSkills } from '../../services';
+
+import './styles.css';
+
 
 function SkillsSettings() {
     const [data, setData] = useState<ISkills>();

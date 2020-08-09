@@ -1,9 +1,17 @@
+/**
+ * External dependencies.
+ */
 import React, { useState } from 'react';
-import './styles.css';
+import { ArrowLeft, ArrowRight } from 'react-bootstrap-icons';
+
+/**
+ * Internal dependencies.
+ */
 import IUploadedImage from '../../interfaces/IUploadedImage';
 import ImageTile from '../ImageTile';
-import { ArrowLeft, ArrowRight } from 'react-bootstrap-icons';
 import ISlideshow from '../../interfaces/ISlideshow';
+
+import './styles.css';
 
 function Slideshow({ images }: ISlideshow) {
     const [img, setImg] = useState<IUploadedImage>(images[0]);

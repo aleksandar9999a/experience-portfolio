@@ -1,13 +1,21 @@
+/**
+ * External dependencies.
+ */
 import React, { useState, useEffect, SyntheticEvent } from 'react';
-import './styles.css';
+import isURL from 'validator/lib/isURL';
 import { Plus } from 'react-bootstrap-icons';
-import ImageTile from '../../components/ImageTile';
-import { createProject, getDefaultProjectByID, uploadImage } from '../../services';
 import { useParams } from 'react-router-dom';
+
+/**
+ * Internal dependencies.
+ */
 import IProject from '../../interfaces/IProject';
 import IUploadedImage from '../../interfaces/IUploadedImage';
-import isURL from 'validator/lib/isURL';
+import ImageTile from '../../components/ImageTile';
 import Loader from '../../components/Loader';
+import { createProject, getDefaultProjectByID, uploadImage } from '../../services';
+
+import './styles.css';
 
 function CreateProject() {
     const [title, setTitle] = useState<string>('');

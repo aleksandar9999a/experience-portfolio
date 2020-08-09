@@ -1,7 +1,14 @@
+/**
+ * External dependencies.
+ */
 import React, { useState, useEffect } from 'react';
-import { logout } from '../../services';
 import { Redirect } from 'react-router-dom';
+
+/**
+ * Internal dependencies.
+ */
 import LoadingPage from '../LoadingPage';
+import { logout } from '../../services';
 
 function Logout() {
     const [redirect, setRedirect] = useState<boolean>(false);

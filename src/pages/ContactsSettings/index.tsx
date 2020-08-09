@@ -1,6 +1,15 @@
+/**
+ * External dependencies.
+ */
 import React from 'react';
-import './styles.css';
+
+/**
+ * Internal dependencies.
+ */
 import Table from '../../containers/Table';
+
+import './styles.css';
+
 
 function ContactsSettings() {
     return (

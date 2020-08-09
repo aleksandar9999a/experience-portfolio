@@ -1,8 +1,16 @@
+/**
+ * External dependencies.
+ */
 import React from 'react';
+
+/**
+ * Internal dependencies.
+ */
 import ITimelineItems from '../../interfaces/ITimelineItems';
 import TimelineItem from '../TimelineItem';
 import TimelineAddItem from '../TimelineAddItem';
 import ITimeline from '../../interfaces/ITimeline';
+
 import './styles.css';
 
 

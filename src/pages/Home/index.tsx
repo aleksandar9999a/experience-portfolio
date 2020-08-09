@@ -1,13 +1,20 @@
+/**
+ * External dependencies.
+ */
 import React, { useState, useEffect } from 'react';
-import './styles.css';
-import CustomLink from '../../components/CustomLink';
-import IContact from '../../interfaces/IContact';
 import { Link } from 'react-router-dom';
-import IMainUser from '../../interfaces/IMainUser';
-import { getDefaultMainInfo } from '../../services';
-import ErrorPage from '../../containers/Error';
-import LoadingPage from '../LoadingPage';
+
+/**
+ * Internal dependencies.
+ */
 import contacts from '../../configs/contacts';
+import IContact from '../../interfaces/IContact';
+import IMainUser from '../../interfaces/IMainUser';
+import CustomLink from '../../components/CustomLink';
+import ErrorPage from './../ErrorPage';
+import LoadingPage from './../LoadingPage';
+import { getDefaultMainInfo } from '../../services';
+import './styles.css';
 
 
 function Home() {

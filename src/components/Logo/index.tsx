@@ -1,5 +1,13 @@
+/**
+ * External dependencies.
+ */
 import React from 'react';
+
+/**
+ * Internal dependencies.
+ */
 import ILogo from '../../interfaces/ILogo';
+
 import './styles.css';
 
 function Logo({ width = '80px', height = '60px', logoSize = '20px', nameSize = '10' }: ILogo) {

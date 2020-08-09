@@ -1,8 +1,16 @@
+/**
+ * External dependencies.
+ */
 import React from 'react';
-import './styles.css';
 import { BrowserRouter as Router} from 'react-router-dom';
+
+/**
+ * Internal dependencies.
+ */
 import SettingsNavbar from '../../components/SettingsNavbar';
 import SettingsContainer from '../SettingsContainer';
+
+import './styles.css';
 
 function Settings() {
   return (

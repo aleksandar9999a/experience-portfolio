@@ -1,10 +1,19 @@
+/**
+ * External dependencies.
+ */
 import React, { useState, useEffect } from 'react';
+
+/**
+ * Internal dependencies.
+ */
 import IProject from '../../interfaces/IProject';
 import ProjectTile from '../../components/ProjectTile';
-import './styles.css';
-import { getDefaultProjects } from '../../services';
-import Error from '../../containers/Error';
+import ErrorPage from '../ErrorPage';
 import LoadingPage from '../LoadingPage';
+import { getDefaultProjects } from '../../services';
+
+import './styles.css';
+
 
 function Projects() {
     let [projects, setProjects] = useState<IProject[]>([]);
@@ -25,7 +34,7 @@ function Projects() {
     }
 
     if (error || projects.length === 0) {
-        return <Error title="Projects" error={error || 'No Data!'} />;
+        return <ErrorPage title="Projects" error={error || 'No Data!'} />;
     }
 
     return (

@@ -1,12 +1,21 @@
+/**
+ * External dependencies.
+ */
 import React, { useEffect, useState } from 'react';
-import './styles.css';
 import { useParams, Link } from 'react-router-dom';
+
+/**
+ * Internal dependencies.
+ */
 import IProject from './../../interfaces/IProject';
-import { auth } from './../../services/db-auth';
 import ProjectDetailsBasic from '../../containers/ProjectDetailsBasic';
-import { getDefaultProjectByID } from '../../services';
-import Error from '../../containers/Error';
+import ErrorPage from '../ErrorPage';
 import LoadingPage from '../LoadingPage';
+import { getDefaultProjectByID } from '../../services';
+import { auth } from './../../services/db-auth';
+
+import './styles.css';
+
 
 function ProjectDetails() {
     let { id } = useParams();
@@ -43,7 +52,7 @@ function ProjectDetails() {
     }
 
     if (!project) {
-        return <Error title="Project Details" error="No Data!" />
+        return <ErrorPage title="Project Details" error="No Data!" />
     }
 
     return (

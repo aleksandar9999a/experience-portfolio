@@ -1,9 +1,18 @@
+/**
+ * External dependencies.
+ */
 import React from 'react';
-import './styles.css';
 import { BrowserRouter as Router } from "react-router-dom";
+
+/**
+ * Internal dependencies.
+ */
 import Navbar from '../../components/Navbar';
 import Container from '../Container';
 import Footer from '../../components/Footer';
+
+import './styles.css';
+
 
 function Overlay() {
   return (

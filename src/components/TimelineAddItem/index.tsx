@@ -1,8 +1,16 @@
+/**
+ * External dependencies.
+ */
 import React from 'react';
-import './styles.css';
 import { Plus } from 'react-bootstrap-icons';
+
+/**
+ * Internal dependencies.
+ */
 import ITimelineAddItem from '../../interfaces/ITimelineAddItem';
 import { generateDateID } from '../../utils/utils';
+
+import './styles.css';
 
 function TimelineAddItem({ onClick }: ITimelineAddItem) {
     function addItem() {

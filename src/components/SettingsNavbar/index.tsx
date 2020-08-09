@@ -1,7 +1,15 @@
+/**
+ * External dependencies.
+ */
 import React from 'react';
-import './styles.css';
+
+/**
+ * Internal dependencies.
+ */
 import SettingsTab from '../SettingsTab';
 import tabsConfig from '../../configs/settingsTabs';
+
+import './styles.css';
 
 
 function SettingsNavbar() {

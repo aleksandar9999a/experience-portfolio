@@ -1,6 +1,14 @@
+/**
+ * External dependencies.
+ */
 import React from 'react';
-import './styles.css';
+
+/**
+ * Internal dependencies.
+ */
 import Logo from '../Logo';
+
+import './styles.css';
 
 function Footer() {
     return (

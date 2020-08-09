@@ -1,7 +1,16 @@
+/**
+ * External dependencies.
+ */
 import React from 'react';
+
+/**
+ * Internal dependencies.
+ */
 import IProject from "../../interfaces/IProject";
-import './styles.css';
 import Slideshow from '../../components/Slideshow';
+
+import './styles.css';
+
 
 function ProjectDetailsBasic({ title, description, images, link }: IProject) {
     return ( 

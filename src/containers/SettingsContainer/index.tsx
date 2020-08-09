@@ -1,5 +1,12 @@
+/**
+ * External dependencies.
+ */
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+
+/**
+ * Internal dependencies.
+ */
 import settingsLinks from '../../configs/settingsLinks';
 
 
