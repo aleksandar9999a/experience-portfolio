@@ -89,7 +89,7 @@ function SkillsSettings() {
                 setMessage('Successful updated!');
                 removeMessage(3000);
             })
-            .catch(err => {
+            .catch((err: Error) => {
                 setMessage('Something is wrong!');
                 removeMessage(3000);
             })

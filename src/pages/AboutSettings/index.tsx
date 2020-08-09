@@ -25,7 +25,7 @@ function AboutSettings() {
                 setDescription(data.description);
                 setTimelineItems(data.courses);
             })
-            .catch(err => {
+            .catch((err: Error) => {
                 setMessage(err.message);
                 removeMessage(3000);
             })
@@ -89,7 +89,7 @@ function AboutSettings() {
                 setMessage('Successful updated!');
                 removeMessage(3000);
             })
-            .catch(err => {
+            .catch((err: Error) => {
                 setMessage('Something is wrong!');
                 removeMessage(3000);
             })

@@ -1,6 +1,6 @@
 import React from 'react';
-import './styles.css';
 import ILogo from '../../interfaces/ILogo';
+import './styles.css';
 
 function Logo({ width = '80px', height = '60px', logoSize = '20px', nameSize = '10' }: ILogo) {
     const styles = {

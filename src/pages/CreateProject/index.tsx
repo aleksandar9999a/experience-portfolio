@@ -114,7 +114,7 @@ function CreateProject() {
         setIsLoding(true);
         createProject({ _id: id, creatorId, title, description, images: files, link })
             .then(() => setMessage('Successful uploaded!'))
-            .catch(err => setMessage(err.message))
+            .catch((err: Error) => setMessage(err.message))
             .finally(() => setIsLoding(false))
     }
 

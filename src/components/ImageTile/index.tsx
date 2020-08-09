@@ -1,6 +1,6 @@
 import React, { SyntheticEvent } from 'react';
-import './styles.css';
 import IImageTile from '../../interfaces/IImageTile';
+import './styles.css';
 
 function ImageTile({ url, size, isEditable = false, handleRemove, id }: IImageTile) {
     const style = {

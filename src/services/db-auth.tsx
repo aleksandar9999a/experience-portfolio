@@ -13,7 +13,7 @@ getUserdata();
  * 
  * @returns {Promise}
  */
-export function getUserdata() {
+export function getUserdata(): Promise<any> {
     return Axios.get(`/auth`, config.credentials)
         .then(res => {
             auth.next(res.data || null);
@@ -26,7 +26,7 @@ export function getUserdata() {
  * 
  * @returns {Promise}
  */
-export function logout() {
+export function logout(): Promise<any> {
     return Axios.get(`/auth/logout`, config.credentials)
         .then(res => {
             auth.next(res.data || null);
@@ -42,7 +42,7 @@ export function logout() {
  * 
  * @returns {Promise}
  */
-export function submitLogin(loginData: ILoginData) {
+export function submitLogin(loginData: ILoginData): Promise<any> {
     return Axios.post(`/auth/login`, loginData, config.credentials)
         .then(res => {
             auth.next(res.data || null);

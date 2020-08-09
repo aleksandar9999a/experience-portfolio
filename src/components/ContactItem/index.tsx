@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './styles.css';
 import IContactItem from '../../interfaces/IContactItem';
 import Loader from '../Loader';
+import './styles.css';
 
 function ContactItem({ email, handleDelete, handleUpdate }: IContactItem) {
     const [isOpen, setIsOpen] = useState<boolean>(false);

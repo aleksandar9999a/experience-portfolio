@@ -1,7 +1,7 @@
 import React from 'react';
-import './styles.css';
 import ICustomLink from '../../interfaces/ICustomLink';
 import icons from '../../configs/icons';
+import './styles.css';
 
 function CustomLink({ alt, icon, link }: ICustomLink) {
     if (!icons[icon]) {

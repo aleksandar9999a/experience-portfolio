@@ -1,11 +1,10 @@
-
 /**
  * Generate Command - 'put' or 'post'
  * 
  * @param {Object} data
  * @returns {String} 
  */
-export function generateCommand(data: any) {
+export function generateCommand(data: any): string {
     return !!data._id
         ? 'put'
         : 'post'

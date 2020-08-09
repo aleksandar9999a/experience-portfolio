@@ -25,7 +25,7 @@ export function updateAuthUserdata(userdata: IMainUser) {
  */
 export function updateAuthSkills(data: ISkills) {
     const command = generateCommand(data);
-    return Axios[command](`/skills`, data, config.credentials);
+    return (Axios as any)[command](`/skills`, data, config.credentials);
 }
 
 /**
@@ -37,7 +37,7 @@ export function updateAuthSkills(data: ISkills) {
  */
 export function updateAuthAbout(data: IAbout) {
     const command = generateCommand(data);
-    return Axios[command](`/about`, data, config.credentials);
+    return (Axios as any)[command](`/about`, data, config.credentials);
 }
 
 /**

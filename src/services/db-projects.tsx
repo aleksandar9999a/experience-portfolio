@@ -76,7 +76,7 @@ export function uploadImage(file: File) {
  */
 export function createProject(data: IProject) {
     const command = generateCommand(data);
-    return Axios[command]('/projects', data, config.credentials);
+    return (Axios as any)[command]('/projects', data, config.credentials);
 }
 
 /**

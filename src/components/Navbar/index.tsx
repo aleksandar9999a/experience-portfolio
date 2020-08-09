@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './styles.css';
+import { Link } from 'react-router-dom';
 import ITab from '../../interfaces/ITab';
 import Tab from '../Tab';
 import { auth } from '../../services/db-auth';
 import tabsConfig from '../../configs/navbar';
 import Logo from '../Logo';
-import { Link } from 'react-router-dom';
+import './styles.css';
 
 function Navbar() {
     const [tabs, setTabs] = useState<ITab[]>([]);

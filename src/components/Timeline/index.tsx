@@ -9,19 +9,19 @@ import './styles.css';
 function Timeline({ items, isEditable, onChange, onRemove, onAdd }: ITimeline) {
     return (
         <ul className="timeline">
-            {(items || []).map((item: ITimelineItems) => {
+            {items.map((item: ITimelineItems) => {
                 return <TimelineItem
                     item={item}
                     id={item.id}
-                    key={item.id.toString()}
+                    key={item.id}
                     isEditable={isEditable}
                     onChange={onChange}
                     onRemove={onRemove}
                 />
             })}
-            {isEditable 
-            ? <TimelineAddItem onClick={onAdd as Function} /> 
-            : null}
+            {isEditable
+                ? <TimelineAddItem onClick={onAdd as Function} />
+                : null}
         </ul>
     );
 }
